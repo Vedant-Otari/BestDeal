@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
@@ -13,23 +14,13 @@ export default function Footer() {
         <hr />
         <div className="flex justify-around p-2 sm:justify-evenly sm:w-full lg:w-1/2 xl:w-1/3">
           <img src="./logo512.png" alt="" className="h-7 hidden sm:inline" />
-          <a href="#" className="cursor-pointer">
-            <u>About</u>
-          </a>
-          <a href="#">
-            <u>Privacy</u>
-          </a>
-          <a href="#">
-            <u>Developers</u>
-          </a>
+        
+          <Link to="/about"><u>About</u></Link>
+          <Link to="/about"><u>Privacy</u></Link>
+          <Link to="/about"><u>Developer</u></Link>
+          
         </div>
       </footer>
     </>
   );
-}
-
-
-
-function callMe(){
-  alert("hiii")
 }
