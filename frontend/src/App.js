@@ -11,7 +11,7 @@ function App() {
   // const [displayFirst, setDisplayFirst] = useState(true);
   return (
     <>
-      <div className="bg-blue-100 min-h-screen pb-28">
+      <div className="from-sky-300 to-blue-600 bg-gradient-to-b min-h-screen pb-28">
         <Header />
         {/* <Header toggleDisplay={() => setDisplayFirst(!displayFirst)} /> */}
         <Search />
