@@ -9,15 +9,16 @@ export default function Footer() {
         id="main-footer"
       >
         <div className="flex justify-center p-2 sm:hidden">
-          <img src="./logo512.png" alt="" className="h-7" />
+          <Link to="/" className="w-full"><img src="./logo512.png" alt="" className="h-6 m-auto" /></Link>
         </div>
         <hr />
         <div className="flex justify-around p-2 sm:justify-evenly sm:w-full lg:w-1/2 xl:w-1/3">
-          <img src="./logo512.png" alt="" className="h-7 hidden sm:inline" />
-        
-          <Link to="/about"><u>About</u></Link>
-          <Link to="/about"><u>Privacy</u></Link>
-          <Link to="/about"><u>Developer</u></Link>
+          
+          
+          <Link to="/" className=" hidden sm:inline"><img src="./logo512.png" alt="" className="h-7" /></Link>
+          <Link to="/about"><u className="hover:text-cyan-300">About</u></Link>
+          <Link to="/about"><u className="hover:text-cyan-300">Privacy</u></Link>
+          <Link to="/developers"><u className="hover:text-cyan-300">Developer</u></Link>
           
         </div>
       </footer>
