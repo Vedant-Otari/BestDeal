@@ -3,9 +3,7 @@ from bs4 import BeautifulSoup
 import requests
 
 def getASIN(productName):
-	HEADERS = ({'User-Agent':
-					'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.106 Safari/537.36 OPR/38.0.2220.41',
-					'Accept-Language': 'en-US, en;q=0.5'})
+	HEADERS = ({'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X x.y; rv:42.0) Gecko/20100101 Firefox/42.0'})
 	productNameString = productName.replace(" ", "+")
 	URL = "https://www.amazon.in/s?k="+productNameString
 	webpage = requests.get(URL, headers=HEADERS)

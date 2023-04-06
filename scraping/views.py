@@ -16,3 +16,8 @@ def getAmazonData(request, product):
 def getFlipkartData(request, product):
     data = getFlipkartProductDetail(product)
     return HttpResponse(data)
+
+def getProductData(request, product):
+    data = getAmazonProductDetail(product)
+    data += getFlipkartProductDetail(product)
+    return HttpResponse(data)
