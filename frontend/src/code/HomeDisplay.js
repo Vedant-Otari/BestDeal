@@ -1,11 +1,33 @@
 // import React from "react";
+import axios from 'axios';
+import React, {useState, useEffect} from 'react';
 function abcd() {
   alert("Clicked");
+}
+
+function callLink(){
+  return axios.get("http://127.0.0.1:8000/api/flipkart/samsungs22")
+        .then(res =>{
+            console.log(res);
+            return res.data;
+        })
+        .catch(err => {
+            console.log(err)
+        })
 }
 
 export default function HomeDisplay() {
   const helloArr = [];
   let image = "https://m.media-amazon.com/images/I/61imYpK33qL._SX679_.jpg";
+
+  useEffect( () => {
+    call();
+  }, []);
+  async function call(){
+    const res = await callLink();
+    console.log(res);
+  }
+
 
   for (let i = 0; i < 100; i++) {
     helloArr.push(
