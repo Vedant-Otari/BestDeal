@@ -1,29 +1,11 @@
 // import React from "react";
-import React, { useState, useEffect } from "react"; 
 function abcd() {
-  alert("JOOOOOOooooo");
+  alert("Clicked");
 }
 
 export default function HomeDisplay() {
   const helloArr = [];
-  // let image = "https://m.media-amazon.com/images/I/61imYpK33qL._SX679_.jpg";
-
-
-
-  const [image, setImage] = useState("");
-
-  async function getImage() {
-    const response = await fetch("https://dog.ceo/api/breeds/image/random/");
-    const data = await response.json();
-    setImage(data.message);
-  }
-
-  useEffect(() => {
-    getImage();
-  }, []);
-
-
-
+  let image = "https://m.media-amazon.com/images/I/61imYpK33qL._SX679_.jpg";
 
   for (let i = 0; i < 100; i++) {
     helloArr.push(
