@@ -5,6 +5,7 @@ import Header from "./code/Header.js";
 import Search from "./code/Search.js";
 import HomeDisplay from "./code/HomeDisplay.js";
 import About from "./code/About.js";
+import Privacy from "./code/Privacy.js";
 import Developers from "./code/Developers.js";
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
               }
             />
             <Route path="/about" element={<About />} />
+            <Route path="/privacy" element={<Privacy/>} />
             <Route path="/developers" element={<Developers />} />
           </Routes>
           <Footer />
