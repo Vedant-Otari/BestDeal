@@ -2,6 +2,9 @@ from bs4 import BeautifulSoup
 import requests
 import json
 from .getAsinAmazon import getASIN
+import pymongo
+from bson import json_util
+connect_string = 'mongodb+srv://Hrishi:Hrishi123@cluster0.fkj1i6o.mongodb.net/test?retryWrites=true&w=majority'
 
 def getAmazonProductDetail(productName):
     
@@ -16,7 +19,7 @@ def getAmazonProductDetail(productName):
             # Scraping the product name
     productNameSoup = soup.find("span",attrs={"id":'productTitle'})
 #     print(soup)
-    productNameStr = productNameSoup.text
+    productNameStr = productNameSoup.text.strip()
 
             # Scraping the product price discounted
     productPriceSoup = soup.find("span",attrs={"class":'a-price-whole'})
@@ -57,6 +60,22 @@ def getAmazonProductDetail(productName):
         "ratings" : producRatingStr
     }
 
-    return json.dumps(productData)
+    addDB(productData)
+    return json_util.dumps(productData)
 
-# print(getProductDetail())
+
+def addDB(product):
+    my_client = pymongo.MongoClient(connect_string)
+    # First define the database name
+    dbname = my_client['sample_products']
+    # Now get/create collection name (remember that you will see the database in your mongodb cluster only after you create a collection
+    collection_name = dbname["product_details"]
+
+    if(collection_name.count_documents({"name": product["name"]}) == 0):
+        product["view_count"] = 1
+        collection_name.insert_one(product)
+    else:
+        collection_name.update_one(
+        { "name": product["name"] },
+        { "$inc": { "view_count": 1}}
+    )

@@ -1,54 +1,56 @@
 from bs4 import BeautifulSoup
 import requests
 import json
+import pymongo
+from bson import json_util
+connect_string = 'mongodb+srv://Hrishi:Hrishi123@cluster0.fkj1i6o.mongodb.net/test?retryWrites=true&w=majority'
+
 
 def getFlipkartProductDetail(productName):
-    
+
     HEADERS = ({'User-Agent':
-                        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36',
-                        'Accept-Language': 'en-US, en;q=0.5'})
+                'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36',
+                'Accept-Language': 'en-US, en;q=0.5'})
     URL = "https://www.flipkart.com/search?q="+productName
     webpage = requests.get(URL, headers=HEADERS)
     soup = BeautifulSoup(webpage.content, "lxml")
 
-            # Scraping the product name
-    productNameSoup = soup.find("div",attrs={"class":'_4rR01T'})
+    # Scraping the product name
+    productNameSoup = soup.find("div", attrs={"class": '_4rR01T'})
     productNameStr = productNameSoup.text
 
-            # Scraping the product link
-    productLinkSoup = soup.find("a",attrs={"class":'_1fQZEK'})
-    productLink = "https://www.flipkart.com"+productLinkSoup['href']   
+    # Scraping the product link
+    productLinkSoup = soup.find("a", attrs={"class": '_1fQZEK'})
+    productLink = "https://www.flipkart.com"+productLinkSoup['href']
 
-
-
-
-            # Scraping the product price discounted
-    productPriceSoup = soup.find("div",attrs={"class":'_30jeq3 _1_WHN1'})
+    # Scraping the product price discounted
+    productPriceSoup = soup.find("div", attrs={"class": '_30jeq3 _1_WHN1'})
     productPriceStr = productPriceSoup.text.replace('₹', '')
     productPriceInt = int(productPriceStr.replace(',', ''))
-    
 
-            # Scraping the product price actual
-    productPriceActualSoup = soup.find("div",attrs={"class":'_3I9_wc _27UcVY'})
-    productPriceActualStr = productPriceActualSoup.text.replace('.', '').replace('₹', '')
+    # Scraping the product price actual
+    productPriceActualSoup = soup.find(
+        "div", attrs={"class": '_3I9_wc _27UcVY'})
+    productPriceActualStr = productPriceActualSoup.text.replace(
+        '.', '').replace('₹', '')
     productPriceActualInt = int(productPriceActualStr.replace(',', ''))
 
-
-    productDiscount = (productPriceActualInt - productPriceInt)/productPriceActualInt*100
+    productDiscount = (productPriceActualInt -
+                       productPriceInt)/productPriceActualInt*100
 
 
 #             # Scraping the product image
-    productImageSoup = soup.find("div",attrs={"class":'_2QcLo-'})
+    productImageSoup = soup.find("div", attrs={"class": '_2QcLo-'})
     productImageStr = productImageSoup.div.div.img['src']
-    
-    
-#             # Scraping the product stars
-    productStarSoup = soup.find("div",attrs={"class":'_3LWZlK'})
-    producStarStr = productStarSoup.text
-        
 
-#             # Scraping the ratings 
-    productRatingSoup = soup.find("span",attrs={"class":'_2_R_DZ'})
+
+#             # Scraping the product stars
+    productStarSoup = soup.find("div", attrs={"class": '_3LWZlK'})
+    producStarStr = productStarSoup.text
+
+
+#             # Scraping the ratings
+    productRatingSoup = soup.find("span", attrs={"class": '_2_R_DZ'})
     producRatingStr = productRatingSoup.span.text.split()[0]
 #     print(producRatingStr)
 
@@ -58,16 +60,37 @@ def getFlipkartProductDetail(productName):
 #     # print(productNameSoup)
 
     productData = {
-        "link" : productLink,
-        "name" : productNameStr,
-        "image" : productImageStr,
+        "link": productLink,
+        "name": productNameStr,
+        "image": productImageStr,
         "price": productPriceInt,
-        "mrp" : productPriceActualInt,
-        "discount" : productDiscount,
-        "stars" : producStarStr,
-        "ratings" : producRatingStr
+        "mrp": productPriceActualInt,
+        "discount": productDiscount,
+        "stars": producStarStr,
+        "ratings": producRatingStr
     }
 
-    return json.dumps(productData)
+    addDB(productData)
+    return json_util.dumps(productData)
 
 # print(getProductDetail())
+
+
+def addDB(product):
+    my_client = pymongo.MongoClient(connect_string)
+    # First define the database name
+    dbname = my_client['sample_products']
+    # Now get/create collection name (remember that you will see the database in your mongodb cluster only after you create a collection
+    collection_name = dbname["product_details"]
+
+    if(collection_name.count_documents({"name": product["name"]}) == 0):
+        product["view_count"] = 1
+        collection_name.insert_one(product)
+    else:
+        collection_name.update_one(
+        { "name": product["name"] },
+        { "$inc": { "view_count": 1}}
+    )
+
+
+
