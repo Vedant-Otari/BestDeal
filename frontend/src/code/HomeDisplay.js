@@ -28,8 +28,7 @@ export default function HomeDisplay() {
     console.log(res);
   }
 
-
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < 5; i++) {
     helloArr.push(
       <div
         key={i}
