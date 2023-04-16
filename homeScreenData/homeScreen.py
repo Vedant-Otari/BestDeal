@@ -5,7 +5,7 @@ def getHomeScreenItems():
     my_client = pymongo.MongoClient(connect_string)
     dbname = my_client['sample_products']
     collection_name = dbname["product_details"]
-    product_details = collection_name.aggregate([ { "$sample" : { "size": 1 } } ])
+    product_details = collection_name.aggregate([ { "$sample" : { "size": 5 } } ])
     # for i in product_details:
     print(type(product_details))
     return product_details
