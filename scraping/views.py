@@ -1,4 +1,5 @@
 import json
+from bson import json_util
 from django.shortcuts import render
 from django.http import HttpResponse
 from amazonScraping.getProductDetailAmazon import getAmazonProductDetail
@@ -29,4 +30,5 @@ def getRecomendationItem(request):
     for i in data:
         L.append(i)
     print(L)
-    return HttpResponse("str(data)")
+    return HttpResponse(json_util.dumps(L))
+    

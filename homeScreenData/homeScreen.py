@@ -10,4 +10,4 @@ def getHomeScreenItems():
     print(type(product_details))
     return product_details
 
-print(getHomeScreenItems())
+#print(getHomeScreenItems())
