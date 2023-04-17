@@ -4,7 +4,7 @@ import Header from "./Header";
 export default function Developers() {
   return (
     <>
-      <Header />
+    <Header showButton="show"/>
       <div className="bg-gray-800 text-center text-white w-5/6 m-auto rounded-lg p-6">
         <h1 className="text-4xl mb-4">Developers</h1>
         <div className="w-3/4 m-auto rounded-3xl p-5 py-10 from-sky-300 to-blue-600 bg-gradient-to-b my-4">

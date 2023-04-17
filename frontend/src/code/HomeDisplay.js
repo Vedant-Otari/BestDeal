@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 
-function abcd() {
+function abcd(x) {
   alert('Clicked');
 }
 
@@ -20,7 +20,7 @@ function callLink() {
 export default function HomeDisplay() {
   const helloArr = [];
   const [res, setRes] = useState(null);
-  let image = 'https://m.media-amazon.com/images/I/61imYpK33qL._SX679_.jpg';
+  // let image = 'https://m.media-amazon.com/images/I/61imYpK33qL._SX679_.jpg';
 
   useEffect(() => {
     call();
@@ -45,22 +45,22 @@ export default function HomeDisplay() {
       <div
         key={i}
         onClick={abcd}
-        className="flex flex-col cursor-pointer bg-white border-blue-800 border-2 m-2 rounded-3xl aspect-[0.6] min-w-[13rem] overflow-hidden"
+        className="hover:scale-105 duration-500 flex w-12 flex-col cursor-pointer bg-white border-blue-800 border-2 m-2 rounded-3xl aspect-[0.6] min-w-[13rem] overflow-hidden"
       >
         <img
-          className="w-full cursor-pointer aspect-square object-cover"
-          src={res[1].image}
+          className="w-full cursor-pointer aspect-square object-contain p-2"
+          src={res[i].image}
           alt="abdcefg"
         />
-        <label className=" cursor-pointer">{res[1].name}</label>
-        <label className=" cursor-pointer">Rs. {res[1].price}</label>
+        <label className=" cursor-pointer">{res[i].name}</label>
+        <label className=" cursor-pointer">Rs. {res[i].price}</label>
       </div>
     );
   }
   return (
-    <div className="p-6 text-center">
-      <label className="text-2xl">People also searched</label>
-      <div className="flex overflow-x-auto w-full justify-center">{helloArr}</div>
+    <div className="p-6 text-center mt-10">
+      <label className="text-2xl font-bold font-serif">People also searched</label>
+      <div className="flex w-full justify-center mt-10">{helloArr}</div>
     </div>
   );
 }
