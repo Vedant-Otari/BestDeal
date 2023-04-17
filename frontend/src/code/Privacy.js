@@ -1,8 +1,10 @@
 import React from "react";
+import Header from "./Header";
 
 export default function Privacy() {
   return (
     <>
+    <Header />
       <h1 className="text-center font-mono text-5xl py-7">Privacy</h1>
       <div className="flex flex-col">
         <div className="w-full">
