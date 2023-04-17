@@ -9,6 +9,7 @@ collection_name = dbname["customer_details"]
 
 customer = {
     "username": "user",
+    "email_id": "user@gmail.com",
     "password": "password"
 }
 
