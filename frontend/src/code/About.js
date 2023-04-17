@@ -1,8 +1,10 @@
 import React from "react";
+import Header from "./Header";
 
 export default function About() {
   return (
     <>
+    <Header />
       <div className="bg-gray-800 text-white w-5/6 m-auto rounded-lg">
         <h1 className= "text-center font-mono text-5xl py-7">About</h1>
         <div className="flex flex-col">
