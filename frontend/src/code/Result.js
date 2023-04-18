@@ -7,6 +7,7 @@ function callLink() {
   return axios
     .get("http://127.0.0.1:8000/api/flipkart/" + abc)
     .then((res) => {
+      console.log(res.data)
       return res.data;
     })
     .catch((err) => {
@@ -17,7 +18,9 @@ function callLink() {
 var abc = "";
 export default function Result() {
   const searchQuery = new URLSearchParams(useLocation().search).get("query");
-  abc = searchQuery.replace(/\s/g, "");
+
+  abc = searchQuery;
+
   const [res, setRes] = useState(null);
   useEffect(() => {
     call();

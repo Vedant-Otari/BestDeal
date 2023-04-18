@@ -1,76 +1,109 @@
-import * as React from 'react';
-import axios from 'axios';
-import { useState } from 'react';
+import * as React from "react";
+import axios from "axios";
+import { useState } from "react";
+import Header from "./Header";
+import { Link } from "react-router-dom";
 
 export default function Signup() {
-
-    const [username, setUsername] = useState("")
-    const [password, setPassword] = useState("")
-    const [email, setEmail] = useState("")
-
-    const signIn = async () => {
-        console.log(username, email, password);
-        await axios.get('http://127.0.0.1:8000/api/signUp',
-            { params: { "username": username, "email": email, "password": password } })
-            .then((res) => {
-                console.log(res)
-                var data = res.data[0];
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [confirm, setConfirm] = useState("");
 
 
-                alert(data.msg);
-                return res.data;
 
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+  const signUp = async () => {
+    console.log(username, email, password);
+    if (password === confirm){
+    await axios
+      .get("http://127.0.0.1:8000/api/signUp", {
+        params: { username: username, email: email, password: password },
+      })
+      .then((res) => {
+        console.log(res);
+        var data = res.data[0];
+
+        alert(data.msg);
+        return res.data;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     }
+    else{
+        alert("Password dosent match")
+    }
+  };
 
+  return (
+    <>
+      <Header showButton="show" />
 
-    return (
-        <div className='bg-white px-10 py-7 rounded-3xl border-2 border-gray-200 '>
-            <h1 className='text-5xl font-semibold font-Libre_Baskerville text-blue-950'>BEST DEAL</h1>
-            <p className='font-medium text-lg text-blue-950 mt-4'>Welcome! Please Enter your details</p>
-            <div className='mt-8'>
-                <form>
-                    <div>
-                        <label className='text-lg font-medium'>Email</label>
-                        <input
-                            className='w-full border-2 border-gray-100 rounded-xl p-4 mt-1 bg-transparent'
-                            type="email"
-                            placeholder='Enter Your email'
-                            required
-                            minLength={5}
-                            maxLength={50} />
-                    </div>
-                    <div>
-                        <label className='text-lg font-medium'>Password</label>
-                        <input
-                            className='w-full border-2 border-gray-100 rounded-xl p-4 mt-1 bg-transparent'
-                            type="password"
-                            placeholder='Enter Your password'
-                            required
-                            minLength={8}
-                            maxLength={20} />
-                    </div>
-                    <div>
-                        <label className='text-lg font-medium'>Conform Password</label>
-                        <input
-                            className='w-full border-2 border-gray-100 rounded-xl p-4 mt-1 bg-transparent'
-                            type="password"
-                            placeholder='Re-Enter Your password'
-                            required
-                            minLength={8}
-                            maxLength={20} />
-                    </div>
+      <div className="bg-white px-10 py-7 rounded-3xl border-2 border-gray-200 w-[500px] mt-9 m-auto">
+        <h1 className='text-5xl font-semibold font-Libre_Baskerville text-blue-950'>SIGN UP</h1>
+        <p className="font-medium text-lg text-blue-950 mt-4">
+          Welcome! Please Enter your details
+        </p>
+        <div className="mt-8">
+          {/* <form> */}
+            <div>
+              <label className="text-lg font-medium">Email</label>
+              <input
+                className="w-full border-2 border-gray-100 rounded-xl p-4 mt-1 bg-transparent"
+                type="email"
+                placeholder="Enter Your email"
+                onInput={(data) => setEmail(data.target.value)}
+                required
+                minLength={5}
+                maxLength={50}
+              />
+            </div>
+            <div>
+              <label className="text-lg font-medium">User name</label>
+              <input
+                className="w-full border-2 border-gray-100 rounded-xl p-4 mt-1 bg-transparent"
+                type="User"
+                placeholder="Enter Your User name"
+                onInput={(data) => setUsername(data.target.value)}
+                required
+                minLength={5}
+                maxLength={50}
+              />
+            </div>
+            <div>
+              <label className="text-lg font-medium">Password</label>
+              <input
+                className="w-full border-2 border-gray-100 rounded-xl p-4 mt-1 bg-transparent"
+                type="password"
+                placeholder="Enter Your password"
+                onInput={(data) => setPassword(data.target.value)}
+                required
+                minLength={8}
+                maxLength={20}
+              />
+            </div>
+            <div>
+              <label className="text-lg font-medium">Confirm Password</label>
+              <input
+                className="w-full border-2 border-gray-100 rounded-xl p-4 mt-1 bg-transparent"
+                type="password"
+                placeholder="Re-Enter Your password"
+                onInput={(data) => setConfirm(data.target.value)}
+                required
+                minLength={8}
+                maxLength={20}
+              />
+            </div>
 
-                    <div className='mt-8 flex flex-col gap-y-4'>
-
-                        <button className=' active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-3 rounded-xl bg-blue-950 text-white text-lg font-bold'>Sign up</button>
-
-                    </div>
-                </form>
-                {/* <div  className='mt-8 flex flex-col gap-y-4'>                
+            <div className="mt-8 flex flex-col gap-y-4">
+              <button
+                onClick={signUp}
+                className=" active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-3 rounded-xl bg-blue-950 text-white bg-green-600 text-lg font-bold">
+                Sign up
+              </button>
+            </div>
+          {/* </form> */}
+          {/* <div  className='mt-8 flex flex-col gap-y-4'>                
                 <button className='flex py-3 border-2 border-gray-200 items-center justify-center rounded-xl gap-x-2 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all'>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M5.26644 9.76453C6.19903 6.93863 8.85469 4.90909 12.0002 4.90909C13.6912 4.90909 15.2184 5.50909 16.4184 6.49091L19.9093 3C17.7821 1.14545 15.0548 0 12.0002 0C7.27031 0 3.19799 2.6983 1.24023 6.65002L5.26644 9.76453Z" fill="#EA4335"/>
@@ -81,14 +114,14 @@ export default function Signup() {
                     Sign up with Google</button>
                 </div>   */}
 
-
-                <div className='mt-8 flex justify-center items-center'>
-                    <p className='font-medium text-base'>Already have an account?</p>
-                    <button className='text-blue-400 font-medium ml-2'>Log in</button>
-                </div>
-
-            </div>
+          <div className="mt-8 flex justify-center items-center">
+            <p className="font-medium text-base">Already have an account?</p>
+            <Link to="/login">
+              <button className="text-blue-400 font-medium ml-2">Login</button>
+            </Link>
+          </div>
         </div>
-
-    )
+      </div>
+    </>
+  );
 }

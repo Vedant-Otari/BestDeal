@@ -8,7 +8,7 @@ import About from "./code/About.js";
 import Privacy from "./code/Privacy.js";
 import Developers from "./code/Developers.js";
 import Login from "./code/Login.js";
-// import Signup from "./code/Signup.js";
+import Signup from "./code/Signup.js";
 import Result from "./code/Result.js";
 
 function App() {
@@ -24,8 +24,6 @@ function App() {
                   <Header />
                   <Search />
                   <HomeDisplay />
-                  {/* <Login/> */}
-                  {/* <Signup/> */}
                 </>
               }
             />
@@ -33,6 +31,7 @@ function App() {
             <Route path="/privacy" element={<Privacy/>} />
             <Route path="/developers" element={<Developers />} />
             <Route path="/login" element={<Login/>} />
+            <Route path="/signup" element={<Signup/>} />
             <Route path="/result" element={<Result/>} />
           </Routes>
           <Footer />
