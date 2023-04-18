@@ -1,6 +1,29 @@
 import * as React from "react";
+import axios from "axios";
+import { useState } from "react";
+
 
 export default function Login() {
+  const [username, setUsername] = useState("")
+  const [password, setPassword] = useState("")
+
+  const signIn = async () => {
+    console.log(username, password);
+    await axios.get('http://127.0.0.1:8000/api/signIn',{params : {"username": username,"password": password}})
+    .then((res) => {
+      console.log(res)
+      var data = res.data[0];
+
+
+      alert(data.msg);
+      return res.data;
+
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }
+
   return (
     <div className="w-full flex flex-col items-center mt-10">
       <div className="bg-white px-10 py-7 rounded-3xl border-2 border-gray-200 w-full max-w-md">
@@ -10,13 +33,14 @@ export default function Login() {
         <p className="font-medium text-base text-blue-950 mt-4 mb-4">
           Welcome! Please Enter your details
         </p>
-        <form className="w-full">
+        {/* <form className="w-full"> */}
           <div>
             <label className="text-base font-medium">Email</label>
             <input
               className="w-full border-2 border-gray-100 rounded-xl p-2 mt-1 bg-transparent"
-              type="email"
+              type="text"
               placeholder="Enter Your email"
+              onInput={(data) => setUsername(data.target.value)}
               required
               minLength={5}
               maxLength={50}
@@ -28,6 +52,7 @@ export default function Login() {
               className="w-full border-2 border-gray-100 rounded-xl p-2 mt-1 bg-transparent"
               type="password"
               placeholder="Enter Your password"
+              onInput={(data) => setPassword(data.target.value)}
               required
               minLength={8}
               maxLength={20}
@@ -37,11 +62,11 @@ export default function Login() {
             <button className="text-sm text-blue-400">Forgot Password</button>
           </div> */}
           <div className="mt-8 flex flex-col gap-y-4">
-            <button className="active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-2 rounded-xl bg-blue-950 text-black bg-green-400 text-base font-bold">
+            <button onClick={signIn} className="active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-2 rounded-xl bg-blue-950 text-black bg-green-400 text-base font-bold">
               Sign in
             </button>
           </div>
-        </form>
+        {/* </form> */}
         <div className="mt-8 flex flex-col gap-y-4">
           {/* <button className="flex py-2 border-2 border-gray-200 items-center justify-center rounded-xl gap-x-2 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all">
             <svg

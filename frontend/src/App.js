@@ -21,7 +21,7 @@ function App() {
               path="/"
               element={
                 <>
-                <Header />
+                  <Header />
                   <Search />
                   <HomeDisplay />
                   {/* <Login/> */}

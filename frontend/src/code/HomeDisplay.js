@@ -48,7 +48,7 @@ export default function HomeDisplay() {
         className="hover:scale-105 duration-500 flex w-12 flex-col cursor-pointer bg-white border-blue-800 border-2 m-2 rounded-3xl aspect-[0.6] min-w-[13rem] overflow-hidden"
       >
         <img
-          className="w-full cursor-pointer aspect-square object-contain p-2"
+          className="w-full cursor-pointer aspect-square object-cover"
           src={res[i].image}
           alt="abdcefg"
         />

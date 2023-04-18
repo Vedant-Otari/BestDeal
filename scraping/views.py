@@ -5,6 +5,7 @@ from django.http import HttpResponse
 from amazonScraping.getProductDetailAmazon import getAmazonProductDetail
 from flipkartScraping.getProductDetailFlipkart import getFlipkartProductDetail
 from homeScreenData.homeScreen import getHomeScreenItems
+from signinSignup.loginInterface import signIn,signUp
 
 
 # Create your views here.
@@ -31,4 +32,23 @@ def getRecomendationItem(request):
         L.append(i)
     print(L)
     return HttpResponse(json_util.dumps(L))
+
+def isSignIn(request):
+    userName = request.GET['username']
+    password = request.GET['password']
+    res = signIn(userName, password)
+    L = []
+    L.append(res)
+    print(res)
+    return HttpResponse(json.dumps(L))
+
+def isSignUp(request):
+    userName = request.GET['username']
+    password = request.GET['password']
+    email = request.GET['email']
+    res = signUp(userName, email, password)
+    L = []
+    L.append(res)
+    print(res)
+    return HttpResponse(json.dumps(L))
     
