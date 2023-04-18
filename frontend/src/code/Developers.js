@@ -4,32 +4,43 @@ import Header from "./Header";
 export default function Developers() {
   return (
     <>
-    <Header showButton="show"/>
-      <div className="bg-gray-800 text-center text-white w-5/6 m-auto rounded-lg p-6">
-        <h1 className="text-4xl mb-4">Developers</h1>
-        <div className="w-3/4 m-auto rounded-3xl p-5 py-10 from-sky-300 to-blue-600 bg-gradient-to-b my-4">
-          <label className="font-serif text-2xl">Hrishikesh Hegishte</label>
-          <br />
-          <label className="text-black">Roll No. - </label> A05 <br />
-          <label className="text-black">PRN - </label> 1920000075 <br />
+      <Header showButton="show" />
+      <div className="bg-gray-800 text-center text-white w-5/6 m-auto rounded-2xl mt-10 shadow-2xl shadow-black">
+        <div className="h-60 bg-transparent mb-16 relative">
+          <h1 className="text-6xl mb-4 absolute z-10 text-center w-full h-full flex justify-center items-center font-bold">Developers</h1>
+          <img
+            className="w-full h-full object-cover opacity-40 absolute rounded-t-2xl"
+            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+            alt=""
+          />
+
         </div>
-        <div className="w-3/4 m-auto rounded-3xl p-5 py-10 from-sky-300 to-blue-600 bg-gradient-to-b my-4">
-          <label className="font-serif text-2xl">Vedant Otari</label>
+        <div className="rounded-3xl p-5 py-10 text-white my-4 hover:bg-blue-700 scale-105 duration-500">
+          <label className="font-serif text-4xl">Hrishikesh Hegishte</label>
           <br />
-          <label className="text-black">Roll No. - </label> A20 <br />
-          <label className="text-black">PRN - </label> 1920000264 <br />
+          A05 <br />
+          1920000075 <br />
         </div>
-        <div className="w-3/4 m-auto rounded-3xl p-5 py-10 from-sky-300 to-blue-600 bg-gradient-to-b my-4">
-          <label className="font-serif text-2xl">Sanket Khorate</label>
+        <div className="bg-white h-1"></div>
+        <div className="rounded-3xl p-5 py-10 text-white my-4 hover:bg-blue-700 scale-105 duration-500">
+          <label className="font-serif text-4xl">Vedant Otari</label>
           <br />
-          <label className="text-black">Roll No. - </label> A30 <br />
-          <label className="text-black">PRN - </label> 1920000369 <br />
+          A20 <br />
+          1920000264 <br />
         </div>
-        <div className="w-3/4 m-auto rounded-3xl p-5 py-10 from-sky-300 to-blue-600 bg-gradient-to-b my-4">
-          <label className="font-serif text-2xl">Niketan Raskar</label>
+        <div className="bg-white h-1"></div>
+        <div className="rounded-3xl p-5 py-10 text-white my-4 hover:bg-blue-700 scale-105 duration-500">
+          <label className="font-serif text-4xl">Sanket Khorate</label>
           <br />
-          <label className="text-black">Roll No. - </label> A53 <br />
-          <label className="text-black">PRN - </label> 1920000660 <br />
+          A30 <br />
+          1920000369 <br />
+        </div>
+        <div className="bg-white h-1"></div>
+        <div className="rounded-3xl p-5 py-10 text-white my-4 hover:bg-blue-700 scale-105 duration-500">
+          <label className="font-serif text-4xl">Niketan Raskar</label>
+          <br />
+          A53 <br />
+          1920000660 <br />
         </div>
       </div>
     </>
