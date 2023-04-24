@@ -1,6 +1,7 @@
 import pymongo
 connect_string = 'mongodb+srv://Hrishi:Hrishi123@cluster0.fkj1i6o.mongodb.net/test?retryWrites=true&w=majority'
 from bson import json_util
+from datetime import datetime
 
 my_client = pymongo.MongoClient(connect_string)
 # First define the database name
@@ -11,7 +12,29 @@ collection_name = dbname["customer_details"]
 customer = {
     "username": "user",
     "email_id": "user@gmail.com",
-    "password": "password"
+    "password": "password",
+	"comments": [
+		{
+			"product_name": "Samsung Galaxy S22 5G (Phantom White, 8GB RAM, 128GB Storage) with No Cost EMI/Additional Exchange Offers",
+			"date": datetime.utcnow(),
+			"description": "Amazing product with great features. The image and sound quality is perfect."
+		},
+		{
+			"product_name": "Samsung 192 L 2 Star Direct Cool Single Door Refrigerator (RR19A241BGS/NL, Grey Silver, 2022 Model)",
+			"date": datetime.utcnow(),
+			"description": "Very spacious and well organized."
+		}
+	],
+	"wishlist": [
+		{
+			"product_name": "Samsung Galaxy S22 5G (Phantom White, 8GB RAM, 128GB Storage) with No Cost EMI/Additional Exchange Offers",
+			"date": datetime.utcnow(),
+		},
+		{
+			"product_name": "Samsung 192 L 2 Star Direct Cool Single Door Refrigerator (RR19A241BGS/NL, Grey Silver, 2022 Model)",
+			"date": datetime.utcnow(),
+		}
+	]
 }
 
 # Insert the documents
@@ -27,10 +50,19 @@ for r in customer_details:
     print(r["username"], format("\n"))
 
 def get_customer(uname, pword):
-	customer_details = collection_name.find({"username": uname, "password": pword})
+	customer_details = collection_name.find({"username": uname, "password": pword}, {"_id": 1})
 	if(customer_details == None):
-		return "User not found \n"
+		return "User not found"
 	else:
 		return json_util.dumps(customer_details)
 
-print(get_customer("user", "password"))
+def get_customer_comments(uname, pword):
+	customer_details = collection_name.find({"username": uname, "password": pword}, {"comments": 1})
+	if(customer_details == None):
+		return "User not found"
+	else:
+		return json_util.dumps(customer_details)
+
+
+print(get_customer("user", "password")+"\n")
+print(get_customer_comments("user", "password"))
