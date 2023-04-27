@@ -6,6 +6,7 @@ urlpatterns = [
     path('api/flipkart/<str:product>', getFlipkartData),
     path('api/product/<str:product>', getProductData),
     path('api/recomendations', getRecomendationItem),
+    path('api/rankedItems', getRankedItem),
     path('api/signIn', isSignIn),
     path('api/signUp', isSignUp),
 

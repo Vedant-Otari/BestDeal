@@ -5,6 +5,7 @@ from django.http import HttpResponse
 from amazonScraping.getProductDetailAmazon import getAmazonProductDetail
 from flipkartScraping.getProductDetailFlipkart import getFlipkartProductDetail
 from homeScreenData.homeScreen import getHomeScreenItems
+from homeScreenData.homeScreen import getMostViewedItems
 from signinSignup.loginInterface import signIn,signUp
 
 
@@ -27,6 +28,14 @@ def getProductData(request, product):
 
 def getRecomendationItem(request):
     data = getHomeScreenItems()
+    L = []
+    for i in data:
+        L.append(i)
+    print(L)
+    return HttpResponse(json_util.dumps(L))
+
+def getRankedItem(request):
+    data = getMostViewedItems()
     L = []
     for i in data:
         L.append(i)
