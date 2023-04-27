@@ -17,7 +17,6 @@ export default function Footer() {
           
           <Link to="/" className=" hidden sm:inline"><img src="./logo512.png" alt="" className="h-7" /></Link>
           <Link to="/about"><u className="hover:text-cyan-300">About</u></Link>
-          <Link to="/privacy"><u className="hover:text-cyan-300">Privacy</u></Link>
           <Link to="/developers"><u className="hover:text-cyan-300">Developer</u></Link>
           
         </div>
