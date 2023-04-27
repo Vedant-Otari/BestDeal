@@ -56,7 +56,7 @@ export default function HomeDisplay() {
 
   if (!res1 || !res2) {
     return <>
-      <div className='justify-center flex text-4xl text-white pt-8'>
+      <div className='justify-center flex text-4xl text-black pt-10 h-[80vh] bg-white'>
         Content is Loading...
       </div>
     </>;

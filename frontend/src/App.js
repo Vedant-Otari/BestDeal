@@ -14,7 +14,9 @@ function App() {
   return (
     <Router>
       <>
-        <div className="from-sky-300 to-blue-600 bg-gradient-to-b min-h-screen pb-28">
+        {/* <div className="from-sky-300 to-blue-600 bg-gradient-to-b min-h-screen pb-28"> */}
+        <div className="h-full min-h-screen pb-9">
+      
           <Routes>
             <Route
               path="/"
