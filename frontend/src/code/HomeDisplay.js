@@ -30,6 +30,11 @@ function callLink2() {
 }
 
 export default function HomeDisplay() {
+  
+  
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const randomItems = [];
   const mostCountItems = [];
   const [res1, setRes1] = useState(null);

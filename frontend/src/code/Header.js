@@ -27,7 +27,7 @@ export default function Header(props) {
           className="flex justify-between sticky w-full bg-transparent top-0 duration-700 z-50"
           style={headerStyle}
         >
-          <div className="ml-4">
+          <div className="ml-4 hover:scale-105 duration-100 ">
             <Link to="/">
               <u className="hover:text-cyan-300">
                 <img src="./2.png" alt="" className="h-12" />

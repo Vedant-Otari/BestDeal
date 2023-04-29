@@ -1,7 +1,12 @@
 import React from "react";
 import Header from "./Header";
+import { useEffect } from "react";
 
 export default function About() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  
   return (
     <>
     <Header showButton="show"/>
