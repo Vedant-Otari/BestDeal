@@ -6,12 +6,12 @@ export default function About() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-  
+
   return (
     <>
-    <Header showButton="show"/>
+      <Header showButton="show" />
       <div className="bg-gray-800 text-white w-5/6 m-auto rounded-lg">
-        <h1 className= "text-center font-mono text-5xl py-7">About</h1>
+        <h1 className="text-center font-mono text-5xl py-7">About</h1>
         <div className="flex flex-col">
           <div className="w-full">
             <img
@@ -21,11 +21,10 @@ export default function About() {
             />
           </div>
           <div className="w-full text-center self-center p-7">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. A nesciunt
-            nobis deleniti quis illum nemo possimus dolorem nihil, sit quia
-            magnam eaque eius alias tenetur iste voluptatum. Voluptas ratione
-            dolorum quae, adipisci molestiae enim. Officia delectus laboriosam
-            ipsam facere similique.
+          Welcome to BestDeal, your one-stop-shop for finding the best deals
+            on any product you're searching for. Our team of four developers has
+            worked tirelessly to create a user-friendly search engine that
+            scours the web for the lowest prices on a wide range of products.
           </div>
         </div>
       </div>
@@ -39,12 +38,24 @@ export default function About() {
             />
           </div>
           <div className="w-full text-center self-center p-7">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. A nesciunt
-            nobis deleniti quis illum nemo possimus dolorem nihil, sit quia
-            magnam eaque eius alias tenetur iste voluptatum. Voluptas ratione
-            dolorum quae, adipisci molestiae enim. Officia delectus laboriosam
-            ipsam facere similique.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint repellat odio quas culpa adipisci ex deleniti sapiente natus pariatur, deserunt modi ipsa dolor earum. Sint nesciunt odit in? Fugit id veniam optio, voluptates est accusamus nam doloremque totam culpa tenetur a quod provident deserunt labore veritatis placeat excepturi atque facere? Itaque ipsa harum a repudiandae sunt cumque odit quibusdam obcaecati deleniti velit nulla, minima molestiae sapiente quae voluptates cupiditate dolor porro, rerum modi. Qui modi totam atque quae aspernatur eos consectetur, iusto recusandae dolor aut dolores iste porro excepturi repellat voluptatibus ad accusamus adipisci quos incidunt facere asperiores nisi vitae voluptatum? Eveniet, repellendus nulla. Est mollitia maxime delectus! Exercitationem, nisi assumenda. Non quis debitis pariatur odit, quisquam impedit explicabo iusto dignissimos illum laudantium eos iure sint molestias. Nam repudiandae reiciendis, rem sunt deserunt ad consequatur cumque quos illo quidem consectetur ipsum velit ut tempora recusandae, consequuntur ipsam nisi. Qui, et dolorum repudiandae vero enim corrupti quo, laboriosam ratione eum sequi eveniet minus at maxime provident! Doloremque corrupti molestias quisquam vitae dolorem possimus harum vero! Non aperiam, recusandae consequatur sapiente modi harum sit reprehenderit doloremque cupiditate illo porro maiores tempore enim eaque, optio quod officia nesciunt. Deserunt modi velit aspernatur quod.
+            
+            Our mission is simple: to help you save money while getting the
+            products you need. With BestDeal, you don't have to waste hours
+            browsing different shopping websites, comparing prices and features.
+            Our search engine does the work for you, and within seconds, you'll
+            have a list of options to choose from, including the cheapest price
+            available. At BestDeal, we use advanced scraping technology to pull
+            product details and pricing information from multiple online
+            shopping websites. This ensures that you get the most up-to-date and
+            accurate information possible. We constantly monitor our database to
+            make sure that the information we provide is reliable and
+            trustworthy. Our team is passionate about helping people save money
+            while getting the products they need. We believe that everyone
+            deserves to get the best deal possible, and we're committed to
+            making that happen. If you have any questions or feedback, please
+            don't hesitate to contact us. We're always looking for ways to
+            improve our service and make it even better for our users. Thank you
+            for choosing BestDeal, and happy shopping!
           </div>
         </div>
       </div>
