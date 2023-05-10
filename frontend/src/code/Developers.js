@@ -20,6 +20,7 @@ export default function Developers() {
 
         </div>
         <div className="rounded-3xl hover:shadow-black hover:shadow-xl p-5 hover:pt-9 text-white my-4 hover:bg-sky-700 hover:scale-105 duration-700">
+          <img src="./img/hrishi.jpg" alt="" srcset="" className="w-16 h-16 mr-5 mb-3 object-contain align-middle inline-block mx-auto border-white border-solid border-[3px] rounded-full bg-red-300" />
           <label className="font-serif text-4xl">Hrishikesh Hegishte</label>
           <br />
           <div className="w-5/6 my-6 mx-auto">
@@ -33,8 +34,8 @@ export default function Developers() {
             </div>
             <div className="w-1/2 py-4 text-left pl-[15%] inline-block text-xl font-sans p-0 m-0">
             <img title="LinkedIn" src="./lin.png" alt="" className="h-6 align-baseline inline pr-2"/>
-
-              <a href="https://www.linkedin.com/in/niketan-raskar-663bb7189/" target="_blank">niketan-raskar-663bb7189</a>
+            
+              <a href="https://www.linkedin.com/in/hrishikesh-hegishte-0971251b7/" target="_blank">hrishikesh-hegishte-0971251b7</a>
             </div>
             <div className="w-1/2 py-4 text-left pl-[15%] inline-block text-xl font-sans p-0 m-0">
             <img title="GitHub" src="./github.png" alt="" className="h-7 align-baseline inline pr-2"/>
@@ -44,6 +45,7 @@ export default function Developers() {
         </div>
         <div className="bg-white h-1"></div>
         <div className="rounded-3xl hover:shadow-black hover:shadow-xl p-5 hover:pt-9 text-white my-4 hover:bg-sky-700 hover:scale-105 duration-700">
+        <img src="./img/ved.jpg" alt="" srcset="" className="w-16 h-16 mr-5 mb-3 object-contain align-middle inline-block mx-auto border-white border-solid border-[3px] rounded-full bg-red-300" />
           <label className="font-serif text-4xl">Vedant Otari</label>
           <br />
           <div className="w-5/6 my-6 mx-auto">
@@ -68,6 +70,7 @@ export default function Developers() {
         </div>
         <div className="bg-white h-1"></div>
         <div className="rounded-3xl hover:shadow-black hover:shadow-xl p-5 hover:pt-9 text-white my-4 hover:bg-sky-700 hover:scale-105 duration-700">
+        <img src="./img/san.jpg" alt="" srcset="" className="w-16 h-16 mr-5 mb-3 object-contain align-middle inline-block mx-auto border-white border-solid border-[3px] rounded-full bg-red-300" />
           <label className="font-serif text-4xl">Sanket Khorate</label>
           <br />
           <div className="w-5/6 my-6 mx-auto">
@@ -92,6 +95,7 @@ export default function Developers() {
         </div>
         <div className="bg-white h-1"></div>
         <div className="rounded-3xl hover:shadow-black hover:shadow-xl p-5 hover:pt-9 text-white my-4 hover:bg-sky-700 hover:scale-105 duration-700">
+        <img src="./img/default.jpg" alt="" srcset="" className="w-16 h-16 mr-5 mb-3 object-contain align-middle inline-block mx-auto border-white border-solid border-[3px] rounded-full bg-red-300" />
           <label className="font-serif text-4xl">Niketan Raskar</label>
           <br />
           <div className="w-5/6 my-6 mx-auto">
@@ -106,7 +110,7 @@ export default function Developers() {
             <div className="w-1/2 py-4 text-left pl-[15%] inline-block text-xl font-sans p-0 m-0">
             <img title="LinkedIn" src="./lin.png" alt="" className="h-6 align-baseline inline pr-2"/>
 
-              <a href="https://www.linkedin.com/in/hrishikesh-hegishte-0971251b7/" target="_blank">niketan-raskar-663bb7189</a>
+              <a href="https://www.linkedin.com/in/niketan-raskar-663bb7189/" target="_blank">niketan-raskar-663bb7189</a>
             </div>
             <div className="w-1/2 py-4 text-left pl-[15%] inline-block text-xl font-sans p-0 m-0">
             <img title="GitHub" src="./github.png" alt="" className="h-7 align-baseline inline pr-2"/>
