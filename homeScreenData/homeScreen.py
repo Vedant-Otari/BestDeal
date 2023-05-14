@@ -12,7 +12,7 @@ def getHomeScreenItems():
     return product_details
 
 def getMostViewedItems():
-    product_details = collection_name.aggregate([ { "$sort" : { "view_count": 1 } }, {"$limit": 5} ])
+    product_details = collection_name.aggregate([ { "$sort" : { "view_count": -1 } }, {"$limit": 5} ])
     # for i in product_details:
     print(type(product_details))
     return product_details
