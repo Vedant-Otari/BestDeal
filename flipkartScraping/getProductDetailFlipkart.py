@@ -16,62 +16,114 @@ def getFlipkartProductDetail(productName):
     soup = BeautifulSoup(webpage.content, "lxml")
 
     # Scraping the product name
-    productNameSoup = soup.find("div", attrs={"class": '_4rR01T'})
-    productNameStr = productNameSoup.text
+    if soup.find("div", attrs={"class": '_4ddWXP'}):
+        temp = True
+        i=0
+        while temp:
+            card = soup.find("div", attrs={"class": '_4ddWXP'}).findNext('div').contents[i]
+            i+=1
+            if card.find("div", attrs={"class": '_4HTuuX'}):
+                continue
+            else:
+                break
+        productNameSoup = soup.find("a", attrs={"class": 's1Q9rs'})
+        productNameStr = productNameSoup.text
+        productLink = "https://www.flipkart.com"+productNameSoup['href']
 
-    # Scraping the product link
-    productLinkSoup = soup.find("a", attrs={"class": '_1fQZEK'})
-    productLink = "https://www.flipkart.com"+productLinkSoup['href']
+        productImageSoup = soup.find("img", attrs={"class": '_396cs4'})
+        productImageStr = productImageSoup['src']
 
-    # Scraping the product price discounted
-    productPriceSoup = soup.find("div", attrs={"class": '_30jeq3 _1_WHN1'})
-    productPriceStr = productPriceSoup.text.replace('₹', '')
-    productPriceInt = int(productPriceStr.replace(',', ''))
+        productPriceSoup = soup.find("div", attrs={"class": '_30jeq3'})
+        productPriceStr = productPriceSoup.text.replace('₹', '')
+        productPriceInt = int(productPriceStr.replace(',', ''))
 
-    # Scraping the product price actual
-    productPriceActualSoup = soup.find(
-        "div", attrs={"class": '_3I9_wc _27UcVY'})
-    productPriceActualStr = productPriceActualSoup.text.replace(
-        '.', '').replace('₹', '')
-    productPriceActualInt = int(productPriceActualStr.replace(',', ''))
+        productPriceActualSoup = soup.find(
+            "div", attrs={"class": '_3I9_wc'})
+        productPriceActualStr = productPriceActualSoup.text.replace(
+            '.', '').replace('₹', '')
+        productPriceActualInt = int(productPriceActualStr.replace(',', ''))
 
-    productDiscount = (productPriceActualInt -
-                       productPriceInt)/productPriceActualInt*100
+        productDiscount = (productPriceActualInt -
+                        productPriceInt)/productPriceActualInt*100
+
+        productStarSoup = soup.find("div", attrs={"class": '_3LWZlK'})
+        producStarStr = productStarSoup.text
+
+        productRatingSoup = soup.find("span", attrs={"class": '_2_R_DZ'})
+        producRatingStr = productRatingSoup.text.replace('(', '').replace(')', '')
+        
+
+        productData = {
+            "link": productLink,
+            "name": productNameStr,
+            "image": productImageStr,
+            "price": productPriceInt,
+            "mrp": productPriceActualInt,
+            "discount": productDiscount,
+            "stars": producStarStr,
+            "ratings": producRatingStr
+        }
+
+        addDB(productData)
+        return json_util.dumps(productData)
+        # link = soup.find("div", attrs={"class": '_4rR01T'})
+    else:
+        productNameSoup = soup.find("div", attrs={"class": '_4rR01T'})
+        productNameStr = productNameSoup.text
+
+        # Scraping the product link
+        productLinkSoup = soup.find("a", attrs={"class": '_1fQZEK'})
+        productLink = "https://www.flipkart.com"+productLinkSoup['href']
+
+        # Scraping the product price discounted
+        productPriceSoup = soup.find("div", attrs={"class": '_30jeq3 _1_WHN1'})
+        productPriceStr = productPriceSoup.text.replace('₹', '')
+        productPriceInt = int(productPriceStr.replace(',', ''))
+
+        # Scraping the product price actual
+        productPriceActualSoup = soup.find(
+            "div", attrs={"class": '_3I9_wc _27UcVY'})
+        productPriceActualStr = productPriceActualSoup.text.replace(
+            '.', '').replace('₹', '')
+        productPriceActualInt = int(productPriceActualStr.replace(',', ''))
+
+        productDiscount = (productPriceActualInt -
+                        productPriceInt)/productPriceActualInt*100
 
 
-#             # Scraping the product image
-    productImageSoup = soup.find("div", attrs={"class": '_2QcLo-'})
-    productImageStr = productImageSoup.div.div.img['src']
+    #             # Scraping the product image
+        productImageSoup = soup.find("div", attrs={"class": '_2QcLo-'})
+        productImageStr = productImageSoup.div.div.img['src']
 
 
-#             # Scraping the product stars
-    productStarSoup = soup.find("div", attrs={"class": '_3LWZlK'})
-    producStarStr = productStarSoup.text
+    #             # Scraping the product stars
+        productStarSoup = soup.find("div", attrs={"class": '_3LWZlK'})
+        producStarStr = productStarSoup.text
 
 
-#             # Scraping the ratings
-    productRatingSoup = soup.find("span", attrs={"class": '_2_R_DZ'})
-    producRatingStr = productRatingSoup.span.text.split()[0]
-#     print(producRatingStr)
+    #             # Scraping the ratings
+        productRatingSoup = soup.find("span", attrs={"class": '_2_R_DZ'})
+        producRatingStr = productRatingSoup.span.text.split()[0]
+    #     print(producRatingStr)
 
-#     # TODO
-#     # productNameSoup = soup.find("p",attrs={"class":'a-spacing-mini a-size-base-plus'})
-#     # # productNameStr = productNameSoup.text
-#     # print(productNameSoup)
+    #     # TODO
+    #     # productNameSoup = soup.find("p",attrs={"class":'a-spacing-mini a-size-base-plus'})
+    #     # # productNameStr = productNameSoup.text
+    #     # print(productNameSoup)
 
-    productData = {
-        "link": productLink,
-        "name": productNameStr,
-        "image": productImageStr,
-        "price": productPriceInt,
-        "mrp": productPriceActualInt,
-        "discount": productDiscount,
-        "stars": producStarStr,
-        "ratings": producRatingStr
-    }
+        productData = {
+            "link": productLink,
+            "name": productNameStr,
+            "image": productImageStr,
+            "price": productPriceInt,
+            "mrp": productPriceActualInt,
+            "discount": productDiscount,
+            "stars": producStarStr,
+            "ratings": producRatingStr
+        }
 
-    addDB(productData)
-    return json_util.dumps(productData)
+        addDB(productData)
+        return json_util.dumps(productData)
 
 # print(getProductDetail())
 
