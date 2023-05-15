@@ -7,6 +7,7 @@ from flipkartScraping.getProductDetailFlipkart import getFlipkartProductDetail
 from homeScreenData.homeScreen import getHomeScreenItems
 from homeScreenData.homeScreen import getMostViewedItems
 from signinSignup.loginInterface import signIn,signUp
+from database.customer import get_customer
 
 
 # Create your views here.
@@ -60,4 +61,13 @@ def isSignUp(request):
     L.append(res)
     print(res)
     return HttpResponse(json.dumps(L))
-    
+
+
+def getCustomerData(request):
+    uname = request.GET['username']
+    pword = request.GET['password']
+    res = get_customer(uname, pword)
+    L = []
+    L.append(res)
+    print(res)
+    return HttpResponse(json.dumps(L))

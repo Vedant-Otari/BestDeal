@@ -50,7 +50,7 @@ for r in customer_details:
     print(r["username"], format("\n"))
 
 def get_customer(uname, pword):
-	customer_details = collection_name.find({"username": uname, "password": pword}, {"_id": 1})
+	customer_details = collection_name.find({"username": uname, "password": pword})
 	if(customer_details == None):
 		return "User not found"
 	else:
