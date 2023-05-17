@@ -14,7 +14,7 @@ export default function Developers() {
           <h1 className="text-7xl mb-4 absolute z-10 text-center w-full h-full flex justify-center items-center font-bold">Developers</h1>
           <img
             className="w-full h-full object-cover opacity-40 absolute rounded-t-2xl"
-            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+            src="./img/developerBG.jpg"
             alt=""
           />
 
@@ -33,7 +33,7 @@ export default function Developers() {
             1920000075
             </div>
             <div className="w-1/2 py-4 text-left pl-[15%] inline-block text-xl font-sans p-0 m-0">
-            <img title="LinkedIn" src="./lin.png" alt="" className="h-6 align-baseline inline pr-2"/>
+            <img title="LinkedIn" src="./linkedin.png" alt="" className="h-6 align-baseline inline pr-2"/>
             
               <a href="https://www.linkedin.com/in/hrishikesh-hegishte-0971251b7/" target="_blank"  rel="noopener noreferrer">hrishikesh-hegishte-0971251b7</a>
             </div>
@@ -58,7 +58,7 @@ export default function Developers() {
             1920000264
             </div>
             <div className="w-1/2 py-4 text-left pl-[15%] inline-block text-xl font-sans p-0 m-0">
-            <img title="LinkedIn" src="./lin.png" alt="" className="h-6 align-baseline inline pr-2"/>
+            <img title="LinkedIn" src="./linkedin.png" alt="" className="h-6 align-baseline inline pr-2"/>
 
               <a href="https://www.linkedin.com/in/vedant-otari/" target="_blank"  rel="noopener noreferrer">vedant-otari</a>
             </div>
@@ -83,7 +83,7 @@ export default function Developers() {
             1920000369
             </div>
             <div className="w-1/2 py-4 text-left pl-[15%] inline-block text-xl font-sans p-0 m-0">
-            <img title="LinkedIn" src="./lin.png" alt="" className="h-6 align-baseline inline pr-2"/>
+            <img title="LinkedIn" src="./linkedin.png" alt="" className="h-6 align-baseline inline pr-2"/>
 
               <a href="https://www.linkedin.com/in/sanket-khorate/" target="_blank"  rel="noopener noreferrer">sanket-khorate</a>
             </div>
@@ -108,7 +108,7 @@ export default function Developers() {
             1920000660
             </div>
             <div className="w-1/2 py-4 text-left pl-[15%] inline-block text-xl font-sans p-0 m-0">
-            <img title="LinkedIn" src="./lin.png" alt="" className="h-6 align-baseline inline pr-2"/>
+            <img title="LinkedIn" src="./linkedin.png" alt="" className="h-6 align-baseline inline pr-2"/>
 
               <a href="https://www.linkedin.com/in/niketan-raskar-663bb7189/" target="_blank"  rel="noopener noreferrer">niketan-raskar-663bb7189</a>
             </div>

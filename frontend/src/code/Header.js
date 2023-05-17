@@ -48,7 +48,7 @@ export default function Header(props) {
     return (
       <>
         <div
-          className="flex justify-between sticky w-full bg-transparent top-0 duration-700 z-50 pb-3 pt-1"
+          className="flex justify-between border-gray-300 border-b-[1px] sticky w-full bg-transparent top-0 duration-700 z-50 pb-3 pt-1"
           style={headerStyle}
         >
           <div className="ml-4 hover:scale-105 duration-100 ">
