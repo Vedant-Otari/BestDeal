@@ -17,12 +17,14 @@ customer = {
 		{
 			"product_name": "Samsung Galaxy S22 5G (Phantom White, 8GB RAM, 128GB Storage) with No Cost EMI/Additional Exchange Offers",
 			"date": datetime.utcnow(),
-			"description": "Amazing product with great features. The image and sound quality is perfect."
+			"description": "Amazing product with great features. The image and sound quality is perfect.",
+			"rating": 5
 		},
 		{
 			"product_name": "Samsung 192 L 2 Star Direct Cool Single Door Refrigerator (RR19A241BGS/NL, Grey Silver, 2022 Model)",
 			"date": datetime.utcnow(),
-			"description": "Very spacious and well organized."
+			"description": "Very spacious and well organized.",
+			"rating": 5
 		}
 	],
 	"wishlist": [
@@ -38,7 +40,7 @@ customer = {
 }
 
 # Insert the documents
-#collection_name.insert_many([customer])
+collection_name.insert_many([customer])
 # Check the count
 count = collection_name.count_documents({})
 print(count)
@@ -50,7 +52,7 @@ for r in customer_details:
     print(r["username"], format("\n"))
 
 def get_customer(uname, pword):
-	customer_details = collection_name.find({"username": uname, "password": pword}, {"_id": 1})
+	customer_details = collection_name.find({"username": uname, "password": pword})
 	if(customer_details == None):
 		return "User not found"
 	else:

@@ -9,5 +9,5 @@ urlpatterns = [
     path('api/rankedItems', getRankedItem),
     path('api/signIn', isSignIn),
     path('api/signUp', isSignUp),
-
+    path('api/customer_details', getCustomerData)
 ]
