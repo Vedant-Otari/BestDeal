@@ -94,8 +94,9 @@
             src={res2[i].image}
             alt="abdcefg"
           />
-          <div className="h-full flex flex-col justify-around bg-gray-600 p-3">
-            <div className="cursor-pointer text-white text-ellipsis h-10 leading-5 font-sans overflow-hidden">{res2[i].name}</div>
+          <div className="h-full flex flex-col justify-around bg-gray-600 p-3 relative">
+            <div className="text-white text-ellipsis h-10 leading-5 font-sans overflow-hidden">{res2[i].name}</div>
+            <div className="text-white bg-blue-600 absolute bottom-0 right-0 p-1 px-3 font-bold rounded-tl-sm">views: {res2[i].view_count}</div>
           </div>
         </div>
       );
