@@ -1,4 +1,5 @@
 import pymongo
+import bcrypt 
 connect_string = 'mongodb+srv://Sanket:Sanket123@cluster0.fkj1i6o.mongodb.net/test?retryWrites=true&w=majority'
 
 my_client = pymongo.MongoClient(connect_string)
@@ -37,11 +38,13 @@ def signIn(username, password):
         customer_details = collection_name.find({"username": username, "password": password})
         if len(list(customer_details.clone()))>0:
             cookie = username+password
-            cookie = cookie.encoding()
+            cookie = cookie.encode('utf-8')
+            hashedPassword = bcrypt.hashpw(cookie, bcrypt.gensalt())
+            
             return {
                 "error" : False,
                 "msg" : "Sign In successful",
-                "cookies" : cookie
+                "cookies" : str(hashedPassword)
             }
         else:
             return {
