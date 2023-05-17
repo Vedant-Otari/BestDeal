@@ -36,9 +36,12 @@ def signIn(username, password):
     if isUserExist(username):
         customer_details = collection_name.find({"username": username, "password": password})
         if len(list(customer_details.clone()))>0:
+            cookie = username+password
+            cookie = cookie.encoding()
             return {
                 "error" : False,
-                "msg" : "Sign In successful"
+                "msg" : "Sign In successful",
+                "cookies" : cookie
             }
         else:
             return {
@@ -62,4 +65,4 @@ def signIn(username, password):
 # for r in customer_details:
 #     print(r["username"], format("\n"))
 
-print(signUp("sanket","sklord25@gmail.com","12345678"))
+# print(signUp("sanket","sklord25@gmail.com","12345678"))
