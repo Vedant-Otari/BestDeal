@@ -34,7 +34,7 @@ export default function Result() {
   if (!res) {
     return (
       <>
-      <Header showButton="show"/>
+      <Header showButton="showSearch"/>
       <div>
         <h1 className="text-4xl text-center font-mono">
           Best results for {searchQuery}
@@ -46,7 +46,7 @@ export default function Result() {
 
   return (
     <>
-    <Header showButton="show"/>
+    <Header showButton="showSearch"/>
       <div>
         <h1 className="text-4xl text-center font-mono">
           Best results for {searchQuery}
@@ -69,6 +69,7 @@ export default function Result() {
                   href={res.link}
                   className="text-blue-800 underline italic hover:text-voilet-900"
                   target="_blank"
+                  rel="noopener noreferrer"
                 >
                   Click here for website
                 </a>{" "}

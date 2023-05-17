@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import Search from "./Search";
 
 export default function Header(props) {
   const [scrolled, setScrolled] = useState(false);
@@ -42,7 +43,32 @@ export default function Header(props) {
         </div>
       </>
     );
-  } else {
+  }
+  else if(props.showButton === "showSearch"){
+    return (
+      <>
+        <div
+          className="flex justify-between sticky w-full bg-transparent top-0 duration-700 z-50 pb-3 pt-1"
+          style={headerStyle}
+        >
+          <div className="ml-4 hover:scale-105 duration-100 ">
+            <Link to="/">
+              <u className="hover:text-cyan-300">
+                <img src="./2.png" alt="" className="h-12" />
+              </u>
+            </Link>
+          </div>
+          <Search showInlineSearchBar="show"/>
+          <Link to="/login">
+            <button className="bg-sky-600 py-2 px-6 text-white font-semibold m-2 rounded-lg shadow-none hover:shadow-md hover:shadow-slate-400 active:bg-sky-800">
+              <u className="no-underline">LOGIN</u>
+            </button>
+          </Link>
+        </div>
+      </>
+    );
+  }
+  else {
     return (
       <>
         <div
