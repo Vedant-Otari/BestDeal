@@ -29,7 +29,25 @@ body {
   background: #2f7178;
 }
 
-code {
-  /* font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace; */
+.diagonalStrikeThrough {
+  background: linear-gradient(to left top, transparent 47.75%, currentColor 49.5%, currentColor 50.5%, transparent 52.25%);
+}
+
+.loadingAnimation{
+  animation: loadingFade 1.3s linear infinite;
+}
+
+@keyframes loadingFade {
+  0% {
+    opacity: 0.7;
+    clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 0);
+  }
+  50% {
+    opacity: 0.2;
+    clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 0);
+  }
+  100% {
+    opacity: 0.7;
+    clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 0);
+  }
 }
