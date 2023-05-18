@@ -37,6 +37,20 @@ body {
   animation: loadingFade 1.3s linear infinite;
 }
 
+.dotLoading{
+  animation: loadingDots 0.8s linear infinite;
+}
+
+@keyframes loadingDots {
+  0% {
+    clip-path: polygon(0 0, 0 100%, 0 100%, 0 0);
+  }
+  80% {
+    clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 0);
+  }
+}
+
+
 @keyframes loadingFade {
   0% {
     opacity: 0.7;

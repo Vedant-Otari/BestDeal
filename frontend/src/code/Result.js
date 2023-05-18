@@ -37,7 +37,7 @@ export default function Result() {
         <Header showButton="showSearch" />
         <div className="bg-gray-50 min-h-screen h-full pb-16">
           <h1 className="text-3xl text-center font-sans py-6 ">
-            Searching for "{searchQuery}"
+            Searching for "{searchQuery}"<div className="inline font-serif dotLoading">.....</div>
           </h1>
           <div className="w-4/6  m-auto py-3 h-full loadingAnimation border-gray-400 rounded-2xl overflow-hidden border-2 bg-white">
             <div className="border-gray-400 border-y-[1px] hover:scale-[101%] duration-300 my-2 flex justify-evenly">

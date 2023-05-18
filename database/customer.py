@@ -9,35 +9,35 @@ dbname = my_client['sample_products']
 # Now get/create collection name (remember that you will see the database in your mongodb cluster only after you create a collection
 collection_name = dbname["customer_details"]
 
-customer = {
-    "username": "user",
-    "email_id": "user@gmail.com",
-    "password": "password",
-	"comments": [
-		{
-			"product_name": "Samsung Galaxy S22 5G (Phantom White, 8GB RAM, 128GB Storage) with No Cost EMI/Additional Exchange Offers",
-			"date": datetime.utcnow(),
-			"description": "Amazing product with great features. The image and sound quality is perfect.",
-			"rating": 5
-		},
-		{
-			"product_name": "Samsung 192 L 2 Star Direct Cool Single Door Refrigerator (RR19A241BGS/NL, Grey Silver, 2022 Model)",
-			"date": datetime.utcnow(),
-			"description": "Very spacious and well organized.",
-			"rating": 5
-		}
-	],
-	"wishlist": [
-		{
-			"product_name": "Samsung Galaxy S22 5G (Phantom White, 8GB RAM, 128GB Storage) with No Cost EMI/Additional Exchange Offers",
-			"date": datetime.utcnow(),
-		},
-		{
-			"product_name": "Samsung 192 L 2 Star Direct Cool Single Door Refrigerator (RR19A241BGS/NL, Grey Silver, 2022 Model)",
-			"date": datetime.utcnow(),
-		}
-	]
-}
+# customer = {
+#     "username": "user",
+#     "email_id": "user@gmail.com",
+#     "password": "password",
+# 	"comments": [
+# 		{
+# 			"product_name": "Samsung Galaxy S22 5G (Phantom White, 8GB RAM, 128GB Storage) with No Cost EMI/Additional Exchange Offers",
+# 			"date": datetime.utcnow(),
+# 			"description": "Amazing product with great features. The image and sound quality is perfect.",
+# 			"rating": 5
+# 		},
+# 		{
+# 			"product_name": "Samsung 192 L 2 Star Direct Cool Single Door Refrigerator (RR19A241BGS/NL, Grey Silver, 2022 Model)",
+# 			"date": datetime.utcnow(),
+# 			"description": "Very spacious and well organized.",
+# 			"rating": 5
+# 		}
+# 	],
+# 	"wishlist": [
+# 		{
+# 			"product_name": "Samsung Galaxy S22 5G (Phantom White, 8GB RAM, 128GB Storage) with No Cost EMI/Additional Exchange Offers",
+# 			"date": datetime.utcnow(),
+# 		},
+# 		{
+# 			"product_name": "Samsung 192 L 2 Star Direct Cool Single Door Refrigerator (RR19A241BGS/NL, Grey Silver, 2022 Model)",
+# 			"date": datetime.utcnow(),
+# 		}
+# 	]
+# }
 
 # Insert the documents
 #collection_name.insert_many([customer])
@@ -66,5 +66,5 @@ def get_customer_comments(uname, pword):
 		return json_util.dumps(customer_details)
 
 
-print(get_customer("user", "password")+"\n")
-print(get_customer_comments("user", "password"))
+# print(get_customer("user", "password")+"\n")
+# print(get_customer_comments("user", "password"))
