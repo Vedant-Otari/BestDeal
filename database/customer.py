@@ -40,7 +40,7 @@ customer = {
 }
 
 # Insert the documents
-collection_name.insert_many([customer])
+#collection_name.insert_many([customer])
 # Check the count
 count = collection_name.count_documents({})
 print(count)
@@ -51,8 +51,8 @@ customer_details = collection_name.find({})
 for r in customer_details:
     print(r["username"], format("\n"))
 
-def get_customer(uname, pword):
-	customer_details = collection_name.find({"username": uname, "password": pword})
+def get_customer(cookie):
+	customer_details = collection_name.find({"cookies": cookie})
 	if(customer_details == None):
 		return "User not found"
 	else:

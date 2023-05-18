@@ -8,6 +8,10 @@ dbname = my_client['sample_products']
 # Now get/create collection name (remember that you will see the database in your mongodb cluster only after you create a collection
 collection_name = dbname["customer_details"]
 
+def addCookies(username, password, cookie):
+    collection_name.update_one({"username": username, "password": password}, {"$set": {"cookies":cookie}})
+
+
 def isUserExist(username):
     customer_details = collection_name.find({"username": username})
     if len(list(customer_details.clone()))>0:
@@ -16,10 +20,14 @@ def isUserExist(username):
         return False
 
 def signUp(username, email, password):
+    cookie = username+password
+    cookie = cookie.encode('utf-8')
+    hashedPassword = bcrypt.hashpw(cookie, bcrypt.gensalt())
     customer = {
         "username": username,
         "email_id": email,
-        "password": password
+        "password": password,
+        "cookies": hashedPassword
     }
     if isUserExist(username):
        return {
@@ -40,7 +48,7 @@ def signIn(username, password):
             cookie = username+password
             cookie = cookie.encode('utf-8')
             hashedPassword = bcrypt.hashpw(cookie, bcrypt.gensalt())
-            
+            addCookies(username, password, hashedPassword)
             return {
                 "error" : False,
                 "msg" : "Sign In successful",

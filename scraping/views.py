@@ -64,9 +64,7 @@ def isSignUp(request):
 
 
 def getCustomerData(request):
-    uname = request.GET['username']
-    pword = request.GET['password']
-    res = get_customer(uname, pword)
+    res = get_customer(cookie)
     L = []
     L.append(res)
     print(res)
