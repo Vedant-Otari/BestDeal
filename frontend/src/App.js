@@ -9,6 +9,7 @@ import Developers from "./code/Developers.js";
 import Login from "./code/Login.js";
 import Signup from "./code/Signup.js";
 import Result from "./code/Result.js";
+import Profile from "./code/Profile.js";
 
 function App() {
 
@@ -33,6 +34,7 @@ function App() {
             <Route path="/login" element={<Login/>} />
             <Route path="/signup" element={<Signup/>} />
             <Route path="/result" element={<Result/>} />
+            <Route path="/profile" element={<Profile/>} />
           </Routes>
           <Footer />
         </div>
