@@ -17,7 +17,6 @@ function App() {
       <>
         {/* <div className="from-sky-300 to-blue-600 bg-gradient-to-b min-h-screen pb-28"> */}
         <div className="h-full min-h-screen pb-12"> 
-          <div className=""></div>
           <Routes>
             <Route
               path="/"
