@@ -6,7 +6,7 @@ dbname = my_client['sample_products']
 collection_name = dbname["product_details"]
 
 def getHomeScreenItems():
-    product_details = collection_name.aggregate([ { "$sample" : { "size": 5 } } ])
+    product_details = collection_name.aggregate([ { "$sample" : { "size": 10 } } ])
     # for i in product_details:
     print(type(product_details))
     return product_details

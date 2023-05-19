@@ -6,7 +6,7 @@ export default function Footer() {
   return (
     <>
       <footer
-        className="sm:flex sm:text-lg bg-gray-800 justify-center fixed bottom-0 w-full text-white px-2 sm:py-1 lg:justify-start"
+        className="sm:flex sm:text-lg bg-gray-800 z-20 justify-center fixed bottom-0 w-full text-white px-2 sm:py-1 lg:justify-start"
         id="main-footer"
       >
         <div className="flex justify-center p-2 sm:hidden">

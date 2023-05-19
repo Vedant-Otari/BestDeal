@@ -23,6 +23,27 @@ function callLink2() {
     });
 }
 
+
+
+function con_7_move_left() {
+  let element = document.getElementById("randomItemsDiv");
+  element.scrollLeft -= 0.2 * window.innerWidth;
+  if(element.scrollLeft===0 && con_7_max_right !== 0){
+    element.scrollLeft=con_7_max_right;
+  }
+}
+let con_7_max_right = 0;
+function con_7_move_right() {
+  let element = document.getElementById("randomItemsDiv");
+  element.scrollLeft += 0.2 * window.innerWidth;
+  if (con_7_max_right === element.scrollLeft && con_7_max_right !== 0) {
+    element.scrollLeft = 0;
+  }
+  if (con_7_max_right < element.scrollLeft) {
+    con_7_max_right = element.scrollLeft;
+  }
+}
+
 export default function HomeDisplay() {
   const randomItems = [];
   const mostCountItems = [];
@@ -36,8 +57,6 @@ export default function HomeDisplay() {
   useEffect(() => {
     window.scrollTo(0, 0);
     call1();
-    // call2();
-    // alert("HELLO");
   }, []);
 
   async function call1() {
@@ -47,20 +66,10 @@ export default function HomeDisplay() {
     setRes2(result2);
   }
 
-  // async function call2() {
-  //   const result = await callLink2();
-  //   setRes2(result);
-  // }
-
-
-
-
-
-
-
   for (let i = 0; i < 5; i++) {
     loadingItems.push(
       <div
+        key={i}
         className="flex w-12 flex-col bg-white m-1 rounded-md aspect-[0.6] min-w-[13rem] overflow-hidden"
       >
         <img
@@ -69,8 +78,7 @@ export default function HomeDisplay() {
           alt=""
         />
         <div className="h-full flex flex-col justify-around bg-gray-400">
-          <div className="h-10">
-          </div>
+          <div className="h-10"></div>
         </div>
       </div>
     );
@@ -82,21 +90,19 @@ export default function HomeDisplay() {
         {/* <div className="justify-center flex mt-10 text-4xl text-black pt-32 h-[80vh] bg-gray-300">
             Content is Loading...
           </div> */}
-          
-          {/* <img src="./spinner.gif" alt="" className="absolute"/> */}
+
+        {/* <img src="./spinner.gif" alt="" className="absolute"/> */}
         <div className="p-6 text-center mt-10 bg-zinc-200 pt-16 loadingAnimation">
           <label className="block h-8 bg-gray-300 w-1/3 mx-auto rounded-full">
             {/* People Also Searched: */}
           </label>
-          <div className="flex w-full justify-center mt-10">
-            {loadingItems}
-          </div>
+          <div className="flex w-full justify-center mt-10">{loadingItems}</div>
         </div>
       </>
     );
   }
 
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 10; i++) {
     // console.log(res1);
     randomItems.push(
       <div
@@ -148,8 +154,29 @@ export default function HomeDisplay() {
       <label className="text-3xl font-bold font-serif">
         People Also Searched:
       </label>
-      <div className="flex w-full justify-center mt-10" id="randomItemsDiv">
-        {randomItems}
+      <div className="relative">
+        <div
+          id="arrowLeft"
+          className="bg-transparent text-cyan-600 text-7xl hover:text-8xl duration-200 rounded-l-2xl absolute top-0 bottom-0 z-10 bg-gray-400 w-20 select-none align-center flex items-center justify-center left-0"
+          onClick={con_7_move_left}
+          onMouseOver={con_7_move_left}
+        >
+          &#10094;
+        </div>
+        <div
+          className="flex w-full px-10 justify-start mt-10 overflow-x-auto scroll-smooth"
+          id="randomItemsDiv"
+        >
+          {randomItems}
+        </div>
+        <div
+          id="arrowRight"
+          className="bg-transparent text-cyan-600 text-7xl hover:text-8xl duration-200 rounded-r-2xl absolute top-0 bottom-0 z-10 bg-gray-400 w-20 select-none align-center flex items-center justify-center right-0"
+          onClick={con_7_move_right}
+          onMouseOver={con_7_move_right}
+        >
+          &#10095;
+        </div>
       </div>
       <br />
       <br />

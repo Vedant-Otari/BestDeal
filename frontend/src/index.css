@@ -29,6 +29,10 @@ body {
   background: #2f7178;
 }
 
+#randomItemsDiv::-webkit-scrollbar {
+  display:none;
+}
+
 .diagonalStrikeThrough {
   background: linear-gradient(to left top, transparent 47.75%, currentColor 49.5%, currentColor 50.5%, transparent 52.25%);
 }
@@ -64,4 +68,12 @@ body {
     opacity: 0.7;
     clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 0);
   }
+}
+
+#arrowLeft:hover{
+  background: linear-gradient(to right, rgb(145, 144, 144, 0.8), rgb(145, 144, 144, 0.6), rgb(145, 144, 144, 0.2), rgb(145, 144, 144, 0.01));
+}
+
+#arrowRight:hover{
+  background: linear-gradient(to left, rgb(145, 144, 144, 0.5), rgb(145, 144, 144, 0.4), rgb(145, 144, 144, 0.2), rgb(145, 144, 144, 0.1), rgb(145, 144, 144, 0.001));
 }
