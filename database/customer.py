@@ -56,14 +56,14 @@ def get_customer(cookie):
 	if(customer_details == None):
 		return "User not found"
 	else:
-		return json_util.dumps(customer_details)
+		return customer_details
 
 def get_customer_comments(uname, pword):
 	customer_details = collection_name.find({"username": uname, "password": pword}, {"comments": 1})
 	if(customer_details == None):
 		return "User not found"
 	else:
-		return json_util.dumps(customer_details)
+		return customer_details
 
 
 # print(get_customer("user", "password")+"\n")
