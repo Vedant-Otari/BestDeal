@@ -8,6 +8,7 @@ from homeScreenData.homeScreen import getHomeScreenItems
 from homeScreenData.homeScreen import getMostViewedItems
 from signinSignup.loginInterface import signIn,signUp
 from database.customer import get_customer
+from commentAnalysis.model import getSentiment, getWordClouds
 
 
 # Create your views here.
@@ -65,6 +66,22 @@ def isSignUp(request):
 
 def getCustomerData(request):
     res = get_customer(cookie)
+    L = []
+    L.append(res)
+    print(res)
+    return HttpResponse(json.dumps(L))
+
+def getProductSentiment(request):
+    productName = request.GET['product_name']
+    res = getSentiment(productName)
+    L = []
+    L.append(res)
+    print(res)
+    return HttpResponse(json.dumps(L))
+
+def getProductSentiment(request):
+    productName = request.GET['product_name']
+    res = getWordClouds(productName)
     L = []
     L.append(res)
     print(res)

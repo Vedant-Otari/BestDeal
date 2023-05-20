@@ -1,6 +1,7 @@
 import warnings
 warnings.filterwarnings('ignore')
 import pandas as pd
+import json
 from bson import json_util
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics import accuracy_score
@@ -29,23 +30,6 @@ def clean_review(review):
     return cleanreview
 
 data['Review']=data['Review'].apply(clean_review)
-
-
-consolidated=' '.join(word for word in data['Review'][data['Sentiment']==0].astype(str))
-wordCloud=WordCloud(width=1600,height=800,random_state=21,max_font_size=110)
-# plt.figure(figsize=(15,10))
-# plt.imshow(wordCloud.generate(consolidated),interpolation='bilinear')
-# plt.axis('off')
-# plt.show()
-
-
-consolidated=' '.join(word for word in data['Review'][data['Sentiment']==1].astype(str))
-wordCloud=WordCloud(width=1600,height=800,random_state=21,max_font_size=110)
-# plt.figure(figsize=(15,10))
-# plt.imshow(wordCloud.generate(consolidated),interpolation='bilinear')
-# plt.axis('off')
-# plt.show()
-
 
 cv = TfidfVectorizer(max_features=2500)
 X = cv.fit_transform(data['Review'] ).toarray()
@@ -77,7 +61,7 @@ dbname = my_client['sample_products']
 collection_name = dbname["customer_details"]
 
 
-def getSentiment(productName):
+def getComments(productName):
     productComments = collection_name.aggregate([
         {
             "$match": {
@@ -103,6 +87,10 @@ def getSentiment(productName):
             }
         }
     ])
+    return productComments
+
+def getSentiment(productName):
+    productComments = getComments(productName)
     #return json_util.dumps(productComments)
 
     descriptions = []
@@ -129,4 +117,79 @@ def getSentiment(productName):
     }
     return sentiment
 
-print(getSentiment("Samsung Galaxy S22 5G (Phantom White, 8GB RAM, 128GB Storage) with No Cost EMI/Additional Exchange Offers"))
+#print(getSentiment("Samsung Galaxy S22 5G (Phantom White, 8GB RAM, 128GB Storage) with No Cost EMI/Additional Exchange Offers"))
+
+
+
+
+# consolidated=' '.join(word for word in data['Review'][data['Sentiment']==0].astype(str))
+# wordCloud=WordCloud(width=1600,height=800,random_state=21,max_font_size=110)
+# plt.figure(figsize=(15,10))
+# plt.imshow(wordCloud.generate(consolidated),interpolation='bilinear')
+# plt.axis('off')
+# plt.show()
+
+
+# consolidated=' '.join(word for word in data['Review'][data['Sentiment']==1].astype(str))
+# wordCloud=WordCloud(width=1600,height=800,random_state=21,max_font_size=110)
+# plt.figure(figsize=(15,10))
+# plt.imshow(wordCloud.generate(consolidated),interpolation='bilinear')
+# plt.axis('off')
+# plt.show()
+
+
+def getWordClouds(productName):
+    productComments = getComments(productName)
+    #return json_util.dumps(productComments)
+
+    descriptions = []
+    ratings = []
+    for document in productComments:
+        comments = document["comments"]
+        for comment in comments:
+            description = comment["description"]
+            rating = comment["rating"]
+            descriptions.append(description)
+            ratings.append(rating)
+            
+    
+    # Create a dictionary from the arrays
+    data = {"Description": descriptions, "Rating": ratings}
+    # Create a pandas DataFrame
+    df = pd.DataFrame(data)
+    df['Description']=df['Description'].apply(clean_review)
+    X = cv.transform(df['Description'] ).toarray()
+    df["Rating"]=model.predict(X)
+    print(df)
+    
+    consolidated_negative = ' '.join(word for word in df['Description'][df['Rating'] == 0].astype(str))
+    consolidated_positive = ' '.join(word for word in df['Description'][df['Rating'] == 1].astype(str))
+    print(str(consolidated_positive))
+
+    wordCloud_negative = WordCloud(width=1600, height=800, random_state=21, max_font_size=110)
+    wordCloud_positive = WordCloud(width=1600, height=800, random_state=21, max_font_size=110)
+
+    wordCloud_image_negative = None
+    wordCloud_image_positive = None
+
+    if consolidated_negative:
+        wordCloud_negative.generate(consolidated_negative)
+        wordCloud_image_negative = wordCloud_negative.to_image()
+
+    if consolidated_positive:
+        wordCloud_positive.generate(consolidated_positive)
+        wordCloud_image_positive = wordCloud_positive.to_image()
+
+    wordCloud_data_negative = wordCloud_image_negative.tobytes() if wordCloud_image_negative else None
+    wordCloud_data_positive = wordCloud_image_positive.tobytes() if wordCloud_image_positive else None
+
+    # Create a dictionary to hold both Word Clouds
+    wordClouds_data = {
+        'negative': wordCloud_data_negative,
+        'positive': wordCloud_data_positive
+    }
+
+    # Serialize the dictionary as a JSON string
+    return wordClouds_data
+
+
