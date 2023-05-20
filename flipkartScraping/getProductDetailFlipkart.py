@@ -11,64 +11,14 @@ def getFlipkartProductDetail(productName):
     HEADERS = ({'User-Agent':
                 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36',
                 'Accept-Language': 'en-US, en;q=0.5'})
+    productName = productName.replace('&', 'and')
     URL = "https://www.flipkart.com/search?q="+productName
     webpage = requests.get(URL, headers=HEADERS)
     soup = BeautifulSoup(webpage.content, "lxml")
 
     # Scraping the product name
-    if soup.find("div", attrs={"class": '_4ddWXP'}):
-        temp = True
-        i=0
-        while temp:
-            card = soup.find("div", attrs={"class": '_4ddWXP'}).findNext('div').contents[i]
-            i+=1
-            if card.find("div", attrs={"class": '_4HTuuX'}):
-                continue
-            else:
-                break
-        productNameSoup = soup.find("a", attrs={"class": 's1Q9rs'})
-        productNameStr = productNameSoup.text
-        productLink = "https://www.flipkart.com"+productNameSoup['href']
-
-        productImageSoup = soup.find("img", attrs={"class": '_396cs4'})
-        productImageStr = productImageSoup['src']
-
-        productPriceSoup = soup.find("div", attrs={"class": '_30jeq3'})
-        productPriceStr = productPriceSoup.text.replace('₹', '')
-        productPriceInt = int(productPriceStr.replace(',', ''))
-
-        productPriceActualSoup = soup.find(
-            "div", attrs={"class": '_3I9_wc'})
-        productPriceActualStr = productPriceActualSoup.text.replace(
-            '.', '').replace('₹', '')
-        productPriceActualInt = int(productPriceActualStr.replace(',', ''))
-
-        productDiscount = (productPriceActualInt -
-                        productPriceInt)/productPriceActualInt*100
-
-        productStarSoup = soup.find("div", attrs={"class": '_3LWZlK'})
-        producStarStr = productStarSoup.text
-
-        productRatingSoup = soup.find("span", attrs={"class": '_2_R_DZ'})
-        producRatingStr = productRatingSoup.text.replace('(', '').replace(')', '')
-        
-
-        productData = {
-            "link": productLink,
-            "name": productNameStr,
-            "image": productImageStr,
-            "price": productPriceInt,
-            "mrp": productPriceActualInt,
-            "discount": productDiscount,
-            "stars": producStarStr,
-            "ratings": producRatingStr
-        }
-
-        addDB(productData)
-        return json_util.dumps(productData)
-        # link = soup.find("div", attrs={"class": '_4rR01T'})
-
-    elif soup.find("div", attrs={"class": '_1AtVbE col-12-12'}):
+    
+    if soup.find("div", attrs={"class": '_13oc-S _1t9ceu'}):
 
         productNameSoup = soup.find("a", attrs={"class": 'IRpwTa'})
         productNameStr = productNameSoup.text
@@ -91,6 +41,61 @@ def getFlipkartProductDetail(productName):
         
         productImageSoup = soup.find("div", attrs={"class": '_312yBx SFzpgZ'})
         productImageStr = productImageSoup.img['src']
+
+        productData = {
+            "link": productLink,
+            "name": productNameStr,
+            "image": productImageStr,
+            "price": productPriceInt,
+            "mrp": productPriceActualInt,
+            "discount": productDiscount
+        }
+
+        addDB(productData)
+        return json_util.dumps(productData)
+
+    elif soup.find("div", attrs={"class": '_13oc-S'}):
+        div = soup.find("div", attrs={"class": '_13oc-S'})
+        divStyle = div.div['style']
+        print(divStyle)
+                
+        if(divStyle=="width:100%"):
+            productNameSoup = soup.find("div", attrs={"class": '_4rR01T'})
+            productNameStr = productNameSoup.text
+
+            productLinkSoup = soup.find("a", attrs={"class": '_1fQZEK'})
+            productLink = "https://www.flipkart.com"+productLinkSoup['href']
+
+            productPriceSoup = soup.find("div", attrs={"class": '_30jeq3 _1_WHN1'})
+            productPriceStr = productPriceSoup.text.replace('₹', '')
+            productPriceInt = int(productPriceStr.replace(',', ''))
+
+            productPriceActualSoup = soup.find("div", attrs={"class": '_3I9_wc _27UcVY'})
+            productPriceActualStr = productPriceActualSoup.text.replace( '.', '').replace('₹', '')
+            productPriceActualInt = int(productPriceActualStr.replace(',', ''))
+
+            productDiscount = (productPriceActualInt - productPriceInt)/productPriceActualInt*100
+            
+            productImageSoup = soup.find("div", attrs={"class": 'CXW8mj'})
+            productImageStr = productImageSoup.img['src']
+
+        elif(divStyle=="width:25%"):
+            productNameSoup = soup.find("a", attrs={"class": 's1Q9rs'})
+            productNameStr = productNameSoup.text
+            productLink = "https://www.flipkart.com"+productNameSoup['href']
+
+            productPriceSoup = soup.find("div", attrs={"class": '_30jeq3'})
+            productPriceStr = productPriceSoup.text.replace('₹', '')
+            productPriceInt = int(productPriceStr.replace(',', ''))
+
+            productPriceActualSoup = soup.find("div", attrs={"class": '_3I9_wc'})
+            productPriceActualStr = productPriceActualSoup.text.replace( '.', '').replace('₹', '')
+            productPriceActualInt = int(productPriceActualStr.replace(',', ''))
+
+            productDiscount = (productPriceActualInt - productPriceInt)/productPriceActualInt*100
+            
+            productImageSoup = soup.find("div", attrs={"class": 'CXW8mj'})
+            productImageStr = productImageSoup.img['src']
 
         productData = {
             "link": productLink,
@@ -180,6 +185,7 @@ def addDB(product):
         { "name": product["name"] },
         { "$inc": { "view_count": 1}}
     )
+    
 
 
 

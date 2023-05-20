@@ -5,16 +5,16 @@ import json
 from bson import json_util
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics import accuracy_score
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 from wordcloud import WordCloud
 import nltk
-#nltk.download('punkt')
-#nltk.download('stopwords')
+# nltk.download('punkt')
+# nltk.download('stopwords')
 from nltk.corpus import stopwords
 
 
-data = pd.read_csv("TrainingData.csv")
-print(data.head(),format("\n"))
+data = pd.read_csv("commentAnalysis/TrainingData.csv")
+# print(data.head(),format("\n"))
 #print(data.info())
 data.dropna(inplace=True)
 
@@ -160,11 +160,11 @@ def getWordClouds(productName):
     df['Description']=df['Description'].apply(clean_review)
     X = cv.transform(df['Description'] ).toarray()
     df["Rating"]=model.predict(X)
-    print(df)
+    # print(df)
     
     consolidated_negative = ' '.join(word for word in df['Description'][df['Rating'] == 0].astype(str))
     consolidated_positive = ' '.join(word for word in df['Description'][df['Rating'] == 1].astype(str))
-    print(str(consolidated_positive))
+    # print(str(consolidated_positive))
 
     wordCloud_negative = WordCloud(width=1600, height=800, random_state=21, max_font_size=110)
     wordCloud_positive = WordCloud(width=1600, height=800, random_state=21, max_font_size=110)

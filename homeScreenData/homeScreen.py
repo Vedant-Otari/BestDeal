@@ -19,6 +19,6 @@ def getMostViewedItems():
 
 #print(getMostViewedItems())
 
-for document in getMostViewedItems():
-    print(document)
-    print("\n")
+# for document in getMostViewedItems():
+#     print(document)
+#     print("\n")
