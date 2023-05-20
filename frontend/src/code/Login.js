@@ -48,7 +48,7 @@ export default function Login() {
       alert(data.msg);
       if(data.msg ==="Sign In successful"){
         console.log("redirect to bestdeal");
-        window.location.href = '/'; 
+        window.location.href = '/';
       }
       return res.data;
 
