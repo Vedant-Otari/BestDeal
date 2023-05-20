@@ -1,23 +1,55 @@
 import * as React from "react";
 import axios from "axios";
-import { useState } from "react";
+import { useState,useEffect } from "react";
+
 import Header from "./Header";
 import { Link } from "react-router-dom";
+
+function checkIfUserIsLoggedIn() {
+  const cookies = document.cookie;
+  
+  // Check if the desired cookie is present
+  const isLoggedIn = cookies.includes('bestdeal');
+console.log(isLoggedIn)
+  return isLoggedIn;
+}
 
 
 export default function Login() {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
+  
+
+  useEffect(() => {
+    // Check if the user is already logged in (e.g., by checking the presence of a specific cookie)
+    console.log("username is =" + username)
+    const isLoggedIn = checkIfUserIsLoggedIn(); // Replace with your own logic
+
+    if (isLoggedIn) {
+      window.location.href = '/';  // Redirect to the home page if the user is already logged in
+    }
+  });
+
+  const setCookie = (name, value, days) => {
+    const expires = new Date();
+    expires.setTime(expires.getTime() + (days * 24 * 60 * 60 * 1000));
+    document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/`;
+  };
 
   const signIn = async () => {
+    
     console.log(username, password);
     await axios.get('http://127.0.0.1:8000/api/signIn',{params : {"username": username,"password": password}})
     .then((res) => {
       console.log(res)
       var data = res.data[0];
-
-
+      const cookie_name = "bestdeal";
+      setCookie(cookie_name, data.cookies, 7);
       alert(data.msg);
+      if(data.msg ==="Sign In successful"){
+        console.log("redirect to bestdeal");
+        window.location.href = '/'; 
+      }
       return res.data;
 
     })
