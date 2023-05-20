@@ -70,7 +70,7 @@ def signIn(username, password):
             "msg" : "Invalid Username"
         }
     
-def sendVerificationCodeEmail(username, password, email):
+def sendVerificationCodeEmail(email):
     import random
     recivers = ["sklord25@gmail.com"]  # to be updated the email by user
     msg = EmailMessage()
@@ -79,7 +79,6 @@ def sendVerificationCodeEmail(username, password, email):
     msg['to'] = ", ".join(recivers)
 
     code = random.randrange(1001, 9999)
-
 
     text = """ Just checking the mail automation code Your Verification code is: """+ str(code)
     msg.set_content(text)
@@ -98,8 +97,21 @@ def sendVerificationCodeEmail(username, password, email):
     except Exception as e:
         print(e)
     finally:
-        collection_name.update_one({"username": username, "password": password}, {"$set": {"VerificationCode":str(code)}})
+        collection_name = dbname["verification"]
+        collection_name.update_one({"email": email},{"$set": {"otp":str(code)}}, upsert=True)
         server.quit()
+
+def get_verification_code(email):
+    collection_name = dbname["verification"]
+    verification_code_mongo = collection_name.find({"email": email}, {"otp":1})
+    for document in verification_code_mongo:
+        verification_code = document["otp"]
+    return verification_code
+
+
+sendVerificationCodeEmail("sklord25@gmail.com")
+print(get_verification_code("sklord25@gmail.com"))
+
 # sendVerificationCodeEmail("email")
 # Insert the documents
 
