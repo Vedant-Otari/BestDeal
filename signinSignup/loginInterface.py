@@ -98,12 +98,12 @@ def sendVerificationCodeEmail(email):
         print(e)
     finally:
         collection_name = dbname["verification"]
-        collection_name.update_one({"email": email},{"$set": {"otp":str(code)}}, upsert=True)
+        collection_name.update_one({"email_id": email},{"$set": {"otp":str(code)}}, upsert=True)
         server.quit()
 
 def get_verification_code(email):
     collection_name = dbname["verification"]
-    verification_code_mongo = collection_name.find({"email": email}, {"otp":1})
+    verification_code_mongo = collection_name.find({"email_id": email}, {"otp":1})
     for document in verification_code_mongo:
         verification_code = document["otp"]
     return verification_code
