@@ -1,5 +1,10 @@
 import pymongo
 import bcrypt 
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+from email.message import EmailMessage
+import smtplib
+import ssl
 connect_string = 'mongodb+srv://Sanket:Sanket123@cluster0.fkj1i6o.mongodb.net/test?retryWrites=true&w=majority'
 
 my_client = pymongo.MongoClient(connect_string)
@@ -64,6 +69,50 @@ def signIn(username, password):
             "error" : True,
             "msg" : "Invalid Username"
         }
+    
+def sendVerificationCodeEmail(email):
+    import random
+    recivers = ["sklord25@gmail.com"]  # to be updated the email by user
+    msg = EmailMessage()
+    msg['subject'] = "Testing mail code"
+    msg['from'] = "lordmovie555@gmail.com"   #to be updated mail created for BestDeal
+    msg['to'] = ", ".join(recivers)
+
+    code = random.randrange(1001, 9999)
+
+    text = """ Just checking the mail automation code Your Verification code is: """+ str(code)
+    msg.set_content(text)
+    # with open('Untitled.png','rb') as f:
+    #     content = f.read()
+    #     msg.add_attachment(content,maintype='application', subtype='png', filename='YourName.png')
+    try:
+        server = smtplib.SMTP("smtp.gmail.com",587)
+        server.ehlo()
+        server.starttls()
+        server.login("officialbestdeal2023@gmail.com","bestdeal@2023")
+
+
+        server.send_message(msg)
+        print("done")
+    except Exception as e:
+        print(e)
+    finally:
+        collection_name = dbname["verification"]
+        collection_name.update_one({"email_id": email},{"$set": {"otp":str(code)}}, upsert=True)
+        server.quit()
+
+def get_verification_code(email):
+    collection_name = dbname["verification"]
+    verification_code_mongo = collection_name.find({"email_id": email}, {"otp":1})
+    for document in verification_code_mongo:
+        verification_code = document["otp"]
+    return verification_code
+
+
+sendVerificationCodeEmail("sklord25@gmail.com")
+print(get_verification_code("sklord25@gmail.com"))
+
+# sendVerificationCodeEmail("email")
 # Insert the documents
 
 # Check the count

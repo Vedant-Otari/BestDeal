@@ -42,14 +42,14 @@ collection_name = dbname["customer_details"]
 # Insert the documents
 #collection_name.insert_many([customer])
 # Check the count
-count = collection_name.count_documents({})
-print(count)
+# count = collection_name.count_documents({})
+# print(count)
 
-# Read the documents
-customer_details = collection_name.find({})
-# Print on the terminal
-for r in customer_details:
-    print(r["username"], format("\n"))
+# # Read the documents
+# customer_details = collection_name.find({})
+# # Print on the terminal
+# for r in customer_details:
+#     print(r["username"], format("\n"))
 
 def get_customer(cookie):
 	customer_details = collection_name.find({"cookies": cookie})
