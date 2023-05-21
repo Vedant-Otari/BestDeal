@@ -69,7 +69,7 @@ def signIn(username, password):
             "error" : True,
             "msg" : "Invalid Username"
         }
-    
+
 def sendVerificationCodeEmail(email):
     import random
     recivers = ["sklord25@gmail.com"]  # to be updated the email by user
@@ -78,7 +78,7 @@ def sendVerificationCodeEmail(email):
     msg['from'] = "lordmovie555@gmail.com"   #to be updated mail created for BestDeal
     msg['to'] = ", ".join(recivers)
 
-    code = random.randrange(1001, 9999)
+    code = random.randrange(1001, 9999) 
 
     text = """ Just checking the mail automation code Your Verification code is: """+ str(code)
     msg.set_content(text)
@@ -101,16 +101,20 @@ def sendVerificationCodeEmail(email):
         collection_name.update_one({"email_id": email},{"$set": {"otp":str(code)}}, upsert=True)
         server.quit()
 
-def get_verification_code(email):
+def verify(email, code):
     collection_name = dbname["verification"]
-    verification_code_mongo = collection_name.find({"email_id": email}, {"otp":1})
-    for document in verification_code_mongo:
-        verification_code = document["otp"]
-    return verification_code
+    doc = collection_name.find({"email_id": email, "otp":code})
+    array = []
+    for obj in doc:
+        array.append(obj["email_id"])
+    print(len(array))
+    if len(array):
+        return True
+    else:
+        return False
 
-
-sendVerificationCodeEmail("sklord25@gmail.com")
-print(get_verification_code("sklord25@gmail.com"))
+# sendVerificationCodeEmail("sklord25@gmail.com")
+# print(verify("sklord25@gmail.com", "2222"))
 
 # sendVerificationCodeEmail("email")
 # Insert the documents
