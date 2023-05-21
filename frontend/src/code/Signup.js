@@ -24,6 +24,10 @@ export default function Signup() {
         var data = res.data[0];
 
         alert(data.msg);
+        if(data.msg ==="Account created succesfuly"){
+          console.log("redirect to login");
+          window.location.href = '/login';
+        }
         return res.data;
       })
       .catch((err) => {

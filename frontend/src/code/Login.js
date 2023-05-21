@@ -50,6 +50,7 @@ export default function Login() {
         console.log("redirect to bestdeal");
         window.location.href = '/';
       }
+     
       return res.data;
 
     })
