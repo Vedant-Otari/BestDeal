@@ -32,7 +32,7 @@ def signUp(username, email, password):
         "username": username,
         "email_id": email,
         "password": password,
-        "cookies": hashedPassword
+        "cookies": str(hashedPassword)
     }
     if isUserExist(username):
        return {
@@ -53,7 +53,7 @@ def signIn(username, password):
             cookie = username+password
             cookie = cookie.encode('utf-8')
             hashedPassword = bcrypt.hashpw(cookie, bcrypt.gensalt())
-            addCookies(username, password, hashedPassword)
+            addCookies(username, password, str(hashedPassword))
             return {
                 "error" : False,
                 "msg" : "Sign In successful",
