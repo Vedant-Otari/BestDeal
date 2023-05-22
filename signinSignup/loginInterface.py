@@ -43,7 +43,7 @@ def signUp(username, email, password):
         collection_name.insert_many([customer])
         return {
             "error" : False,
-            "msg" : "Account created succesfuly"
+            "msg" : "Account created succesfully"
         }
 
 def signIn(username, password):
