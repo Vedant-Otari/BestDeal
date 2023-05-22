@@ -79,7 +79,7 @@ def getProductSentiment(request):
     print(res)
     return HttpResponse(json.dumps(L))
 
-def getProductSentiment(request):
+def getProductWordClouds(request):
     productName = request.GET['product_name']
     res = getWordClouds(productName)
     L = []
