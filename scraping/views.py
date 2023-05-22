@@ -65,6 +65,7 @@ def isSignUp(request):
 
 
 def getCustomerData(request):
+    cookie = request.GET['cookie']
     res = get_customer(cookie)
     L = []
     L.append(res)
