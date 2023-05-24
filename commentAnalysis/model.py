@@ -82,6 +82,7 @@ def getComments(productName):
         },
         {
             "$project": {
+                "username": 1,
                 "comments.description": 1,
                 "comments.rating": 1
             }
