@@ -79,7 +79,7 @@ def getProductFromDB(request):
     L = []
     L.append(res)
     print(res)
-    return HttpResponse(json.dumps(L))
+    return HttpResponse(json_util.dumps(L))
 
 def getProductSentiment(request):
     productName = request.GET['product_name']
