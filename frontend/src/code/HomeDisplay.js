@@ -1,35 +1,29 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 
-function callLink1() {
-  return axios
-    .get("http://127.0.0.1:8000/api/recomendations")
-    .then((res) => {
-      return res.data;
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+async function callLink1() {
+  try {
+    const res = await axios.get("http://127.0.0.1:8000/api/recomendations");
+    return res.data;
+  } catch (err) {
+    console.log(err);
+  }
 }
 
-function callLink2() {
-  return axios
-    .get("http://127.0.0.1:8000/api/rankedItems")
-    .then((res) => {
-      return res.data;
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+async function callLink2() {
+  try {
+    const res = await axios.get("http://127.0.0.1:8000/api/rankedItems");
+    return res.data;
+  } catch (err) {
+    console.log(err);
+  }
 }
-
-
 
 function con_7_move_left() {
   let element = document.getElementById("randomItemsDiv");
   element.scrollLeft -= 0.2 * window.innerWidth;
-  if(element.scrollLeft===0 && con_7_max_right !== 0){
-    element.scrollLeft=con_7_max_right;
+  if (element.scrollLeft === 0 && con_7_max_right !== 0) {
+    element.scrollLeft = con_7_max_right;
   }
 }
 let con_7_max_right = 0;
