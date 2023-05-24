@@ -10,13 +10,13 @@ import Login from "./code/Login.js";
 import Signup from "./code/Signup.js";
 import Result from "./code/Result.js";
 import Profile from "./code/Profile.js";
+import ProductDetails from "./code/ProductDetails.js";
 
 function App() {
 
   return (
     <Router>
       <>
-        {/* <div className="from-sky-300 to-blue-600 bg-gradient-to-b min-h-screen pb-28"> */}
         <div className="h-full min-h-screen pb-12"> 
           <Routes>
             <Route
@@ -35,6 +35,7 @@ function App() {
             <Route path="/signup" element={<Signup/>} />
             <Route path="/result" element={<Result/>} />
             <Route path="/profile" element={<Profile/>} />
+            <Route path="/productDetails" element={<ProductDetails/>} />
           </Routes>
           <Footer />
         </div>

@@ -145,10 +145,10 @@ export default function HomeDisplay() {
 
   return (
     <div className="p-6 text-center mt-10 bg-zinc-100 pt-16">
-      <label className="text-3xl font-bold font-serif">
-        People Also Searched:
+      <label className="text-3xl font-bold font-serif uppercase text-sky-900 italic">
+        People Also Searched
       </label>
-      <div className="relative">
+      <div className="relative mb-9">
         <div
           id="arrowLeft"
           className="bg-transparent text-cyan-600 text-7xl hover:text-8xl duration-200 rounded-l-2xl absolute top-0 bottom-0 z-10 bg-gray-400 w-20 select-none align-center flex items-center justify-center left-0"
@@ -158,7 +158,7 @@ export default function HomeDisplay() {
           &#10094;
         </div>
         <div
-          className="flex w-full px-10 justify-start mt-10 overflow-x-auto scroll-smooth"
+          className="flex w-full px-10 justify-start mt-4 overflow-x-auto scroll-smooth"
           id="randomItemsDiv"
         >
           {randomItems}
@@ -172,15 +172,11 @@ export default function HomeDisplay() {
           &#10095;
         </div>
       </div>
-      <br />
-      <br />
       <hr />
-      <br />
-      <br />
-      <label className="text-3xl font-bold font-serif">
-        Most Searched Products:
-      </label>
-      <div className="flex w-full justify-center mt-10" id="mostItemsDiv">
+      <div className="text-3xl mt-16 font-bold font-serif uppercase text-sky-900 italic">
+        Most Searched Products
+      </div>
+      <div className="flex w-full justify-center mt-4" id="mostItemsDiv">
         {mostCountItems}
       </div>
     </div>
