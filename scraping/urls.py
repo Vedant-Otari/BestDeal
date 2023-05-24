@@ -11,6 +11,7 @@ urlpatterns = [
     path('api/signUp', isSignUp),
     path('api/customer_details', getCustomerData),
     path('api/ProductFromDB', getProductFromDB),
+    path('api/ProductComment', getProductComments),
     path('api/ProductSentiment', getProductSentiment),
     path('api/ProductWordClouds', getProductWordClouds)
 ]

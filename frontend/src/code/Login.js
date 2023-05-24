@@ -43,10 +43,11 @@ export default function Login() {
     .then((res) => {
       console.log(res)
       var data = res.data[0];
-      const cookie_name = "bestdeal";
-      setCookie(cookie_name, data.cookies, 7);
+     
       alert(data.msg);
       if(data.msg ==="Sign In successful"){
+        const cookie_name = "bestdeal";
+        setCookie(cookie_name, data.cookies, 7);
         console.log("redirect to bestdeal");
         window.location.href = '/';
       }
