@@ -8,6 +8,7 @@ from homeScreenData.homeScreen import getHomeScreenItems
 from homeScreenData.homeScreen import getMostViewedItems
 from signinSignup.loginInterface import signIn,signUp
 from database.customer import get_customer
+from database.dB import get_product_details
 from commentAnalysis.model import getSentiment, getWordClouds
 
 
@@ -71,6 +72,14 @@ def getCustomerData(request):
     L.append(res)
     print(res)
     return HttpResponse(json_util.dumps(L))
+
+def getProductFromDB(request):
+    productName = request.GET['product_name']
+    res = get_product_details(productName)
+    L = []
+    L.append(res)
+    print(res)
+    return HttpResponse(json.dumps(L))
 
 def getProductSentiment(request):
     productName = request.GET['product_name']

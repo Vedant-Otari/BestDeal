@@ -10,6 +10,7 @@ urlpatterns = [
     path('api/signIn', isSignIn),
     path('api/signUp', isSignUp),
     path('api/customer_details', getCustomerData),
+    path('api/ProductFromDB', getProductFromDB),
     path('api/ProductSentiment', getProductSentiment),
     path('api/ProductWordClouds', getProductWordClouds)
 ]

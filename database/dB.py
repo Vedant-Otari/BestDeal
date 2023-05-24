@@ -1,13 +1,15 @@
-# from django.conf import settings
-# from django.shortcuts import render
-# import pymongo
-# connect_string = 'mongodb+srv://Hrishi:Hrishi123@cluster0.fkj1i6o.mongodb.net/test?retryWrites=true&w=majority'
+from django.conf import settings
+from django.shortcuts import render
+from bson import json_util
+import pymongo
+connect_string = 'mongodb+srv://Hrishi:Hrishi123@cluster0.fkj1i6o.mongodb.net/test?retryWrites=true&w=majority'
 
-# my_client = pymongo.MongoClient(connect_string)
-# # First define the database name
-# dbname = my_client['sample_products']
-# # Now get/create collection name (remember that you will see the database in your mongodb cluster only after you create a collection
-# collection_name = dbname["product_details"]
+my_client = pymongo.MongoClient(connect_string)
+# First define the database name
+dbname = my_client['sample_products']
+# Now get/create collection name (remember that you will see the database in your mongodb cluster only after you create a collection
+collection_name = dbname["product_details"]
+
 
 # # let's create two documents
 # product_1 = {
@@ -48,3 +50,11 @@
 # delete_data = collection_name.delete_one({'product_id': 'B09SH8QD3G'})
 # # delete_data = collection_name.delete_many({})
 
+def get_product_details(productName):
+	product_details = collection_name.find({"name": productName})
+	if(product_details == None):
+		return "Product not found"
+	else:
+		return product_details
+
+print(json_util.dumps(get_product_details("Samsung Galaxy S22 5G (Green, 8GB, 128GB Storage) with No Cost EMI/Additional Exchange Offers")))
