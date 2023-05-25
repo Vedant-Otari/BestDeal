@@ -33,7 +33,7 @@ export default function About() {
           </div>
         </div>
         <div className="flex shadow-inner shadow-black bg-gray-700 m-4 rounded-2xl">
-          <div className="text-white font-serif flex font-semibold text-2xl text-left p-10 leading-loose">
+          <div className="text-white font-seriffont-semibold text-2xl text-left p-10 leading-loose">
             Our mission is simple: to help you save money while getting the
             products you need. With BestDeal, you don't have to waste hours
             browsing different shopping websites, comparing prices and features.
@@ -42,8 +42,10 @@ export default function About() {
             make sure that the information we provide is reliable and
             trustworthy.
           </div>
+          <img src="./v2.png" alt="" className="w-1/12 aspect-square object-contain mr-7" />
         </div>
         <div className="flex bg-gray-800">
+          <img src="./v1.png" alt="" className="w-1/12 aspect-square object-contain ml-8" />
           <div className="text-white font-serif flex font-semibold text-2xl text-left p-10 leading-loose">
           Our search engine does the work for you, and within seconds, you'll
             have a list of options to choose from, including the cheapest price
@@ -63,6 +65,7 @@ export default function About() {
             <br /> Thank you
             for choosing BestDeal, and happy shopping!
           </div>
+          <img src="./v3.png" alt="" className="w-1/12 aspect-square object-contain mr-7" />
         </div>
       </div>
     </>

@@ -35,7 +35,6 @@ export default function Result() {
     window.location.href = `/productDetails?query=${productName}`;
   };
 
-
   const [resF, setResF] = useState(null);
   const [resA, setResA] = useState(null);
   useEffect(() => {
@@ -109,7 +108,14 @@ export default function Result() {
                 rel="noopener noreferrer"
                 className="cursor-pointer h-60 aspect-square w-1/4 object-contain m-4 bg-white rounded-xl"
               />
-              <div className="flex flex-col justify-evenly pl-6 bg-slate-200 items-start w-3/4 text-center py-5">
+              <div className="flex flex-col justify-start space-y-4 pl-6 bg-slate-200 items-start w-3/4 text-center py-5">
+                <div className="block w-full">
+                  <img
+                    src="./fav1.png"
+                    alt="Favourite"
+                    className="h-4 float-right pr-5 cursor-pointer active:scale-100 hover:scale-110"
+                  />
+                </div>
                 <label
                   onClick={() => handleSearchSubmit(resF.name)}
                   target="_blank"
@@ -162,7 +168,14 @@ export default function Result() {
                 rel="noopener noreferrer"
                 className="cursor-pointer h-60 aspect-square w-1/4 object-contain m-4 bg-white rounded-xl"
               />
-              <div className="flex flex-col justify-evenly pl-6 bg-slate-200 items-start w-3/4 text-center py-5">
+              <div className="flex flex-col justify-start space-y-4 pl-6 bg-slate-200 items-start w-3/4 text-center py-5">
+                <div className="block w-full">
+                  <img
+                    src="./fav1.png"
+                    alt="Favourite"
+                    className="h-4 float-right pr-5 cursor-pointer active:scale-100 hover:scale-110"
+                  />
+                </div>
                 <label
                   onClick={() => handleSearchSubmit(resF.name)}
                   target="_blank"
@@ -203,7 +216,14 @@ export default function Result() {
                 rel="noopener noreferrer"
                 className="cursor-pointer h-60 aspect-square w-1/4 object-contain m-4 bg-white rounded-xl"
               />
-              <div className="flex flex-col justify-evenly pl-6 bg-slate-200 items-start w-3/4 text-center py-5">
+              <div className="flex flex-col justify-start space-y-4 pl-6 bg-slate-200 items-start w-3/4 text-center py-5">
+                <div className="block w-full">
+                  <img
+                    src="./fav1.png"
+                    alt="Favourite"
+                    className="h-4 float-right pr-5 cursor-pointer active:scale-100 hover:scale-110"
+                  />
+                </div>
                 <label
                   onClick={() => handleSearchSubmit(resA.name)}
                   target="_blank"

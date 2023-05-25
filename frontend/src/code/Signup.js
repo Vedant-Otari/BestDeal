@@ -84,7 +84,7 @@ export default function Signup() {
     <>
       <Header showButton="show" />
 
-      <div className="w-full flex flex-col items-center mt-16">
+      <div className="w-full flex flex-col items-center mt-6">
         <div className="bg-white px-10 mb-11 py-7 shadow-md rounded-xl border-2 border-gray-200 w-full max-w-md">
           <h1 className="text-3xl font-medium text-center text-blue-950 font-serif">
             Sign Up
@@ -92,7 +92,7 @@ export default function Signup() {
           <div className="mt-7">
             <label className="text-lg font-medium">Email</label>
             <input
-              className={`w-full border-2 mb-5 border-gray-200 outline-gray-500 rounded-md p-2 mt-1 bg-transparent ${
+              className={`w-full border-2 border-gray-200 outline-gray-500 rounded-md p-2 mt-1 bg-transparent ${
                 errors.email ? "border-red-500" : ""
               }`}
               type="email"
@@ -106,9 +106,9 @@ export default function Signup() {
             />
             {errors.email && <p className="text-red-500">{errors.email}</p>}
 
-            <label className="text-lg font-medium">User name</label>
+            <div className="text-lg mt-5 font-medium">User name</div>
             <input
-              className={`w-full border-2 mb-5 border-gray-200 outline-gray-500 rounded-md p-2 mt-1 bg-transparent ${
+              className={`w-full border-2 border-gray-200 outline-gray-500 rounded-md p-2 mt-1 bg-transparent ${
                 errors.username ? "border-red-500" : ""
               }`}
               type="text"
@@ -121,10 +121,10 @@ export default function Signup() {
             />
             {errors.username && <p className="text-red-500">{errors.username}</p>}
 
-            <label className="text-lg font-medium">Password</label>
+            <div className="text-lg mt-5 font-medium">Password</div>
             <div className="flex items-center">
               <input
-                className={`w-full border-2 mb-5 border-gray-200 outline-gray-500 rounded-md p-2 mt-1 bg-transparent ${
+                className={`w-full border-2 border-gray-200 outline-gray-500 rounded-md p-2 mt-1 bg-transparent ${
                   errors.password ? "border-red-500" : ""
                 }`}
                 type="password"
@@ -140,7 +140,7 @@ export default function Signup() {
             </div>
             {errors.password && <p className="text-red-500">{errors.password}</p>}
 
-            <label className="text-lg font-medium">Confirm Password</label>
+            <div className="text-lg mt-5 font-medium">Confirm Password</div>
             <input
               className={`w-full border-2 border-gray-200 outline-gray-500 rounded-md p-2 mt-1 bg-transparent ${
                 errors.confirm ? "border-red-500" : ""
@@ -159,7 +159,7 @@ export default function Signup() {
             <div className="mt-8 flex flex-col gap-y-4">
               <button
                 onClick={signUp}
-                className="active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-3 rounded-xl bg-blue-950 text-white bg-green-600 text-lg font-bold"
+                className="active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-3 rounded-xl bg-blue-950 text-white bg-green-500 hover:bg-green-600 text-lg font-bold"
               >
                 Sign up
               </button>
