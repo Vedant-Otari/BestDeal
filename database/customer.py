@@ -15,9 +15,9 @@ collection_name = dbname["customer_details"]
 #     "password": "password",
 # 	"comments": [
 # 		{
-# 			"product_name": "Samsung Galaxy S22 5G (Phantom White, 8GB RAM, 128GB Storage) with No Cost EMI/Additional Exchange Offers",
+# 			"product_name": "Bose SoundLink Color Bluetooth Speaker II Portable Blue...",
 # 			"date": datetime.utcnow(),
-# 			"description": "Amazing product with great features. The image and sound quality is perfect.",
+# 			"description": "Amazing product with great features. The volume and sound quality is perfect.",
 # 			"rating": 5
 # 		},
 # 		{
@@ -29,7 +29,7 @@ collection_name = dbname["customer_details"]
 # 	],
 # 	"wishlist": [
 # 		{
-# 			"product_name": "Samsung Galaxy S22 5G (Phantom White, 8GB RAM, 128GB Storage) with No Cost EMI/Additional Exchange Offers",
+# 			"product_name": "Bose SoundLink Color Bluetooth Speaker II Portable Blue...",
 # 			"date": datetime.utcnow(),
 # 		},
 # 		{
@@ -39,9 +39,211 @@ collection_name = dbname["customer_details"]
 # 	]
 # }
 
-# Insert the documents
-#collection_name.insert_many([customer])
-# Check the count
+
+# customer1 = {
+#     "username": "user1",
+#     "email_id": "user1@gmail.com",
+#     "password": "password",
+#     "comments": [
+#         {
+#             "product_name": "Bose SoundLink Color Bluetooth Speaker II Portable Blue...",
+#             "date": datetime.utcnow(),
+#             "description": "The speaker has excellent sound quality and a sleek design. I highly recommend it!",
+#             "rating": 5
+#         }
+#     ],
+#     "wishlist": [
+#         {
+#             "product_name": "Bose SoundLink Color Bluetooth Speaker II Portable Blue...",
+#             "date": datetime.utcnow()
+#         }
+#     ]
+# }
+
+# customer2 = {
+#     "username": "user2",
+#     "email_id": "user2@gmail.com",
+#     "password": "password",
+#     "comments": [
+#         {
+#             "product_name": "Bose SoundLink Color Bluetooth Speaker II Portable Blue...",
+#             "date": datetime.utcnow(),
+#             "description": "I'm very satisfied with this speaker. It delivers rich bass and clear audio. Solid 4 out of 5!",
+#             "rating": 4
+#         }
+#     ],
+#     "wishlist": [
+#         {
+#             "product_name": "Bose SoundLink Color Bluetooth Speaker II Portable Blue...",
+#             "date": datetime.utcnow()
+#         }
+#     ]
+# }
+
+# customer3 = {
+#     "username": "user3",
+#     "email_id": "user3@gmail.com",
+#     "password": "password",
+#     "comments": [
+#         {
+#             "product_name": "Bose SoundLink Color Bluetooth Speaker II Portable Blue...",
+#             "date": datetime.utcnow(),
+#             "description": "Unfortunately, the speaker didn't meet my expectations. The sound quality is subpar. 2 out of 5.",
+#             "rating": 2
+#         }
+#     ],
+#     "wishlist": [
+#         {
+#             "product_name": "Bose SoundLink Color Bluetooth Speaker II Portable Blue...",
+#             "date": datetime.utcnow()
+#         }
+#     ]
+# }
+
+# customer4 = {
+#     "username": "user4",
+#     "email_id": "user4@gmail.com",
+#     "password": "password",
+#     "comments": [
+#         {
+#             "product_name": "Bose SoundLink Color Bluetooth Speaker II Portable Blue...",
+#             "date": datetime.utcnow(),
+#             "description": "I absolutely love this speaker! The sound is crystal clear, and it's easy to connect. A solid 5 out of 5!",
+#             "rating": 5
+#         }
+#     ],
+#     "wishlist": [
+#         {
+#             "product_name": "Bose SoundLink Color Bluetooth Speaker II Portable Blue...",
+#             "date": datetime.utcnow()
+#         }
+#     ]
+# }
+
+# customer5 = {
+#     "username": "user5",
+#     "email_id": "user5@gmail.com",
+#     "password": "password",
+#     "comments": [
+#         {
+#             "product_name": "Bose SoundLink Color Bluetooth Speaker II Portable Blue...",
+#             "date": datetime.utcnow(),
+#             "description": "The speaker is compact and portable, making it perfect for travel. Definitely a 4 out of 5.",
+#             "rating": 4
+#         }
+#     ],
+#     "wishlist": [
+#         {
+#             "product_name": "Bose SoundLink Color Bluetooth Speaker II Portable Blue...",
+#             "date": datetime.utcnow()
+#         }
+#     ]
+# }
+
+# customer6 = {
+#     "username": "user6",
+#     "email_id": "user6@gmail.com",
+#     "password": "password",
+#     "comments": [
+#         {
+#             "product_name": "Bose SoundLink Color Bluetooth Speaker II Portable Blue...",
+#             "date": datetime.utcnow(),
+#             "description": "I'm disappointed with the speaker's battery life. It doesn't last as long as advertised. 2 out of 5.",
+#             "rating": 2
+#         }
+#     ],
+#     "wishlist": [
+#         {
+#             "product_name": "Bose SoundLink Color Bluetooth Speaker II Portable Blue...",
+#             "date": datetime.utcnow()
+#         }
+#     ]
+# }
+
+# customer7 = {
+#     "username": "user7",
+#     "email_id": "user7@gmail.com",
+#     "password": "password",
+#     "comments": [
+#         {
+#             "product_name": "Bose SoundLink Color Bluetooth Speaker II Portable Blue...",
+#             "date": datetime.utcnow(),
+#             "description": "This speaker exceeded my expectations! The sound quality is fantastic, and the battery life is impressive. Solid 5 out of 5!",
+#             "rating": 5
+#         }
+#     ],
+#     "wishlist": [
+#         {
+#             "product_name": "Bose SoundLink Color Bluetooth Speaker II Portable Blue...",
+#             "date": datetime.utcnow()
+#         }
+#     ]
+# }
+
+# customer8 = {
+#     "username": "user8",
+#     "email_id": "user8@gmail.com",
+#     "password": "password",
+#     "comments": [
+#         {
+#             "product_name": "Bose SoundLink Color Bluetooth Speaker II Portable Blue...",
+#             "date": datetime.utcnow(),
+#             "description": "I encountered connectivity issues with this speaker. It frequently disconnects from my device. 2 out of 5.",
+#             "rating": 2
+#         }
+#     ],
+#     "wishlist": [
+#         {
+#             "product_name": "Bose SoundLink Color Bluetooth Speaker II Portable Blue...",
+#             "date": datetime.utcnow()
+#         }
+#     ]
+# }
+
+# customer9 = {
+#     "username": "user9",
+#     "email_id": "user9@gmail.com",
+#     "password": "password",
+#     "comments": [
+#         {
+#             "product_name": "Bose SoundLink Color Bluetooth Speaker II Portable Blue...",
+#             "date": datetime.utcnow(),
+#             "description": "This speaker is excellent! The sound is crisp and clear, and it's easy to set up. Definitely deserves a 5 out of 5!",
+#             "rating": 5
+#         }
+#     ],
+#     "wishlist": [
+#         {
+#             "product_name": "Bose SoundLink Color Bluetooth Speaker II Portable Blue...",
+#             "date": datetime.utcnow()
+#         }
+#     ]
+# }
+
+# customer10 = {
+#     "username": "user10",
+#     "email_id": "user10@gmail.com",
+#     "password": "password",
+#     "comments": [
+#         {
+#             "product_name": "Bose SoundLink Color Bluetooth Speaker II Portable Blue...",
+#             "date": datetime.utcnow(),
+#             "description": "I'm very impressed with the speaker's durability. It feels solid and well-built. A solid 4 out of 5!",
+#             "rating": 4
+#         }
+#     ],
+#     "wishlist": [
+#         {
+#             "product_name": "Bose SoundLink Color Bluetooth Speaker II Portable Blue...",
+#             "date": datetime.utcnow()
+#         }
+#     ]
+# }
+
+
+# #Insert the documents
+# collection_name.insert_many([customer, customer1, customer2, customer3, customer4, customer5, customer6, customer7, customer8, customer9, customer10])
+# #Check the count
 # count = collection_name.count_documents({})
 # print(count)
 
