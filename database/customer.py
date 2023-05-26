@@ -88,8 +88,8 @@ collection_name = dbname["customer_details"]
 #         {
 #             "product_name": "Bose SoundLink Color Bluetooth Speaker II Portable Blue...",
 #             "date": datetime.utcnow(),
-#             "description": "Unfortunately, the speaker didn't meet my expectations. The sound quality is subpar. 2 out of 5.",
-#             "rating": 2
+#             "description": "The cable was not compatible between my macbook and iphone.  Also the connector came apart and the cables started fraying.",
+#             "rating": 1
 #         }
 #     ],
 #     "wishlist": [
@@ -148,8 +148,8 @@ collection_name = dbname["customer_details"]
 #         {
 #             "product_name": "Bose SoundLink Color Bluetooth Speaker II Portable Blue...",
 #             "date": datetime.utcnow(),
-#             "description": "I'm disappointed with the speaker's battery life. It doesn't last as long as advertised. 2 out of 5.",
-#             "rating": 2
+#             "description": "This product is useless garbage. Don't buy it. Terrible sound quality.",
+#             "rating": 1
 #         }
 #     ],
 #     "wishlist": [
@@ -188,8 +188,8 @@ collection_name = dbname["customer_details"]
 #         {
 #             "product_name": "Bose SoundLink Color Bluetooth Speaker II Portable Blue...",
 #             "date": datetime.utcnow(),
-#             "description": "I encountered connectivity issues with this speaker. It frequently disconnects from my device. 2 out of 5.",
-#             "rating": 2
+#             "description": "Bad build quality. Battery dosent work properly and the case was damaged when I received it.",
+#             "rating": 1
 #         }
 #     ],
 #     "wishlist": [

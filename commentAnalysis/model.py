@@ -13,7 +13,7 @@ import nltk
 from nltk.corpus import stopwords
 
 
-data = pd.read_csv("commentAnalysis/TrainingData.csv")
+data = pd.read_csv("TrainingData.csv")
 # print(data.head(),format("\n"))
 #print(data.info())
 data.dropna(inplace=True)
@@ -118,7 +118,7 @@ def getSentiment(productName):
     }
     return sentiment
 
-#print(getSentiment("Samsung Galaxy S22 5G (Phantom White, 8GB RAM, 128GB Storage) with No Cost EMI/Additional Exchange Offers"))
+#print(getSentiment("Bose SoundLink Color Bluetooth Speaker II Portable Blue..."))
 
 
 
