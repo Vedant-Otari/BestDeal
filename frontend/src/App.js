@@ -17,7 +17,7 @@ function App() {
   return (
     <Router>
       <>
-        <div className="h-full min-h-screen pb-12"> 
+        <div className="h-full min-h-screen pb-12 scroll-smooth"> 
           <Routes>
             <Route
               path="/"

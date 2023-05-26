@@ -3,6 +3,7 @@ import axios from "axios";
 import { useState } from "react";
 import Header from "./Header";
 import { Link } from "react-router-dom";
+import OTPVerify from "./OTPVerify";
 
 export default function Signup() {
   const [username, setUsername] = useState("");
@@ -10,6 +11,13 @@ export default function Signup() {
   const [email, setEmail] = useState("");
   const [confirm, setConfirm] = useState("");
   const [errors, setErrors] = useState({});
+  const [showOTPVerify, setShowOTPVerify] = useState(false);
+
+  const handleClick = () => {
+    const a = document.getElementById("OTPSendButton");
+    a.style.display = "none";
+    setShowOTPVerify(true);
+  };
 
   const validateEmail = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -84,11 +92,11 @@ export default function Signup() {
     <>
       <Header showButton="show" />
 
-      <div className="w-full flex flex-col items-center mt-6">
-        <div className="bg-white px-10 mb-11 py-7 shadow-md rounded-xl border-2 border-gray-200 w-full max-w-md">
+      <div className="w-full flex flex-col mb-11 items-center mt-6">
+        <div className="bg-white px-10 py-7 mb-11 shadow-md rounded-xl border-2 border-gray-200 w-full max-w-md">
           <h1 className="text-3xl font-medium text-center text-blue-950 font-serif">
             Sign Up
-            </h1>
+          </h1>
           <div className="mt-7">
             <label className="text-lg font-medium">Email</label>
             <input
@@ -156,14 +164,16 @@ export default function Signup() {
             />
             {errors.confirm && <p className="text-red-500">{errors.confirm}</p>}
 
-            <div className="mt-8 flex flex-col gap-y-4">
+            <div className="mt-8 flex flex-col gap-y-4" id="OTPSendButton">
               <button
-                onClick={signUp}
-                className="active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-3 rounded-xl bg-blue-950 text-white bg-green-500 hover:bg-green-600 text-lg font-bold"
+                // onClick={signUp}
+                onClick={function(){window.scrollTo(0,document.documentElement.scrollHeight || document.body.scrollHeight);handleClick();}}
+                className="active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-2 rounded-xl bg-blue-950 text-white bg-green-500 hover:bg-green-600 text-lg font-bold"
               >
-                Sign up
+                Send OTP
               </button>
             </div>
+            {showOTPVerify && <OTPVerify/>}
 
             <div className="mt-8 flex justify-center items-center">
               <p className="font-medium text-base">Already have an account?</p>
@@ -173,6 +183,7 @@ export default function Signup() {
             </div>
           </div>
         </div>
+
       </div>
     </>
   );
