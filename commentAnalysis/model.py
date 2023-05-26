@@ -118,7 +118,7 @@ def getSentiment(productName):
     }
     return sentiment
 
-#print(getSentiment("Bose SoundLink Color Bluetooth Speaker II Portable Blue..."))
+print(getSentiment("Bose SoundLink Color Bluetooth Speaker II Portable Blue..."))
 
 
 
