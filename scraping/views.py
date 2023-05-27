@@ -59,7 +59,8 @@ def isSignUp(request):
     userName = request.GET['username']
     password = request.GET['password']
     email = request.GET['email']
-    res = signUp(userName, email, password)
+    OTP = request.GET['OTP']
+    res = signUp(userName, email, password, OTP)
     L = []
     L.append(res)
     print(res)

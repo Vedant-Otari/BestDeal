@@ -31,17 +31,17 @@ def getPriceHistoryChart(productName):
     driver.get(d)
     # html = driver.execute_script("return document.documentElement.innerHTML")
 
-    ele = driver.find_element(By.XPATH, "/html/body/div[2]/div/div[2]/div[1]/div[3]/div[2]/canvas")
-    string = ""
+    # ele = driver.find_element(By.XPATH, "/html/body/div[2]/div/div[2]/div[1]/div[3]/div[2]/canvas")
+    string = """<canvas id="price_history_chart" style="width: 100%; display: block;" width="950" height="475" class="chartjs-render-monitor"></canvas><script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js" defer=""></script>"""
 
     # print(ele.get_attribute("innerHTML"))
 
-    t = driver.find_element(By.XPATH, "/html/body/script[7]")
+    # t = driver.find_element(By.XPATH, "/html/body/script[7]")
     # print(t.get_attribute("innerHTML"))
     # f = open("test1.html",'bw')
     # f.write(ele.get_attribute("outerHTML").encode('utf-8'))
 
-    string += ele.get_attribute("outerHTML") + t.get_attribute("outerHTML")
+    # string += ele.get_attribute("outerHTML") + t.get_attribute("outerHTML")
 
 
     # f.write(t.get_attribute("outerHTML").encode('utf-8'))
@@ -52,7 +52,7 @@ def getPriceHistoryChart(productName):
     # f.write(t.get_attribute("outerHTML").encode('utf-8'))
 
     # f.close()
-    # print (string)
+    print (string)
 
     driver.quit()
     return string
