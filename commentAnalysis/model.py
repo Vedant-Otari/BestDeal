@@ -62,6 +62,7 @@ collection_name = dbname["customer_details"]
 
 
 def getComments(productName):
+    productComments = None
     productComments = collection_name.aggregate([
         {
             "$match": {
@@ -102,20 +103,25 @@ def getSentiment(productName):
             description = comment["description"]
             descriptions.append(description)
             
-    
-    # Create a dictionary from the arrays
-    data = {"Description": descriptions}
-    # Create a pandas DataFrame
-    df = pd.DataFrame(data)
-
-    df['Description']=df['Description'].apply(clean_review)
-    X = cv.transform(df['Description'] ).toarray()
-    pred=model.predict(X)
-    
     sentiment = {
-        "positive": (pred == 1).sum(),
-        "negative": (pred == 0).sum()
-    }
+            "positive": 0,
+            "negative": 0
+        }
+ 
+    if len(descriptions)>0:
+        # Create a dictionary from the arrays
+        data = {"Description": descriptions}
+        # Create a pandas DataFrame
+        df = pd.DataFrame(data)
+
+        df['Description']=df['Description'].apply(clean_review)
+        X = cv.transform(df['Description'] ).toarray()
+        pred=model.predict(X)
+    
+        sentiment = {
+            "positive": (pred == 1).sum(),
+            "negative": (pred == 0).sum()
+        }
     return sentiment
 
 print(getSentiment("Bose SoundLink Color Bluetooth Speaker II Portable Blue..."))
@@ -153,15 +159,15 @@ def getWordClouds(productName):
             descriptions.append(description)
             ratings.append(rating)
             
-    
-    # Create a dictionary from the arrays
-    data = {"Description": descriptions, "Rating": ratings}
-    # Create a pandas DataFrame
-    df = pd.DataFrame(data)
-    df['Description']=df['Description'].apply(clean_review)
-    X = cv.transform(df['Description'] ).toarray()
-    df["Rating"]=model.predict(X)
-    # print(df)
+    if len(descriptions)>0:
+        # Create a dictionary from the arrays
+        data = {"Description": descriptions, "Rating": ratings}
+        # Create a pandas DataFrame
+        df = pd.DataFrame(data)
+        df['Description']=df['Description'].apply(clean_review)
+        X = cv.transform(df['Description'] ).toarray()
+        df["Rating"]=model.predict(X)
+        # print(df)
     
     consolidated_negative = ' '.join(word for word in df['Description'][df['Rating'] == 0].astype(str))
     consolidated_positive = ' '.join(word for word in df['Description'][df['Rating'] == 1].astype(str))

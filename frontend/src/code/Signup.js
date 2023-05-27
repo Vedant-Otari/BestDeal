@@ -38,6 +38,11 @@ export default function Signup() {
     }
   };
 
+  const getOTP = (data) => {
+    // Do something with the data received from ABCD component
+    alert("this is :"+data);
+  };
+
   const validatePassword = () => {
     if (!password) {
       setErrors((prevErrors) => ({ ...prevErrors, password: "Password is required" }));
@@ -132,7 +137,7 @@ export default function Signup() {
             <div className="text-lg mt-5 font-medium">Password</div>
             <div className="flex items-center">
               <input
-                className={`w-full border-2 border-gray-200 outline-gray-500 rounded-md p-2 mt-1 bg-transparent ${
+                className={`w-[90%] border-2 border-gray-200 outline-gray-500 rounded-md p-2 mt-1 bg-transparent ${
                   errors.password ? "border-red-500" : ""
                 }`}
                 type="password"
@@ -150,7 +155,7 @@ export default function Signup() {
 
             <div className="text-lg mt-5 font-medium">Confirm Password</div>
             <input
-              className={`w-full border-2 border-gray-200 outline-gray-500 rounded-md p-2 mt-1 bg-transparent ${
+              className={`w-[90%] border-2 border-gray-200 outline-gray-500 rounded-md p-2 mt-1 bg-transparent ${
                 errors.confirm ? "border-red-500" : ""
               }`}
               type="password"
@@ -173,7 +178,7 @@ export default function Signup() {
                 Send OTP
               </button>
             </div>
-            {showOTPVerify && <OTPVerify/>}
+            {showOTPVerify && <OTPVerify getMail={email} onData={getOTP}/>}
 
             <div className="mt-8 flex justify-center items-center">
               <p className="font-medium text-base">Already have an account?</p>
