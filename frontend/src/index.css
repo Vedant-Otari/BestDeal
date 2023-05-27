@@ -77,3 +77,19 @@ body {
 #arrowRight:hover{
   background: linear-gradient(to left, rgb(145, 144, 144, 0.5), rgb(145, 144, 144, 0.4), rgb(145, 144, 144, 0.2), rgb(145, 144, 144, 0.1), rgb(145, 144, 144, 0.001));
 }
+
+.smallPlaceholder::placeholder{
+  font-size:20px;
+  font-family: serif;
+  letter-spacing: 0.02em;
+}
+
+.no-arrows::-webkit-inner-spin-button,
+.no-arrows::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.no-arrows {
+  -moz-appearance: textfield; /* Firefox */
+}

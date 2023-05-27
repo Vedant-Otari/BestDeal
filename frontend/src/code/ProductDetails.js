@@ -17,19 +17,103 @@ async function callLinkProduct() {
   }
 }
 
+async function callLinkComment() {
+  try {
+    const res = await axios.get("http://127.0.0.1:8000/api/ProductComment", {
+      params: {
+        product_name: productName
+      }
+    });
+    console.log(res);
+    // return res.data[0][0];
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+async function callLinkSentiment() {
+  try {
+    const res = await axios.get("http://127.0.0.1:8000/api/ProductSentiment", {
+      params: {
+        product_name: productName
+      }
+    });
+    console.log(res);
+    // return res.data[0][0];
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+async function callLinkWordCloud() {
+  try {
+    const res = await axios.get("http://127.0.0.1:8000/api/ProductWordClouds", {
+      params: {
+        product_name: productName
+      }
+    });
+    console.log(res);
+    // return res.data[0][0];
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+async function callLinkChart() {
+  try {
+    const res = await axios.get("http://127.0.0.1:8000/api/chart", {
+      params: {
+        product_name: productName
+      }
+    });
+    console.log(res);
+    // return res.data[0][0];
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 var productName = "";
 export default function ProductDetails() {
   const searchQuery = new URLSearchParams(useLocation().search).get("query");
   productName = searchQuery;
   const [res, setRes] = useState(null);
+  const [res1, setRes1] = useState(null);
+  const [res2, setRes2] = useState(null);
+  const [res3, setRes3] = useState(null);
+  const [res4, setRes4] = useState(null);
 
   useEffect(() => {
     callProduct();
+    callComments();
+    callSentiment();
+    callWordCloud();
+    callChart();
   }, []);
 
   async function callProduct() {
     const result = await callLinkProduct();
     setRes(result);
+  }
+
+  async function callComments() {
+    const result = await callLinkComment();
+    setRes1(result);
+  }
+
+  async function callSentiment() {
+    const result = await callLinkSentiment();
+    setRes2(result);
+  }
+
+  async function callWordCloud() {
+    const result = await callLinkWordCloud();
+    setRes3(result);
+  }
+
+  async function callChart() {
+    const result = await callLinkChart();
+    setRes4(result);
   }
 
   if (!res) {
