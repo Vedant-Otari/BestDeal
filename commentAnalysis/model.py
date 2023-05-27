@@ -11,6 +11,7 @@ import nltk
 # nltk.download('punkt')
 # nltk.download('stopwords')
 from nltk.corpus import stopwords
+from django.http import JsonResponse
 
 
 data = pd.read_csv("commentAnalysis/TrainingData.csv")
@@ -200,6 +201,6 @@ def getWordClouds(productName):
     }
 
     # Serialize the dictionary as a JSON string
-    return wordClouds_data
+    return JsonResponse(wordClouds_data)
 
 
