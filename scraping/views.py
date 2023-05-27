@@ -6,7 +6,7 @@ from amazonScraping.getProductDetailAmazon import getAmazonProductDetail
 from flipkartScraping.getProductDetailFlipkart import getFlipkartProductDetail
 from homeScreenData.homeScreen import getHomeScreenItems
 from homeScreenData.homeScreen import getMostViewedItems
-from signinSignup.loginInterface import signIn,signUp
+from signinSignup.loginInterface import signIn,signUp, verify
 from database.customer import get_customer
 from database.dB import get_product_details
 from commentAnalysis.model import getComments, getSentiment, getWordClouds
@@ -111,3 +111,9 @@ def getProductChart(request):
     productName = getPriceHistoryChart(productName)
     
     return HttpResponse(productName)
+
+def verifyOTP(request):
+    code = request.GET['OTP']
+    email = request.GET['email']
+    result = verify(code, email)
+    return HttpResponse(json_util.dumps(result))

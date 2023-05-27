@@ -75,7 +75,7 @@ def sendVerificationCodeEmail(email):
     recivers = ["sklord25@gmail.com"]  # to be updated the email by user
     msg = EmailMessage()
     msg['subject'] = "Testing mail code"
-    msg['from'] = "lordmovie555@gmail.com"   #to be updated mail created for BestDeal
+    msg['from'] = "officialbestdeal2023@gmail.com"   #to be updated mail created for BestDeal
     msg['to'] = ", ".join(recivers)
 
     code = random.randrange(1001, 9999) 
@@ -109,9 +109,15 @@ def verify(email, code):
         array.append(obj["email_id"])
     print(len(array))
     if len(array):
-        return True
+        return {
+                "error" : False,
+                "msg" : "Verified successful"
+            }
     else:
-        return False
+        return {
+                "error" : True,
+                "msg" : "Invalid OTP"
+            }
 
 # sendVerificationCodeEmail("sklord25@gmail.com")
 # print(verify("sklord25@gmail.com", "2222"))

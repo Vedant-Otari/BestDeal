@@ -15,5 +15,6 @@ urlpatterns = [
     path('api/ProductSentiment', getProductSentiment),
     path('api/ProductWordClouds', getWordClouds),
     path('api/chart', getProductChart),
+    path('api/verifyOTP', verifyOTP),
 
 ]
