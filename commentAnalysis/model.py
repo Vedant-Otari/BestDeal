@@ -11,6 +11,7 @@ import nltk
 # nltk.download('punkt')
 # nltk.download('stopwords')
 from nltk.corpus import stopwords
+from django.http import JsonResponse
 
 
 data = pd.read_csv("commentAnalysis/TrainingData.csv")
@@ -158,7 +159,10 @@ def getWordClouds(productName):
             rating = comment["rating"]
             descriptions.append(description)
             ratings.append(rating)
-            
+
+    consolidated_negative = ''
+    consolidated_positive = ''
+
     if len(descriptions)>0:
         # Create a dictionary from the arrays
         data = {"Description": descriptions, "Rating": ratings}
@@ -169,9 +173,9 @@ def getWordClouds(productName):
         df["Rating"]=model.predict(X)
         # print(df)
     
-    consolidated_negative = ' '.join(word for word in df['Description'][df['Rating'] == 0].astype(str))
-    consolidated_positive = ' '.join(word for word in df['Description'][df['Rating'] == 1].astype(str))
-    # print(str(consolidated_positive))
+        consolidated_negative = ' '.join(word for word in df['Description'][df['Rating'] == 0].astype(str))
+        consolidated_positive = ' '.join(word for word in df['Description'][df['Rating'] == 1].astype(str))
+        # print(str(consolidated_positive))
 
     wordCloud_negative = WordCloud(width=1600, height=800, random_state=21, max_font_size=110)
     wordCloud_positive = WordCloud(width=1600, height=800, random_state=21, max_font_size=110)
@@ -197,6 +201,6 @@ def getWordClouds(productName):
     }
 
     # Serialize the dictionary as a JSON string
-    return wordClouds_data
+    return JsonResponse(wordClouds_data)
 
 

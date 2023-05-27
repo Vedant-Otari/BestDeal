@@ -101,6 +101,7 @@ def getProductSentiment(request):
 
 def getProductWordClouds(request):
     productName = request.GET['product_name']
+    res = {}
     res = getWordClouds(productName)
     L = []
     L.append(res)
