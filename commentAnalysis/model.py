@@ -66,7 +66,7 @@ def getComments(productName):
     productComments = collection_name.aggregate([
         {
             "$match": {
-                "comments.product_name": productName
+                "comments.product_name": str(productName)
             }
         },
         {
@@ -75,7 +75,7 @@ def getComments(productName):
                     "$filter": {
                         "input": "$comments",
                         "cond": {
-                            "$eq": ["$$this.product_name", productName]
+                            "$eq": ["$$this.product_name", str(productName)]
                         }
                     }
                 }
