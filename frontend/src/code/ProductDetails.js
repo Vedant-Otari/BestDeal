@@ -10,7 +10,7 @@ async function callLinkProduct() {
         product_name: productName
       }
     });
-    console.log(res);
+    // console.log(res.data[0][0]);
     return res.data[0][0];
   } catch (err) {
     console.log(err);
@@ -24,7 +24,8 @@ async function callLinkComment() {
         product_name: productName
       }
     });
-    console.log(res);
+    console.log(res.data[0][0].comm);
+    // console.log(res.data);
     // return res.data[0][0];
   } catch (err) {
     console.log(err);
@@ -38,7 +39,7 @@ async function callLinkSentiment() {
         product_name: productName
       }
     });
-    console.log(res);
+    console.log("Product sentimet:\n"+res.data);
     // return res.data[0][0];
   } catch (err) {
     console.log(err);
@@ -52,7 +53,7 @@ async function callLinkWordCloud() {
         product_name: productName
       }
     });
-    console.log(res);
+    console.log("Product word cloud:\n"+res.data);
     // return res.data[0][0];
   } catch (err) {
     console.log(err);
@@ -85,11 +86,13 @@ export default function ProductDetails() {
 
   useEffect(() => {
     callProduct();
-    callComments();
-    callSentiment();
-    callWordCloud();
+    // callComments();
+    // callSentiment();
+    // callWordCloud();
     callChart();
   }, []);
+
+  
 
   async function callProduct() {
     const result = await callLinkProduct();
@@ -116,6 +119,10 @@ export default function ProductDetails() {
     setRes4(result);
   }
 
+  // const renderHTML = () => {
+  //   return { __html: res4.data[0] };
+  // };
+
   if (!res) {
     return (
       <>
@@ -141,6 +148,12 @@ export default function ProductDetails() {
               <div>MRP - {res.mrp}</div>
           </div>
         </div>
+        
+        {/* if (res4) {
+          
+          <div dangerouslySetInnerHTML={renderHTML()} />
+        } */}
+              
       </div>
     </>
   )

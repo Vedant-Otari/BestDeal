@@ -45,7 +45,7 @@ export default function HomeDisplay() {
   const [res1, setRes1] = useState(null);
   const [res2, setRes2] = useState(null);
   const handleSearchSubmit = (productName) => {
-    window.location.href = `/result?query=${productName}`;
+    window.location.href = `/productDetails?query=${productName}`;
   };
 
   useEffect(() => {

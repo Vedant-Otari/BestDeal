@@ -110,8 +110,9 @@ def getProductWordClouds(request):
 def getProductChart(request):
     productName = request.GET['product_name']
     productName = getPriceHistoryChart(productName)
-    
-    return HttpResponse(productName)
+    L=[productName]
+    # return HttpResponse(productName)
+    return HttpResponse(json_util.dumps(L))
 
 def verifyOTP(request):
     code = request.GET['OTP']

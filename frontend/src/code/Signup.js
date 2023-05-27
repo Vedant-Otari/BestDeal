@@ -149,6 +149,13 @@ export default function Signup() {
                 minLength={8}
                 maxLength={20}
               />
+              <img
+                id="passShow"
+                src="./passwordHide.png"
+                alt=""
+                // onClick={hidePass}
+                className="h-3 cursor-pointer hover:opacity-80"
+              />
               {/* <img src="./a.png" alt="" srcset="" className="h-3" /> */}
             </div>
             {errors.password && <p className="text-red-500">{errors.password}</p>}
