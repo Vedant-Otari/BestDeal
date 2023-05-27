@@ -161,7 +161,8 @@ def getFlipkartProductDetail(productName):
             "mrp": productPriceActualInt,
             "discount": productDiscount,
             "stars": producStarStr,
-            "ratings": producRatingStr
+            "ratings": producRatingStr,
+            "website" : "flipkart"
         }
 
         addDB(productData)

@@ -39,12 +39,12 @@ def getASIN(productName):
 
 	driver.get(URL)
 	# driver.implicitly_wait(5)
-	search_box = driver.find_element(By.ID, 'twotabsearchtextbox')
+	search_box = driver.find_element(By.XPATH, '/html/body/div[1]/header/div/div[1]/div[2]/div/form/div[2]/div[1]/input')
 	
 	search_box.send_keys(productName)
 
 	print(driver.current_url)
-	search_button = driver.find_element(By.ID, 'nav-search-submit-button').click()
+	search_button = driver.find_element(By.XPATH, '/html/body/div[1]/header/div/div[1]/div[2]/div/form/div[3]/div/span/input').click()
 	print(driver.current_url)
         
 	

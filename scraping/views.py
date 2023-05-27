@@ -10,6 +10,7 @@ from signinSignup.loginInterface import signIn,signUp
 from database.customer import get_customer
 from database.dB import get_product_details
 from commentAnalysis.model import getComments, getSentiment, getWordClouds
+from productPriceChart.priceChart import getPriceHistoryChart
 
 
 # Create your views here.
@@ -104,3 +105,9 @@ def getProductWordClouds(request):
     L.append(res)
     print(res)
     return HttpResponse(json.dumps(L))
+
+def getProductChart(request):
+    productName = request.GET['product_name']
+    productName = getPriceHistoryChart(productName)
+    
+    return HttpResponse(productName)

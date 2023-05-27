@@ -55,7 +55,8 @@ def getAmazonProductDetail(productName):
         "mrp" : productPriceActualInt,
         "discount" : productDiscount,
         "stars" : producStarStr,
-        "ratings" : producRatingStr
+        "ratings" : producRatingStr,
+        "website" : "amazon"
     }
 
     driver.quit()
