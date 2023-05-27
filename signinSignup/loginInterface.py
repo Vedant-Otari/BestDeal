@@ -24,27 +24,34 @@ def isUserExist(username):
     else:
         return False
 
-def signUp(username, email, password):
-    cookie = username+password
-    cookie = cookie.encode('utf-8')
-    hashedPassword = bcrypt.hashpw(cookie, bcrypt.gensalt())
-    customer = {
-        "username": username,
-        "email_id": email,
-        "password": password,
-        "cookies": str(hashedPassword)
-    }
-    if isUserExist(username):
-       return {
-           "error" : True,
-           "msg" : "Username already exists"
-       }
-    else:
-        collection_name.insert_many([customer])
-        return {
-            "error" : False,
-            "msg" : "Account created succesfully"
+def signUp(username, email, password, OTP):
+    if verify(email, OTP):
+        cookie = username+password
+        cookie = cookie.encode('utf-8')
+        hashedPassword = bcrypt.hashpw(cookie, bcrypt.gensalt())
+        customer = {
+            "username": username,
+            "email_id": email,
+            "password": password,
+            "cookies": str(hashedPassword)
         }
+        if isUserExist(username):
+            return {
+                "error" : True,
+                "msg" : "Username already exists"
+            }
+        else:
+            collection_name.insert_many([customer])
+            return {
+                "error" : False,
+                "msg" : "Account created succesfully"
+            }
+    else :
+        return {
+                "error" : True,
+                "msg" : "OTP does Not match"
+            }
+
 
 def signIn(username, password):
     if isUserExist(username):
@@ -109,15 +116,9 @@ def verify(email, code):
         array.append(obj["email_id"])
     print(len(array))
     if len(array):
-        return {
-                "error" : False,
-                "msg" : "Verified successful"
-            }
+        return True
     else:
-        return {
-                "error" : True,
-                "msg" : "Invalid OTP"
-            }
+        return False
 
 # sendVerificationCodeEmail("sklord25@gmail.com")
 # print(verify("sklord25@gmail.com", "2222"))
