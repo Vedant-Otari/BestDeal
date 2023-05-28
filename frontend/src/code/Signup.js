@@ -19,12 +19,54 @@ export default function Signup() {
     setShowOTPVerify(true);
   };
 
+  const showPass1 = () => {
+    const a = document.getElementById("passwordVisibility1");
+    const b = document.getElementById("passHide1");
+    const c = document.getElementById("passShow1");
+    b.style.display = "none";
+    c.style.display = "block";
+    a.type = "text";
+  };
+  
+  const hidePass1 = () => {
+    const a = document.getElementById("passwordVisibility1");
+    const b = document.getElementById("passHide1");
+    const c = document.getElementById("passShow1");
+    b.style.display = "block";
+    c.style.display = "none";
+    a.type = "password";
+  };
+
+  const showPass2 = () => {
+    const a = document.getElementById("passwordVisibility2");
+    const b = document.getElementById("passHide2");
+    const c = document.getElementById("passShow2");
+    b.style.display = "none";
+    c.style.display = "block";
+    a.type = "text";
+  };
+  
+  const hidePass2 = () => {
+    const a = document.getElementById("passwordVisibility2");
+    const b = document.getElementById("passHide2");
+    const c = document.getElementById("passShow2");
+    b.style.display = "block";
+    c.style.display = "none";
+    a.type = "password";
+  };
+
   const validateEmail = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!email) {
-      setErrors((prevErrors) => ({ ...prevErrors, email: "Email is required" }));
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        email: "Email is required",
+      }));
     } else if (!emailRegex.test(email)) {
-      setErrors((prevErrors) => ({ ...prevErrors, email: "Invalid email format" }));
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        email: "Invalid email format",
+      }));
     } else {
       setErrors((prevErrors) => ({ ...prevErrors, email: "" }));
     }
@@ -32,7 +74,10 @@ export default function Signup() {
 
   const validateUsername = () => {
     if (!username) {
-      setErrors((prevErrors) => ({ ...prevErrors, username: "Username is required" }));
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        username: "Username is required",
+      }));
     } else {
       setErrors((prevErrors) => ({ ...prevErrors, username: "" }));
     }
@@ -40,14 +85,20 @@ export default function Signup() {
 
   const getOTP = (data) => {
     // Do something with the data received from ABCD component
-    alert("this is :"+data);
+    alert("this is :" + data);
   };
 
   const validatePassword = () => {
     if (!password) {
-      setErrors((prevErrors) => ({ ...prevErrors, password: "Password is required" }));
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        password: "Password is required",
+      }));
     } else if (password.length < 8) {
-      setErrors((prevErrors) => ({ ...prevErrors, password: "Password should be at least 8 characters" }));
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        password: "Password should be at least 8 characters",
+      }));
     } else {
       setErrors((prevErrors) => ({ ...prevErrors, password: "" }));
     }
@@ -55,9 +106,15 @@ export default function Signup() {
 
   const validateConfirmPassword = () => {
     if (!confirm) {
-      setErrors((prevErrors) => ({ ...prevErrors, confirm: "Confirm password is required" }));
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        confirm: "Confirm password is required",
+      }));
     } else if (password !== confirm) {
-      setErrors((prevErrors) => ({ ...prevErrors, confirm: "Passwords do not match" }));
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        confirm: "Passwords do not match",
+      }));
     } else {
       setErrors((prevErrors) => ({ ...prevErrors, confirm: "" }));
     }
@@ -81,7 +138,6 @@ export default function Signup() {
         console.log(response.data);
         const data = response.data[0];
 
-        
         if (data.msg === "Account created succesfully") {
           alert(data.msg);
           console.log("Redirect to login");
@@ -132,15 +188,18 @@ export default function Signup() {
               required
               maxLength={50}
             />
-            {errors.username && <p className="text-red-500">{errors.username}</p>}
+            {errors.username && (
+              <p className="text-red-500">{errors.username}</p>
+            )}
 
             <div className="text-lg mt-5 font-medium">Password</div>
-            <div className="flex items-center">
+            <div className="relative flex items-center">
               <input
-                className={`w-[90%] border-2 border-gray-200 outline-gray-500 rounded-md p-2 mt-1 bg-transparent ${
+                className={`w-full pr-10 border-2 border-gray-200 outline-gray-500 rounded-md p-2 mt-1 bg-transparent ${
                   errors.password ? "border-red-500" : ""
                 }`}
                 type="password"
+                id="passwordVisibility1"
                 placeholder="Enter Your password"
                 value={password}
                 onChange={(event) => setPassword(event.target.value)}
@@ -150,22 +209,31 @@ export default function Signup() {
                 maxLength={20}
               />
               <img
-                id="passShow"
+                id="passShow1"
                 src="./passwordHide.png"
                 alt=""
-                // onClick={hidePass}
-                className="h-3 cursor-pointer hover:opacity-80"
+                onClick={hidePass1}
+                className="h-3 absolute right-2 cursor-pointer hidden hover:opacity-80"
               />
-              {/* <img src="./a.png" alt="" srcset="" className="h-3" /> */}
+              <img
+                id="passHide1"
+                src="./passwordShow.png"
+                alt=""
+                onClick={showPass1}
+                className="h-5 absolute right-2 cursor-pointer hover:opacity-80"
+              />
             </div>
-            {errors.password && <p className="text-red-500">{errors.password}</p>}
-
+            {errors.password && (
+              <p className="text-red-500">{errors.password}</p>
+            )}
             <div className="text-lg mt-5 font-medium">Confirm Password</div>
+            <div className="relative flex items-center">
             <input
-              className={`w-[90%] border-2 border-gray-200 outline-gray-500 rounded-md p-2 mt-1 bg-transparent ${
+              className={`w-full border-2 pr-10 border-gray-200 outline-gray-500 rounded-md p-2 mt-1 bg-transparent ${
                 errors.confirm ? "border-red-500" : ""
               }`}
               type="password"
+              id="passwordVisibility2"
               placeholder="Re-Enter Your password"
               value={confirm}
               onChange={(event) => setConfirm(event.target.value)}
@@ -174,31 +242,52 @@ export default function Signup() {
               minLength={8}
               maxLength={20}
             />
+            <img
+              id="passShow2"
+              src="./passwordHide.png"
+              alt=""
+              onClick={hidePass2}
+              className="h-3 absolute right-2 cursor-pointer hidden hover:opacity-80"
+            />
+            <img
+              id="passHide2"
+              src="./passwordShow.png"
+              alt=""
+              onClick={showPass2}
+              className="h-5 absolute right-2 cursor-pointer hover:opacity-80"
+            />
+            </div>
             {errors.confirm && <p className="text-red-500">{errors.confirm}</p>}
-
+            
             <div className="mt-8 flex flex-col gap-y-4" id="OTPSendButton">
               <button
                 // onClick={signUp}
-                onClick={function(){window.scrollTo(0,document.documentElement.scrollHeight || document.body.scrollHeight);handleClick();}}
+                onClick={function () {
+                  window.scrollTo(
+                    0,
+                    document.documentElement.scrollHeight ||
+                      document.body.scrollHeight
+                  );
+                  handleClick();
+                }}
                 className="active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-2 rounded-xl bg-blue-950 text-white bg-green-500 hover:bg-green-600 text-lg font-bold"
               >
                 Send OTP
               </button>
             </div>
-            {showOTPVerify && <OTPVerify getMail={email} onData={getOTP}/>}
+            {showOTPVerify && <OTPVerify getMail={email} onData={getOTP} />}
 
             <div className="mt-8 flex justify-center items-center">
               <p className="font-medium text-base">Already have an account?</p>
               <Link to="/login">
-                <button className="text-blue-400 font-medium ml-2">Login</button>
+                <button className="text-blue-400 font-medium ml-2">
+                  Login
+                </button>
               </Link>
             </div>
           </div>
         </div>
-
       </div>
     </>
   );
 }
-
-         

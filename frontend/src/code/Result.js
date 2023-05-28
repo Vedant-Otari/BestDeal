@@ -190,7 +190,7 @@ export default function Result() {
                     ({parseFloat(resF.discount).toFixed(2)}% off)
                   </label>
                   &nbsp;&nbsp;&nbsp;&nbsp;
-                  <label className="text-2xl diagonalStrikeThrough font-bold font-sans text-red-700">
+                  <label className="text-2xl diagonalStrikeThrough font-bold font-sans text-red-600">
                     &#8377; {resF.mrp}
                   </label>
                 </label>
