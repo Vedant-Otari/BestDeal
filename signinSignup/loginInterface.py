@@ -79,7 +79,7 @@ def signIn(username, password):
 
 def sendVerificationCodeEmail(email):
     import random
-    recivers = ["sklord25@gmail.com"]  # to be updated the email by user
+    recivers = [email]  # to be updated the email by user
     msg = EmailMessage()
     msg['subject'] = "Testing mail code"
     msg['from'] = "officialbestdeal2023@gmail.com"   #to be updated mail created for BestDeal
