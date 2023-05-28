@@ -267,6 +267,27 @@ def get_customer_comments(uname, pword):
 	else:
 		return customer_details
 
+def add_product_to_wishlist(product_name, cookie):
+	customer_details = collection_name.find({"cookies": cookie})
+
+	new_wishlist_item = {
+    "product_name": str(product_name),
+    "date": datetime.utcnow()
+	}
+
+	customer_details["wishlist"].append(new_wishlist_item)
+	collection_name.update_one({"cookies": cookie}, {"$set": customer_details})
+
+def remove_product_from_wishlist(product_name, cookie):
+	customer_details = collection_name.find({"cookies": cookie})
+
+	# Remove the wishlist item based on its product_name
+	product_name_to_remove = str(product_name)
+	wishlist = customer_details["wishlist"]
+	updated_wishlist = [item for item in wishlist if item["product_name"] != product_name_to_remove]
+
+	#Update the wishlist in the document
+	collection_name.update_one({"cookies": cookie}, {"$set": {"wishlist": updated_wishlist}})
 
 # print(get_customer("user", "password")+"\n")
 # print(get_customer_comments("user", "password"))
