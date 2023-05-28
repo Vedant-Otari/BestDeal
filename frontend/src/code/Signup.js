@@ -131,7 +131,7 @@ export default function Signup() {
       console.log(username, email, password);
 
       try {
-        const response = await axios.get("http://127.0.0.1:8000/api/signUp", {
+        const response = await axios.get("http://127.0.0.1:8000/api/sendVerificationCodeEmail", {
           params: { username: username, email: email, password: password },
         });
 

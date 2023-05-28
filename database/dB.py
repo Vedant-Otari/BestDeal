@@ -57,4 +57,4 @@ def get_product_details(productName):
 	else:
 		return product_details
 
-print(json_util.dumps(get_product_details("Bose SoundLink Color Bluetooth Speaker II Portable Blue...")))
+# print(json_util.dumps(get_product_details("Bose SoundLink Color Bluetooth Speaker II Portable Blue...")))

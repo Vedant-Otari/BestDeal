@@ -20,14 +20,16 @@ def getPriceHistoryChart(productName):
     options.add_argument('--no-sandbox')
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
     driver.get("https://www.pricebefore.com/search/?category=all&q="+productName)
-    
+    print(productName)
     c = 1
     d = ''
-    while c<=20:
+    while c<20:
         j = driver.find_element(By.XPATH, "/html/body/div[2]/div/div[1]/div/div[3]/div[1]/ul/li["+str(c)+"]/div/div[2]/div[1]/h2/a")
-        if j.get_attribute("title")==productName:
+        if j.get_attribute("title")==productName: 
             d = j.get_attribute("href")
+            break
         c += 1
+        print(c,j.get_attribute("title"))
     driver.get(d)
     # html = driver.execute_script("return document.documentElement.innerHTML")
 
@@ -45,6 +47,12 @@ def getPriceHistoryChart(productName):
 
 
     # f.write(t.get_attribute("outerHTML").encode('utf-8'))
+
+    import re
+
+    for i in range(5,10):
+        t = driver.find_element(By.XPATH, "/html/body/script["+str(i)+"]")
+        print(re.findall("window.addEventListener", t.get_attribute("innerHTML")))
 
 
     t = driver.find_element(By.XPATH, "/html/body/script[8]")

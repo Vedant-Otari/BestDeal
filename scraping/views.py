@@ -6,7 +6,7 @@ from amazonScraping.getProductDetailAmazon import getAmazonProductDetail
 from flipkartScraping.getProductDetailFlipkart import getFlipkartProductDetail
 from homeScreenData.homeScreen import getHomeScreenItems
 from homeScreenData.homeScreen import getMostViewedItems
-from signinSignup.loginInterface import signIn,signUp, verify
+from signinSignup.loginInterface import signIn,signUp,sendVerificationCodeEmail
 from database.customer import get_customer, add_product_to_wishlist, remove_product_from_wishlist
 from database.dB import get_product_details
 from commentAnalysis.model import getComments, getSentiment, getWordClouds
@@ -115,10 +115,10 @@ def getProductChart(request):
     # return HttpResponse(productName)
     return HttpResponse(json_util.dumps(L))
 
-def verifyOTP(request):
-    code = request.GET['OTP']
+def sendVerificationCode(request):
     email = request.GET['email']
-    result = verify(code, email)
+    result = sendVerificationCodeEmail(email)
+    
     return HttpResponse(json_util.dumps(result))
 
 def addProductToWishlist(request):

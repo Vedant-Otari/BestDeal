@@ -15,7 +15,7 @@ urlpatterns = [
     path('api/ProductSentiment', getProductSentiment),
     path('api/ProductWordClouds', getWordClouds),
     path('api/chart', getProductChart),
-    path('api/verifyOTP', verifyOTP),
+    path('api/sendVerificationCode', sendVerificationCode),
     path('api/wishlistAdd', add_product_to_wishlist),
     path('api/wishlistRemove', remove_product_from_wishlist)
 ]

@@ -88,6 +88,7 @@ def sendVerificationCodeEmail(email):
     code = random.randrange(1001, 9999) 
 
     text = """ Just checking the mail automation code Your Verification code is: """+ str(code)
+    print(text)
     msg.set_content(text)
     # with open('Untitled.png','rb') as f:
     #     content = f.read()
@@ -96,17 +97,17 @@ def sendVerificationCodeEmail(email):
         server = smtplib.SMTP("smtp.gmail.com",587)
         server.ehlo()
         server.starttls()
-        server.login("officialbestdeal2023@gmail.com","bestdeal@2023")
+        server.login("officialbestdeal2023@gmail.com","rktqfcijyxkriwhu")
 
 
         server.send_message(msg)
         print("done")
     except Exception as e:
         print(e)
-    finally:
-        collection_name = dbname["verification"]
-        collection_name.update_one({"email_id": email},{"$set": {"otp":str(code)}}, upsert=True)
-        server.quit()
+    # finally:
+    #     collection_name = dbname["verification"]
+    #     collection_name.update_one({"email_id": email},{"$set": {"otp":str(code)}}, upsert=True)
+    #     server.quit()
 
 def verify(email, code):
     collection_name = dbname["verification"]
