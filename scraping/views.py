@@ -133,12 +133,10 @@ def removeProductFromWishlist(request):
     remove_product_from_wishlist(productName, cookie)
 
 def addNotification(request):
-    username = request.GET['username']
-    email = request.GET['email']
     product_name = request.GET['product_name']
     productLink = request.GET['productLink']
     target_price = request.GET['target_price']
     cookie = request.GET['cookie']
     website = request.GET['website']
-    add_notification(username, email, product_name, productLink, target_price, website)
+    add_notification(cookie, product_name, productLink, target_price, website)
     
