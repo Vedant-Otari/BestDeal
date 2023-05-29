@@ -116,7 +116,8 @@ def BS4Code(productName):
         "mrp" : productPriceActualInt,
         "discount" : productDiscount,
         "stars" : producStarStr,
-        "ratings" : producRatingStr
+        "ratings" : producRatingStr,
+        "website" : "amazon"
     }
 
     addDB(productData)
@@ -134,7 +135,6 @@ def addDB(product):
         product["view_count"] = 1
         collection_name.insert_one(product)
     else:
-        collection_name.update_one(
-        { "name": product["name"] },
-        { "$inc": { "view_count": 1}}
-    )
+        product["view_count"] = product["view_count"] + 1
+        collection_name.replace_one({ "name": product["name"] }, product)
+    
