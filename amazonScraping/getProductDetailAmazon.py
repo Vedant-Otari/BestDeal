@@ -135,6 +135,19 @@ def addDB(product):
         product["view_count"] = 1
         collection_name.insert_one(product)
     else:
-        product["view_count"] = product["view_count"] + 1
-        collection_name.replace_one({ "name": product["name"] }, product)
-    
+        collection_name.update_one(
+        { "name": product["name"] },
+        { "$set": {
+                    "name": product["name"],
+                    "image": product["image"],
+                    "price": product["price"],
+                    "mrp": product["mrp"],
+                    "discount": product["discount"],
+                    # "stars": product["stars"],
+                    # "ratings": product["ratings"],
+                    "website": "amazon"
+                    },
+            "$inc": { "view_count": 1}
+        },
+        upsert=True
+        )
