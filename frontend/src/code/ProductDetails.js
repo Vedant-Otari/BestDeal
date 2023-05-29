@@ -24,8 +24,8 @@ async function callLinkComment() {
         product_name: productName,
       },
     });
-    console.log(res.data[0][0].comm);
-    // console.log(res.data);
+    // console.log(res.data[0][0]);
+    console.log(res.data);
     // return res.data[0][0];
   } catch (err) {
     console.log(err);
@@ -40,6 +40,7 @@ async function callLinkSentiment() {
       },
     });
     console.log("Product sentimet:\n" + res.data);
+    console.log(res.data);
     // return res.data[0][0];
   } catch (err) {
     console.log(err);
@@ -53,7 +54,7 @@ async function callLinkWordCloud() {
         product_name: productName,
       },
     });
-    console.log("Product word cloud:\n" + res.data);
+    console.log(res.data);
     // return res.data[0][0];
   } catch (err) {
     console.log(err);
@@ -86,7 +87,7 @@ export default function ProductDetails() {
 
   useEffect(() => {
     callProduct();
-    // callComments();
+    callComments();
     // callSentiment();
     // callWordCloud();
     // callChart();

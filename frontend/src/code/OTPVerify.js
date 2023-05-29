@@ -28,6 +28,7 @@ export default function OTPVerify({ getMail, onData }) {
       />
       <button
         onClick={sendDataToSignup}
+        // signUp
         className="active:scale-[.98] active:duration-75 hover:scale-[1.01] w-full mt-6 ease-in-out transition-all py-2 rounded-xl bg-blue-950 text-white bg-sky-600 hover:bg-green-600 text-lg font-bold"
       >
         Submit
