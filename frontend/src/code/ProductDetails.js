@@ -53,9 +53,9 @@ async function callLinkWordCloud() {
         product_name: productName,
       },
     });
-    console.log("word cloud:")
+    console.log("word cloud:");
     console.log(res.data);
-    // return res.data[0][0];
+    return res.data;
   } catch (err) {
     console.log(err);
   }
@@ -237,6 +237,16 @@ export default function ProductDetails() {
     }
   }
 
+  const renderWordCloud = (base64String) => {
+    if (!base64String) {
+      return null;
+    }
+
+    const imageUrl = `data:image/png;base64,${base64String}`;
+
+    return <img src={imageUrl} alt="Word Cloud" />;
+  };
+
   // const renderHTML = () => {
   //   if (res4) {
   //     const htmlContent = res4;
@@ -363,7 +373,7 @@ export default function ProductDetails() {
           </div>
         </div>
         <div>
-          {res2 && (res2.positive!=0 && res2.negative!=0) && (
+          {res2 && res2.positive != 0 && res2.negative != 0 && (
             <div className=" bg-sky-400 py-6 my-16 shadow-md shadow-black rounded-xl w-11/12 mx-auto">
               <div className="text-4xl text-center">Opinion Analysis</div>
               <div className="flex rounded-xl text-5xl mt-4 text-white w-[90%] mx-auto font-bold">
@@ -376,7 +386,11 @@ export default function ProductDetails() {
                   }}
                 >
                   {/* {res2.positive} */}
-                  {((res2.positive * 100) / (res2.positive + res2.negative)).toFixed(2)}%
+                  {(
+                    (res2.positive * 100) /
+                    (res2.positive + res2.negative)
+                  ).toFixed(2)}
+                  %
                 </div>
                 <div
                   className="bg-red-600 p-7 text-center rounded-r-xl shadow-inner shadow-black "
@@ -387,10 +401,29 @@ export default function ProductDetails() {
                   }}
                 >
                   {/* {res2.negative} */}
-                  {((res2.negative * 100) / (res2.positive + res2.negative)).toFixed(2)}%
+                  {(
+                    (res2.negative * 100) /
+                    (res2.positive + res2.negative)
+                  ).toFixed(2)}
+                  %
                 </div>
               </div>
             </div>
+          )}
+        </div>
+        <div>
+          {res3 && (
+            <>
+              <img
+                src={`data:image/png;base64, ${res3.negative}`}
+                alt="Negative Word Cloud"
+              />
+              <h1>Positive Word Cloud</h1>
+              <img
+                src={`data:image/png;base64, ${res3.positive}`}
+                alt="Positive Word Cloud"
+              />
+            </>
           )}
         </div>
         {/* {res4 && <div dangerouslySetInnerHTML={renderHTML()} />} */}
@@ -410,3 +443,75 @@ export default function ProductDetails() {
     </>
   );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import React from 'react';
+
+// class WordCloudComponent extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       wordCloudImage: '',
+//     };
+//   }
+
+//   componentDidMount() {
+//     // Fetch the base64 string and serialized word cloud object from the backend
+//     fetch('/api/wordcloud') // Replace '/api/wordcloud' with your API endpoint
+//       .then(response => response.json())
+//       .then(data => {
+//         // Update the state with the received base64 string
+//         this.setState({ wordCloudImage: data.base64String });
+
+//         // Deserialize the word cloud object (optional)
+//         const deserializedWordCloud = JSON.parse(data.serializedWordCloud);
+//         console.log(deserializedWordCloud);
+//       })
+//       .catch(error => {
+//         console.error('Error:', error);
+//       });
+//   }
+
+//   render() {
+//     const { wordCloudImage } = this.state;
+
+//     return (
+//       <div>
+//         {wordCloudImage ? (
+//           <img src={`data:image/png;base64,${wordCloudImage}`} alt="Word Cloud" />
+//         ) : (
+//           <p>Loading word cloud...</p>
+//         )}
+//       </div>
+//     );
+//   }
+// }
+
+// export default WordCloudComponent;

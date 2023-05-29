@@ -65,10 +65,12 @@ export default function Header(props) {
 
             {isLoggedIn ? ( // Render the logout button if the user is logged in
               <button
-                className="bg-red-500 p-2 text-white border-[1px] border-cyan-800 font-semibold m-2 rounded-lg shadow-none hover:shadow-md hover:shadow-slate-400 active:bg-red-800"
+                className="bg-red-500 px-4 p-2 text-white border-[1px] border-cyan-800 font-semibold m-2 rounded-lg shadow-none hover:shadow-md hover:shadow-slate-400 active:bg-red-800"
                 onClick={handleLogout}
+                title="LOGOUT"
               >
-                <u className="no-underline">LOGOUT</u>
+                {/* <u className="no-underline">LOGOUT</u> */}
+                <img src="./exit.png" alt="" srcset="" className="h-6"/>
               </button>
             ) : (
               // Render the login button if the user is not logged in
@@ -108,10 +110,12 @@ export default function Header(props) {
 
             {isLoggedIn ? ( // Render the logout button if the user is logged in
               <button
-                className="bg-red-500 p-2 text-white border-[1px] border-cyan-800 font-semibold m-2 rounded-lg shadow-none hover:shadow-md hover:shadow-slate-400 active:bg-red-800"
+                className="bg-red-500 px-4 p-2 text-white border-[1px] border-cyan-800 font-semibold m-2 rounded-lg shadow-none hover:shadow-md hover:shadow-slate-400 active:bg-red-800"
                 onClick={handleLogout}
+                title="LOGOUT"
               >
-                <u className="no-underline">LOGOUT</u>
+                {/* <u className="no-underline">LOGOUT</u> */}
+                <img src="./exit.png" alt="" srcset="" className="h-6"/>
               </button>
             ) : (
               // Render the login button if the user is not logged in
@@ -134,10 +138,12 @@ export default function Header(props) {
         >
           {isLoggedIn ? ( // Render the logout button if the user is logged in
             <button
-              className="bg-red-500 p-2 text-white border-[1px] border-cyan-800 font-semibold m-2 rounded-lg shadow-none hover:shadow-md hover:shadow-slate-400 active:bg-red-800"
+              className="bg-red-500 px-4 p-2 text-white border-[1px] border-cyan-800 font-semibold m-2 rounded-lg shadow-none hover:shadow-md hover:shadow-slate-400 active:bg-red-800"
               onClick={handleLogout}
+              title="LOGOUT"
             >
-              <u className="no-underline">LOGOUT</u>
+              {/* <u className="no-underline">LOGOUT</u> */}
+                <img src="./exit.png" alt="" srcset="" className="h-6"/>
             </button>
           ) : (
             // Render the login button if the user is not logged in

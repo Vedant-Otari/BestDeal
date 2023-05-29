@@ -108,12 +108,12 @@ export default function Profile() {
             </div>
             <div className="flex mb-7 justify-around w-1/3 mt-6 mx-auto">
               <div className="flex flex-col">
-                <div>{wishlist.length > 0 && wishlist.length}</div>
+                <div>{wishlist.length > 0 ? wishlist.length : " - "}</div>
                 <div className="text-xl">Wishlist</div>
               </div>
               <div className="text-6xl font-extralight">|</div>
               <div className="flex flex-col">
-                <div>{comments.length > 0 && comments.length}</div>
+                <div>{comments.length > 0 ? comments.length: " - "}</div>
                 <div className="text-xl">Comments</div>
               </div>
             </div>
