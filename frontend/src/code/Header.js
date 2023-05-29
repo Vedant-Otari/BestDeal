@@ -11,13 +11,6 @@ export default function Header(props) {
       const isScrolled = window.scrollY > 0;
       setScrolled(isScrolled);
     };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-  //
-  useEffect(() => {
-    // Check if the user is already logged in (based on the presence of a specific cookie)
     const checkIfUserIsLoggedIn = () => {
       const cookies = document.cookie;
       const isLoggedIn = cookies.includes("bestdeal");
@@ -25,6 +18,9 @@ export default function Header(props) {
     };
 
     checkIfUserIsLoggedIn();
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const headerStyle = {

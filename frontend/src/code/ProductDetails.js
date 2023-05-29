@@ -89,7 +89,7 @@ export default function ProductDetails() {
     // callComments();
     // callSentiment();
     // callWordCloud();
-    callChart();
+    // callChart();
   }, []);
 
   async function callProduct() {
@@ -125,25 +125,44 @@ export default function ProductDetails() {
     return (
       <>
         <Header showButton="showSearch" />
-        Loading...
+        <div className="text-center mt-4 text-3xl bg-cyan-700 py-5 text-white">Searching "<span className="font-bold">{productName}</span>"<div className="inline font-serif dotLoading">.....</div></div>
+        <div className="w-4/6 mt-11 m-auto py-3 h-full loadingAnimation border-gray-400 rounded-2xl overflow-hidden border-2 bg-white">
+          <div className="border-gray-400 border-y-[1px] hover:scale-[101%] duration-300 my-2 flex justify-evenly">
+            <img
+              src="./img/defaultImage.jpg"
+              alt=""
+              className="h-60 aspect-square opacity-60 w-1/4 object-contain m-4 bg-white rounded-xl"
+            />
+            <div className="flex flex-col justify-evenly pl-6 bg-slate-200 items-start w-3/4 text-center py-5">
+              <label className="text-3xl bg-gray-400 h-10 rounded-l-xl w-full"></label>
+              <label className="text-3xl bg-gray-400 h-5 rounded-xl w-1/2"></label>
+              <label className="text-3xl bg-gray-400 h-5 rounded-xl w-1/2"></label>
+            </div>
+          </div>
+        </div>
       </>
     );
   }
+  const widthVar = `${(5 - parseFloat(res.stars)) * 20}%`;
+
   return (
     <>
       <Header showButton="showSearch" />
       <div className="flex flex-col overflow-hidden border-2 border-cyan-700 w-5/6 m-auto mt-9 mb-10 rounded-xl">
         <div className="flex">
-          <div className="p-2 w-1/2 bg-zinc-50 flex justify-center aspect-[1.5]">
-            <img src={res.image} alt="" className="object-contain" />
-            {/* <img src="./img/default.jpg" alt="" srcset="" /> */}
+          <div className="p-2 w-1/2 bg-white flex justify-center aspect-[1.5] overflow-hidden">
+            <img
+              src={res.image}
+              alt=""
+              className="object-contain hover:scale-150 duration-500"
+            />
           </div>
           <div className="bg-zinc-200 w-1/2 flex p-7 flex-col">
-            <label className="text-center rounded-xl text-3xl bg-cyan-700 text-white py-2 font-serif">
+            <label className="text-center shadow-md shadow-gray-500 rounded-t-xl text-3xl bg-cyan-700 text-white py-4 px-2 font-serif">
               {productName}
             </label>
-            <div className="text-left flex flex-col justify-evenly h-full mt-4">
-              <div className="text-2xl text-left w-full">
+            <div className="border-cyan-900 shadow-xl border-l-[55px] rounded-b-3xl pl-6 text-left flex flex-col justify-evenly h-full mt-0">
+              <div className="text-3xl font-bold text-left w-full">
                 Rs. {res.price}&nbsp;
                 <span className="text-xl text-green-600 font-bold text-left">
                   ({parseFloat(res.discount).toFixed(2)}% off )
@@ -152,6 +171,8 @@ export default function ProductDetails() {
               <label className="text-xl w-fit diagonalStrikeThrough font-bold font-sans text-red-600">
                 &#8377; {res.mrp}
               </label>
+              <div>
+                <img src="./flipkart.png" alt=""className="h-6 mr-2 inline" />
               <a
                 href={res.link}
                 className="text-blue-800 text-left z-10 underline italic hover:text-voilet-900"
@@ -160,12 +181,68 @@ export default function ProductDetails() {
               >
                 Click here for website
               </a>
-              <div className="text-xl font-bold text-yellow-600">Rating - {res.ratings}</div>
-              <div>stars {res.stars}</div>
+              </div>
+              {/* <div id="abcd" className="text-xl font-bold text-yellow-600">
+                Ratings - {res.ratings}
+              </div> */}
+              {res && res.ratings && (
+                <div id="abcd" className="text-xl font-bold text-sky-800">
+                  Ratings - {res.ratings}
+                </div>
+              )}
+              {res && res.stars && (
+                <div>
+                  <div className="flex">
+                    <span className="font-bold text-blue-800 text-xl mr-2">
+                      {res.stars}
+                    </span>
+                    <div className="relative w-fit m-0">
+                      <div
+                        className="h-full absolute bg-zinc-200 right-0"
+                        style={{ width: widthVar }}
+                      >
+                        &nbsp;
+                      </div>
+                      <div className="flex">
+                        <svg
+                          className="w-5 h-5 fill-current text-yellow-500"
+                          viewBox="0 0 20 20"
+                        >
+                          <path d="M10 1l2.928 6.18L19 7.22l-5 4.865 1.165 6.813L10 15.71 4.835 19.897 6 13.03l-5-4.866L7.072 7.18 10 1z" />
+                        </svg>
+                        <svg
+                          className="w-5 h-5 fill-current text-yellow-500"
+                          viewBox="0 0 20 20"
+                        >
+                          <path d="M10 1l2.928 6.18L19 7.22l-5 4.865 1.165 6.813L10 15.71 4.835 19.897 6 13.03l-5-4.866L7.072 7.18 10 1z" />
+                        </svg>
+                        <svg
+                          className="w-5 h-5 fill-current text-yellow-500"
+                          viewBox="0 0 20 20"
+                        >
+                          <path d="M10 1l2.928 6.18L19 7.22l-5 4.865 1.165 6.813L10 15.71 4.835 19.897 6 13.03l-5-4.866L7.072 7.18 10 1z" />
+                        </svg>
+                        <svg
+                          className="w-5 h-5 fill-current text-yellow-500"
+                          viewBox="0 0 20 20"
+                        >
+                          <path d="M10 1l2.928 6.18L19 7.22l-5 4.865 1.165 6.813L10 15.71 4.835 19.897 6 13.03l-5-4.866L7.072 7.18 10 1z" />
+                        </svg>
+                        <svg
+                          className="w-5 h-5 fill-current text-yellow-500"
+                          viewBox="0 0 20 20"
+                        >
+                          <path d="M10 1l2.928 6.18L19 7.22l-5 4.865 1.165 6.813L10 15.71 4.835 19.897 6 13.03l-5-4.866L7.072 7.18 10 1z" />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>
-        <div className="bg-cyan-400 w-full p-5">dafnj</div>
+        {res4 && <div className="bg-cyan-400 w-full p-5">dafnj</div>}
         {/* if (res4) {
           
           <div dangerouslySetInnerHTML={renderHTML()} />
