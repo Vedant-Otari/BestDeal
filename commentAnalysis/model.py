@@ -207,7 +207,7 @@ def getWordClouds(productName):
     }
 
     # Serialize the dictionary as a JSON string
-    return JsonResponse(json_util.dumps(wordClouds_data))
+    return JsonResponse(wordClouds_data, safe=False)
 
 
 #print(getWordClouds("Bose SoundLink Color Bluetooth Speaker II Portable Blue..."))

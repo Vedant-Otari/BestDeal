@@ -87,8 +87,8 @@ export default function ProductDetails() {
   useEffect(() => {
     callProduct();
     callComments();
-    // callSentiment();
-    // callWordCloud();
+    callSentiment();
+    callWordCloud();
     // callChart();
   }, []);
 
