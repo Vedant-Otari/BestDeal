@@ -89,7 +89,7 @@ export default function ProductDetails() {
     callProduct();
     callComments();
     callSentiment();
-    // callWordCloud();
+    callWordCloud();
     // callChart();
   }, []);
 
