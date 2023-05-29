@@ -10,16 +10,19 @@ import smtplib
 from background_task import background
 
 
+
 my_client = pymongo.MongoClient(connect_string)
 # First define the database name
 dbname = my_client['sample_products']
 # Now get/create collection name (remember that you will see the database in your mongodb cluster only after you create a collection
 notification_collection = dbname["notification"]
 
-def add_notification(username, email, product_name, productLink, target_price, website):
+def add_notification(cookie, product_name, productLink, target_price, website):
+    customer_details = collection_name.find({"cookies": cookie})
+    
     notification = {
-        "username" : str(username),
-        "email" : email,
+        "username" : customer_details["username"],
+        "email" : customer_details["email_id"],
         "product_name": str(product_name),
         "productLink" : productLink,
         "target_price": target_price,
@@ -56,7 +59,12 @@ def checkNotificationStatus():
                 sendNotification(i["username"], i["email"], i["product_name"], i["productLink"], result)
                 notification_collection.update_one({"_id": i["_id"]}, {"$set": {"status":"doen"}})
 
-def sendNotification(username, email, product_name, productLink, price):
+def sendNotification(cookie, product_name, productLink, price):
+    customer_details = collection_name.find({"cookies": cookie})
+
+    username = customer_details["username"]
+    email = customer_details["email_id"]
+    
     import random
     recivers = [email]
     msg = EmailMessage()
