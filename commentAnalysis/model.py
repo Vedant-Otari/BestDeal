@@ -94,6 +94,7 @@ def getComments(productName):
     return productComments
 
 def getSentiment(productName):
+    # print(productName)
     productComments = getComments(productName)
     #return json_util.dumps(productComments)
 
@@ -148,6 +149,7 @@ def getSentiment(productName):
 
 
 def getWordClouds(productName):
+    print(productName)
     productComments = getComments(productName)
     #return json_util.dumps(productComments)
 

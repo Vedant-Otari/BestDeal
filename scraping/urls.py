@@ -13,7 +13,7 @@ urlpatterns = [
     path('api/ProductFromDB', getProductFromDB),
     path('api/ProductComment', getProductComments),
     path('api/ProductSentiment', getProductSentiment),
-    path('api/ProductWordClouds', getWordClouds),
+    path('api/ProductWordClouds', getProductWordClouds),
     path('api/chart', getProductChart),
     path('api/sendVerificationCode', sendVerificationCode),
     path('api/wishlistAdd', addProductToWishlist),
