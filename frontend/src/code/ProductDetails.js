@@ -89,13 +89,8 @@ export default function ProductDetails() {
     callProduct();
     callComments();
     callSentiment();
-<<<<<<< HEAD
     // callWordCloud();
     // callChart();
-=======
-    // callWordCloud();
-    // callChart();
->>>>>>> ae843b4905189befea2db3bf6d4ebc5c6c8d7757
   }, []);
 
   async function callProduct() {
