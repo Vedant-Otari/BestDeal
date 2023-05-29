@@ -263,6 +263,7 @@ export default function Signup() {
               <button
                 // onClick={signUp}
                 onClick={function () {
+                  // sendVerificationCode
                   window.scrollTo(
                     0,
                     document.documentElement.scrollHeight ||

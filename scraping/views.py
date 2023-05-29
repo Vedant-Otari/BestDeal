@@ -12,6 +12,7 @@ from database.dB import get_product_details
 from commentAnalysis.model import getComments, getSentiment, getWordClouds
 from productPriceChart.priceChart import getPriceHistoryChart
 from notification.notification import add_notification
+from django.http import JsonResponse
 
 
 # Create your views here.
@@ -102,12 +103,11 @@ def getProductSentiment(request):
 
 def getProductWordClouds(request):
     productName = request.GET['product_name']
-    res = {}
     res = getWordClouds(productName)
     L = []
     L.append(res)
     print(res)
-    return HttpResponse(json.dumps(L))
+    return HttpResponse(res)
 
 def getProductChart(request):
     productName = request.GET['product_name']
@@ -133,12 +133,10 @@ def removeProductFromWishlist(request):
     remove_product_from_wishlist(productName, cookie)
 
 def addNotification(request):
-    username = request.GET['username']
-    email = request.GET['email']
     product_name = request.GET['product_name']
     productLink = request.GET['productLink']
     target_price = request.GET['target_price']
     cookie = request.GET['cookie']
     website = request.GET['website']
-    add_notification(username, email, product_name, productLink, target_price, website)
+    add_notification(cookie, product_name, productLink, target_price, website)
     

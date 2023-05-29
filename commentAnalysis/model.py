@@ -12,6 +12,7 @@ import nltk
 # nltk.download('stopwords')
 from nltk.corpus import stopwords
 from django.http import JsonResponse
+import base64
 
 
 data = pd.read_csv("commentAnalysis/TrainingData.csv")
@@ -93,6 +94,7 @@ def getComments(productName):
     return productComments
 
 def getSentiment(productName):
+    # print(productName)
     productComments = getComments(productName)
     #return json_util.dumps(productComments)
 
@@ -120,8 +122,8 @@ def getSentiment(productName):
         pred=model.predict(X)
     
         sentiment = {
-            "positive": (pred == 1).sum(),
-            "negative": (pred == 0).sum()
+            "positive": int((pred == 1).sum()),
+            "negative": int((pred == 0).sum())
         }
     return sentiment
 
@@ -147,6 +149,7 @@ def getSentiment(productName):
 
 
 def getWordClouds(productName):
+    print(productName)
     productComments = getComments(productName)
     #return json_util.dumps(productComments)
 
@@ -194,6 +197,11 @@ def getWordClouds(productName):
     wordCloud_data_negative = wordCloud_image_negative.tobytes() if wordCloud_image_negative else None
     wordCloud_data_positive = wordCloud_image_positive.tobytes() if wordCloud_image_positive else None
 
+    # Convert bytes to base64-encoded strings
+    wordCloud_data_negative = base64.b64encode(wordCloud_data_negative).decode('utf-8') if wordCloud_data_negative else None
+    wordCloud_data_positive = base64.b64encode(wordCloud_data_positive).decode('utf-8') if wordCloud_data_positive else None
+
+
     # Create a dictionary to hold both Word Clouds
     wordClouds_data = {
         'negative': wordCloud_data_negative,
@@ -201,6 +209,7 @@ def getWordClouds(productName):
     }
 
     # Serialize the dictionary as a JSON string
-    return JsonResponse(wordClouds_data)
+    return JsonResponse(wordClouds_data, safe=False)
 
 
+#print(getWordClouds("Bose SoundLink Color Bluetooth Speaker II Portable Blue..."))

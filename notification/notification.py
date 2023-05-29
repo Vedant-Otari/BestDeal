@@ -59,12 +59,7 @@ def checkNotificationStatus():
                 sendNotification(i["username"], i["email"], i["product_name"], i["productLink"], result)
                 notification_collection.update_one({"_id": i["_id"]}, {"$set": {"status":"doen"}})
 
-def sendNotification(cookie, product_name, productLink, price):
-    customer_details = collection_name.find({"cookies": cookie})
-
-    username = customer_details["username"]
-    email = customer_details["email_id"]
-    
+def sendNotification(username, email, product_name, productLink, price):
     import random
     recivers = [email]
     msg = EmailMessage()
