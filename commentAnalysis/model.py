@@ -204,3 +204,4 @@ def getWordClouds(productName):
     return JsonResponse(wordClouds_data)
 
 
+print(getWordClouds("Bose SoundLink Color Bluetooth Speaker II Portable Blue..."))
