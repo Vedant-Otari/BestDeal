@@ -10,7 +10,7 @@ async function callLinkProduct() {
         product_name: productName,
       },
     });
-    console.log(res.data[0][0]);
+    // console.log(res.data[0][0]);
     return res.data[0][0];
   } catch (err) {
     console.log(err);
@@ -24,7 +24,7 @@ async function callLinkComment() {
         product_name: productName,
       },
     });
-    console.log(res.data[0]);
+    // console.log(res.data[0]);
     return res.data[0];
   } catch (err) {
     console.log(err);
@@ -67,8 +67,9 @@ async function callLinkChart() {
         product_name: productName,
       },
     });
-    console.log(res);
-    // return res.data[0][0];
+    console.log("Here is chart:\n\n");
+    console.log(res.data[0]);
+    return res.data[0];
   } catch (err) {
     console.log(err);
   }
@@ -87,9 +88,9 @@ export default function ProductDetails() {
   useEffect(() => {
     callProduct();
     callComments();
-    // callSentiment();
+    callSentiment();
     // callWordCloud();
-    // callChart();
+    callChart();
   }, []);
 
   async function callProduct() {
@@ -113,6 +114,7 @@ export default function ProductDetails() {
   }
 
   async function callChart() {
+    console.log("Called:\n\n");
     const result = await callLinkChart();
     setRes4(result);
   }
@@ -219,7 +221,12 @@ export default function ProductDetails() {
           <div className="text-lg">"{res1[i].comments[0].description}"</div>
           <div
             className={`text-lg font-bold ${
-              res1[i].comments[0].rating > 3 ? "text-green-600" : "text-red-500"
+              res1[i].comments[0].rating > 3
+                ? "text-green-600"
+                : res1[i].comments[0].rating < 3
+                ? "text-red-600"
+                : "text-yellow-500"
+              // res1[i].comments[0].rating > 3 ? "text-green-600" : "text-red-500"
             }`}
           >
             Ratings: {res1[i].comments[0].rating} / 5
@@ -229,6 +236,20 @@ export default function ProductDetails() {
     }
   }
 
+  // const renderHTML = () => {
+  //   if (res4) {
+  //     const htmlContent = res4;
+  //     return { __html: htmlContent };
+  //   }
+  // };
+
+  const renderHTML = () => {
+    const element = document.createElement("chartCode");
+    element.src = { res4 };
+    // element.async = true
+
+    return element;
+  };
   return (
     <>
       <Header showButton="showSearch" />
@@ -340,6 +361,10 @@ export default function ProductDetails() {
             </div>
           </div>
         </div>
+
+        {/* {res4 && <div dangerouslySetInnerHTML={renderHTML()} />} */}
+        {res4 && <div>{renderHTML()} </div>}
+
         {res1 && res1.length > 0 && (
           <>
             <div className="bg-sky-700 p-5 pt-10">
@@ -350,10 +375,6 @@ export default function ProductDetails() {
             </div>
           </>
         )}
-        {/* if (res4) {
-          
-          <div dangerouslySetInnerHTML={renderHTML()} />
-        } */}
       </div>
     </>
   );
