@@ -121,8 +121,8 @@ def getSentiment(productName):
         pred=model.predict(X)
     
         sentiment = {
-            "positive": (pred == 1).sum(),
-            "negative": (pred == 0).sum()
+            "positive": int((pred == 1).sum()),
+            "negative": int((pred == 0).sum())
         }
     return sentiment
 

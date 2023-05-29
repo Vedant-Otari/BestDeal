@@ -98,7 +98,7 @@ def getProductSentiment(request):
     L = []
     L.append(res)
     print(res)
-    return HttpResponse(json_util.dumps(L))
+    return HttpResponse(json.dumps(L))
 
 def getProductWordClouds(request):
     productName = request.GET['product_name']
