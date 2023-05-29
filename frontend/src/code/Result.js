@@ -27,29 +27,43 @@ async function callLinkAmazon() {
   }
 }
 
-async function callLinkFavAdd() {
+function getCookieValue(name) {
+  const cookies = document.cookie.split(";");
+
+  for (let i = 0; i < cookies.length; i++) {
+    const cookie = cookies[i].trim();
+    const [cookieName, cookieValue] = cookie.split("=");
+    if (cookieName === name) {
+      return decodeURIComponent(cookieValue);
+    }
+  }
+
+  return null;
+}
+
+async function callLinkFavAdd(prodName) {
+  const cookieValue = getCookieValue("bestdeal");
   try {
-    const res = await axios.get("http://127.0.0.1:8000/api/wishlistAdd", {
+    await axios.get("http://127.0.0.1:8000/api/wishlistAdd", {
       params: {
-        product_name: productName,
+        product_name: prodName,
+        cookie: cookieValue,
       },
     });
-    console.log("Product sentimet:\n" + res.data);
-    // return res.data[0][0];
   } catch (err) {
     console.log(err);
   }
 }
 
-async function callLinkFavRemove() {
+async function callLinkFavRemove(prodName) {
+  const cookieValue = getCookieValue("bestdeal");
   try {
-    const res = await axios.get("http://127.0.0.1:8000/api/ProductSentiment", {
+    await axios.get("http://127.0.0.1:8000/api/ProductSentiment", {
       params: {
-        product_name: productName,
+        product_name: prodName,
+        cookie: cookieValue,
       },
     });
-    console.log("Product sentimet:\n" + res.data);
-    // return res.data[0][0];
   } catch (err) {
     console.log(err);
   }
@@ -70,7 +84,7 @@ export default function Result() {
   useEffect(() => {
     callFlipkart();
     // callAmazon();
-    
+
     const checkIfUserIsLoggedIn = () => {
       const cookies = document.cookie;
       const isLogged = cookies.includes("bestdeal");
@@ -90,22 +104,32 @@ export default function Result() {
     setResA(result);
   }
 
-  const showFav = () => {
-    const a = document.getElementById("passwordVisibility");
-    const b = document.getElementById("passHide");
-    const c = document.getElementById("passShow");
-    b.style.display = "none";
-    c.style.display = "block";
-    a.type = "text";
+  const showFav = (name) => {
+    callLinkFavAdd(name);
+    if (resF) {
+      const b = document.getElementById("fav0");
+      const c = document.getElementById("fav1");
+      if(b){
+        b.style.display = "none";
+      }
+      if(c){
+        c.style.display = "block";
+      }
+    }
   };
-  
-  const hideFav = () => {
-    const a = document.getElementById("passwordVisibility");
-    const b = document.getElementById("passHide");
-    const c = document.getElementById("passShow");
-    b.style.display = "block";
-    c.style.display = "none";
-    a.type = "password";
+
+  const hideFav = (name) => {
+    callLinkFavRemove(name);
+    if (resF) {
+      const b = document.getElementById("fav0");
+      const c = document.getElementById("fav1");
+      if(b){
+        b.style.display = "block";
+      }
+      if(c){
+        c.style.display = "none";
+      }
+    }
   };
 
   if (!resF && !resA) {
@@ -165,23 +189,24 @@ export default function Result() {
                 className="cursor-pointer h-60 aspect-square w-1/4 object-contain m-4 bg-white rounded-xl"
               />
               <div className="flex flex-col justify-start space-y-4 pl-6 bg-slate-200 items-start w-3/4 text-center py-5">
-                
-              {isLoggedIn && (
-                <div className="block w-full">
-                  <img
-                    src="./fav0.png"
-                    alt="Favourite"
-                    id="fav0"
-                    className="h-4 float-right pr-5 cursor-pointer active:scale-100 hover:scale-125"
-                  />
-                  <img
-                    src="./fav1.png"
-                    alt="Favourite"
-                    id="fav1"
-                    className="h-4 hidden float-right pr-5 cursor-pointer active:scale-100 hover:scale-125"
-                  />
-                </div>
-              )}
+                {isLoggedIn && (
+                  <div className="block w-full">
+                    <img
+                      src="./fav0.png"
+                      alt="Favourite"
+                      id="fav0"
+                      onClick={showFav(resF.name)}
+                      className="h-4 float-right pr-5 cursor-pointer active:scale-100 hover:scale-125"
+                    />
+                    <img
+                      src="./fav1.png"
+                      alt="Favourite"
+                      id="fav1"
+                      onClick={hideFav(resF.name)}
+                      className="h-4 hidden float-right pr-5 cursor-pointer active:scale-100 hover:scale-125"
+                    />
+                  </div>
+                )}
                 <label
                   onClick={() => handleSearchSubmit(resF.name)}
                   target="_blank"
@@ -201,7 +226,11 @@ export default function Result() {
                   </label>
                 </label>
                 <label className="text-lg">
-                <img src="./flipkart.png" alt=""className="h-6 mr-2 inline" />
+                  <img
+                    src="./flipkart.png"
+                    alt=""
+                    className="h-6 mr-2 inline"
+                  />
                   <a
                     href={resF.link}
                     className="text-blue-800 z-10 underline italic hover:text-voilet-900"
@@ -236,23 +265,22 @@ export default function Result() {
                 className="cursor-pointer h-60 aspect-square w-1/4 object-contain m-4 bg-white rounded-xl"
               />
               <div className="flex flex-col justify-start space-y-4 pl-6 bg-slate-200 items-start w-3/4 text-center py-5">
-                
-              {isLoggedIn && (
-                <div className="block w-full">
-                  <img
-                    src="./fav0.png"
-                    alt="Favourite"
-                    id="fav0"
-                    className="h-4 float-right pr-5 cursor-pointer active:scale-100 hover:scale-125"
-                  />
-                  <img
-                    src="./fav1.png"
-                    alt="Favourite"
-                    id="fav1"
-                    className="h-4 hidden float-right pr-5 cursor-pointer active:scale-100 hover:scale-125"
-                  />
-                </div>
-              )}
+                {isLoggedIn && (
+                  <div className="block w-full">
+                    <img
+                      src="./fav0.png"
+                      alt="Favourite"
+                      id="fav0"
+                      className="h-4 float-right pr-5 cursor-pointer active:scale-100 hover:scale-125"
+                    />
+                    <img
+                      src="./fav1.png"
+                      alt="Favourite"
+                      id="fav1"
+                      className="h-4 hidden float-right pr-5 cursor-pointer active:scale-100 hover:scale-125"
+                    />
+                  </div>
+                )}
                 <label
                   onClick={() => handleSearchSubmit(resF.name)}
                   target="_blank"
@@ -272,7 +300,11 @@ export default function Result() {
                   </label>
                 </label>
                 <label className="text-lg">
-                <img src="./flipkart.png" alt=""className="h-6 mr-2 inline" />
+                  <img
+                    src="./flipkart.png"
+                    alt=""
+                    className="h-6 mr-2 inline"
+                  />
                   <a
                     href={resF.link}
                     className="text-blue-800 z-10 underline italic hover:text-voilet-900"
@@ -295,23 +327,22 @@ export default function Result() {
                 className="cursor-pointer h-60 aspect-square w-1/4 object-contain m-4 bg-white rounded-xl"
               />
               <div className="flex flex-col justify-start space-y-4 pl-6 bg-slate-200 items-start w-3/4 text-center py-5">
-                
-              {isLoggedIn && (
-                <div className="block w-full">
-                  <img
-                    src="./fav0.png"
-                    alt="Favourite"
-                    id="fav0"
-                    className="h-4 float-right pr-5 cursor-pointer active:scale-100 hover:scale-125"
-                  />
-                  <img
-                    src="./fav1.png"
-                    alt="Favourite"
-                    id="fav1"
-                    className="h-4 hidden float-right pr-5 cursor-pointer active:scale-100 hover:scale-125"
-                  />
-                </div>
-              )}
+                {isLoggedIn && (
+                  <div className="block w-full">
+                    <img
+                      src="./fav0.png"
+                      alt="Favourite"
+                      id="fav0"
+                      className="h-4 float-right pr-5 cursor-pointer active:scale-100 hover:scale-125"
+                    />
+                    <img
+                      src="./fav1.png"
+                      alt="Favourite"
+                      id="fav1"
+                      className="h-4 hidden float-right pr-5 cursor-pointer active:scale-100 hover:scale-125"
+                    />
+                  </div>
+                )}
                 <label
                   onClick={() => handleSearchSubmit(resA.name)}
                   target="_blank"
@@ -331,7 +362,7 @@ export default function Result() {
                   </label>
                 </label>
                 <label className="text-lg">
-                <img src="./amazon.jpg" alt=""className="h-4 mr-2 inline" />
+                  <img src="./amazon.jpg" alt="" className="h-4 mr-2 inline" />
                   <a
                     href={resA.link}
                     className="text-blue-800 z-10 underline italic hover:text-voilet-900"

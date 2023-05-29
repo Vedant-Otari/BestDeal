@@ -101,6 +101,7 @@ export default function Login() {
             <input
               className="w-full border-2 border-gray-200 outline-gray-500 rounded-md p-2 mt-1 bg-transparent"
               type="text"
+              autoComplete="bestdealLoginUserName"
               placeholder="Enter Your username"
               onInput={(data) => setUsername(data.target.value)}
               required
@@ -114,6 +115,7 @@ export default function Login() {
               <input
                 id="passwordVisibility"
                 type="password"
+                autoComplete="bestdealLoginPassword"
                 className="w-full outline-0 pr-2"
                 placeholder="Enter Your password"
                 onInput={(data) => setPassword(data.target.value)}
