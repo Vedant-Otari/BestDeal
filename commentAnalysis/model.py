@@ -12,9 +12,10 @@ import nltk
 # nltk.download('stopwords')
 from nltk.corpus import stopwords
 from django.http import JsonResponse
+import base64
 
 
-data = pd.read_csv("commentAnalysis/TrainingData.csv")
+data = pd.read_csv("TrainingData.csv")
 # print(data.head(),format("\n"))
 #print(data.info())
 data.dropna(inplace=True)
@@ -194,6 +195,11 @@ def getWordClouds(productName):
     wordCloud_data_negative = wordCloud_image_negative.tobytes() if wordCloud_image_negative else None
     wordCloud_data_positive = wordCloud_image_positive.tobytes() if wordCloud_image_positive else None
 
+    # Convert bytes to base64-encoded strings
+    wordCloud_data_negative = base64.b64encode(wordCloud_data_negative).decode('utf-8') if wordCloud_data_negative else None
+    wordCloud_data_positive = base64.b64encode(wordCloud_data_positive).decode('utf-8') if wordCloud_data_positive else None
+
+
     # Create a dictionary to hold both Word Clouds
     wordClouds_data = {
         'negative': wordCloud_data_negative,
@@ -201,7 +207,7 @@ def getWordClouds(productName):
     }
 
     # Serialize the dictionary as a JSON string
-    return JsonResponse(wordClouds_data)
+    return json_util.dumps(wordClouds_data)
 
 
-print(getWordClouds("Bose SoundLink Color Bluetooth Speaker II Portable Blue..."))
+#print(getWordClouds("Bose SoundLink Color Bluetooth Speaker II Portable Blue..."))
