@@ -38,9 +38,9 @@ async function callLinkSentiment() {
         product_name: productName,
       },
     });
-    console.log("Product sentimet:\n" + res.data);
-    console.log(res.data);
-    // return res.data[0][0];
+    // console.log("Product sentimet:\n");
+    // console.log(res.data[0]);
+    return res.data[0];
   } catch (err) {
     console.log(err);
   }
@@ -53,6 +53,7 @@ async function callLinkWordCloud() {
         product_name: productName,
       },
     });
+    console.log("word cloud:")
     console.log(res.data);
     // return res.data[0][0];
   } catch (err) {
@@ -253,9 +254,9 @@ export default function ProductDetails() {
   return (
     <>
       <Header showButton="showSearch" />
-      <div className="flex flex-col overflow-hidden border-2 border-cyan-700 w-5/6 m-auto mt-9 mb-10 rounded-xl">
+      <div className="flex flex-col overflow-hidden border-2 border-cyan-700 bg-zinc-200 w-5/6 m-auto mt-9 mb-10 rounded-xl">
         <div className="flex">
-          <div className="p-2 w-1/2 bg-white flex origin justify-center aspect-[1.5] overflow-hidden">
+          <div className="p-2 w-1/2 rounded-br-xl bg-white flex origin justify-center aspect-[1.5] overflow-hidden">
             {res.image && (
               <img
                 src={res.image}
@@ -266,7 +267,7 @@ export default function ProductDetails() {
               />
             )}
           </div>
-          <div className="bg-zinc-200 w-1/2 flex p-7 flex-col">
+          <div className="w-1/2 flex p-7 flex-col">
             <label className="text-center shadow-md shadow-gray-500 rounded-t-xl text-3xl bg-cyan-700 text-white py-4 px-2 font-serif">
               {productName}
             </label>
@@ -361,7 +362,37 @@ export default function ProductDetails() {
             </div>
           </div>
         </div>
-
+        <div>
+          {res2 && (res2.positive!=0 && res2.negative!=0) && (
+            <div className=" bg-sky-400 py-6 my-16 shadow-md shadow-black rounded-xl w-11/12 mx-auto">
+              <div className="text-4xl text-center">Opinion Analysis</div>
+              <div className="flex rounded-xl text-5xl mt-4 text-white w-[90%] mx-auto font-bold">
+                <div
+                  className="bg-green-600 p-7 text-center rounded-l-xl shadow-inner shadow-black"
+                  style={{
+                    width: `${
+                      (res2.positive * 100) / (res2.positive + res2.negative)
+                    }%`,
+                  }}
+                >
+                  {/* {res2.positive} */}
+                  {((res2.positive * 100) / (res2.positive + res2.negative)).toFixed(2)}%
+                </div>
+                <div
+                  className="bg-red-600 p-7 text-center rounded-r-xl shadow-inner shadow-black "
+                  style={{
+                    width: `${
+                      (res2.negative * 100) / (res2.positive + res2.negative)
+                    }%`,
+                  }}
+                >
+                  {/* {res2.negative} */}
+                  {((res2.negative * 100) / (res2.positive + res2.negative)).toFixed(2)}%
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
         {/* {res4 && <div dangerouslySetInnerHTML={renderHTML()} />} */}
         {res4 && <div>{renderHTML()} </div>}
 
