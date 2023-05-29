@@ -24,9 +24,8 @@ async function callLinkComment() {
         product_name: productName,
       },
     });
-    // console.log(res.data[0][0]);
-    console.log(res.data);
-    // return res.data[0][0];
+    console.log(res.data[0]);
+    return res.data[0];
   } catch (err) {
     console.log(err);
   }
@@ -126,7 +125,10 @@ export default function ProductDetails() {
     return (
       <>
         <Header showButton="showSearch" />
-        <div className="text-center mt-4 text-3xl bg-cyan-700 py-5 text-white">Searching "<span className="font-bold">{productName}</span>"<div className="inline font-serif dotLoading">.....</div></div>
+        <div className="text-center mt-4 text-3xl bg-cyan-700 py-5 text-white">
+          Searching "<span className="font-bold">{productName}</span>"
+          <div className="inline font-serif dotLoading">.....</div>
+        </div>
         <div className="w-4/6 mt-11 m-auto py-3 h-full loadingAnimation border-gray-400 rounded-2xl overflow-hidden border-2 bg-white">
           <div className="border-gray-400 border-y-[1px] hover:scale-[101%] duration-300 my-2 flex justify-evenly">
             <img
@@ -144,19 +146,104 @@ export default function ProductDetails() {
       </>
     );
   }
+
+  function mouseDirection() {
+    const imageElement = document.getElementById("productImage");
+    imageElement.addEventListener("mousemove", handleMouseMove);
+  }
   const widthVar = `${(5 - parseFloat(res.stars)) * 20}%`;
+  let prevX = 0;
+  let prevY = 0;
+  function handleMouseMove(event) {
+    const imageElement = document.getElementById("productImage");
+    // Get the current mouse coordinates
+    const currentX = event.clientX;
+    const currentY = event.clientY;
+
+    // Calculate the direction based on the change in mouse coordinates
+    const deltaX = currentX - prevX;
+    const deltaY = currentY - prevY;
+
+    // Determine the direction based on deltaX and deltaY values
+    let direction = "";
+
+    if (deltaX > 0) {
+      direction += "Right";
+    } else if (deltaX < 0) {
+      direction += "Left";
+    }
+
+    if (deltaY > 0) {
+      direction += "Down";
+    } else if (deltaY < 0) {
+      direction += "Up";
+    }
+
+    switch (direction) {
+      case "Up":
+        imageElement.style.transformOrigin = "top";
+        break;
+      case "Down":
+        imageElement.style.transformOrigin = "bottom";
+        break;
+      case "LeftDown":
+        imageElement.style.transformOrigin = "bottom left";
+        break;
+      case "LeftUp":
+        imageElement.style.transformOrigin = "top left";
+        break;
+      case "RightDown":
+        imageElement.style.transformOrigin = "bottom right";
+        break;
+      case "RightUp":
+        imageElement.style.transformOrigin = "top right";
+        break;
+
+      default:
+        break;
+    }
+
+    // Update the previous mouse coordinates
+    prevX = currentX;
+    prevY = currentY;
+  }
+
+  const productComments = [];
+  if (res1) {
+    for (let i = 0; i < res1.length; i++) {
+      productComments.push(
+        <div
+          key={i}
+          className="bg-zinc-100 px-10 rounded-lg p-4 my-3 hover:scale-[1.02] duration-300 shadow-md shadow-black"
+        >
+          <div className="text-lg">"{res1[i].comments[0].description}"</div>
+          <div
+            className={`text-lg font-bold ${
+              res1[i].comments[0].rating > 3 ? "text-green-600" : "text-red-500"
+            }`}
+          >
+            Ratings: {res1[i].comments[0].rating} / 5
+          </div>
+        </div>
+      );
+    }
+  }
 
   return (
     <>
       <Header showButton="showSearch" />
       <div className="flex flex-col overflow-hidden border-2 border-cyan-700 w-5/6 m-auto mt-9 mb-10 rounded-xl">
         <div className="flex">
-          <div className="p-2 w-1/2 bg-white flex justify-center aspect-[1.5] overflow-hidden">
-            <img
-              src={res.image}
-              alt=""
-              className="object-contain hover:scale-150 duration-500"
-            />
+          <div className="p-2 w-1/2 bg-white flex origin justify-center aspect-[1.5] overflow-hidden">
+            {res.image && (
+              <img
+                src={res.image}
+                alt=""
+                id="productImage"
+                onMouseEnter={mouseDirection}
+                className="object-contain cursor-zoom-in hover:scale-[1.6] duration-700"
+              />
+            )}
           </div>
           <div className="bg-zinc-200 w-1/2 flex p-7 flex-col">
             <label className="text-center shadow-md shadow-gray-500 rounded-t-xl text-3xl bg-cyan-700 text-white py-4 px-2 font-serif">
@@ -173,15 +260,25 @@ export default function ProductDetails() {
                 &#8377; {res.mrp}
               </label>
               <div>
-                <img src="./flipkart.png" alt=""className="h-6 mr-2 inline" />
-              <a
-                href={res.link}
-                className="text-blue-800 text-left z-10 underline italic hover:text-voilet-900"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Click here for website
-              </a>
+                {res.website === "amazon" ? (
+                  <img src="./amazon.jpg" alt="" className="h-4 mr-2 inline" />
+                ) : (
+                  <img
+                    src="./flipkart.png"
+                    alt=""
+                    className="h-6 mr-2 inline"
+                  />
+                )}
+                `
+                {/* <img src="./flipkart.png" alt="" className="h-6 mr-2 inline" /> */}
+                <a
+                  href={res.link}
+                  className="text-blue-800 text-left z-10 underline italic hover:text-voilet-900"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Click here for website
+                </a>
               </div>
               {/* <div id="abcd" className="text-xl font-bold text-yellow-600">
                 Ratings - {res.ratings}
@@ -243,7 +340,16 @@ export default function ProductDetails() {
             </div>
           </div>
         </div>
-        {res4 && <div className="bg-cyan-400 w-full p-5">dafnj</div>}
+        {res1 && res1.length > 0 && (
+          <>
+            <div className="bg-sky-700 p-5 pt-10">
+              <div className="text-center text-white uppercase font-serif text-3xl">
+                User comments
+              </div>
+              <div className="w-full p-5">{productComments}</div>
+            </div>
+          </>
+        )}
         {/* if (res4) {
           
           <div dangerouslySetInnerHTML={renderHTML()} />
