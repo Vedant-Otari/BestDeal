@@ -362,6 +362,40 @@ def get_customer(cookie):
 	else:
 		return customer_details
 
+def add_product_comment(product_name, description, rating, cookie):
+	customer_details = collection_name.find_one({"cookies": cookie})
+
+	new_comment_item = {
+    "product_name": str(product_name),
+    "date": datetime.utcnow(),
+	"description": str(description),
+	"rating": rating
+	}
+
+	customer_details["comments"].append(new_comment_item)
+	collection_name.update_one({"cookies": cookie}, {"$set": customer_details})
+
+def update_product_comment(product_name, description, rating, cookie):
+	customer_details = collection_name.find_one({"cookies": cookie})
+
+	for comment in customer_details["comments"]:
+		if comment["product_name"] == product_name:
+			comment["description"] = description
+			comment["rating"] = rating
+			break  # Exit the loop after finding the matching comment
+	
+	collection_name.update_one({"cookies": cookie}, {"$set": customer_details})
+
+def delete_product_comment(product_name, cookie):
+	customer_details = collection_name.find_one({"cookies": cookie})
+
+	for comment in customer_details["comments"]:
+		if comment["product_name"] == product_name:
+			customer_details["comments"].remove(comment)
+			break  # Exit the loop after finding the matching comment
+	
+	collection_name.update_one({"cookies": cookie}, {"$set": customer_details})
+
 def get_customer_comments(uname, pword):
 	customer_details = collection_name.find({"username": uname, "password": pword}, {"comments": 1})
 	if(customer_details == None):

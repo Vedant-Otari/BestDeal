@@ -7,7 +7,7 @@ from flipkartScraping.getProductDetailFlipkart import getFlipkartProductDetail
 from homeScreenData.homeScreen import getHomeScreenItems
 from homeScreenData.homeScreen import getMostViewedItems
 from signinSignup.loginInterface import signIn,signUp,sendVerificationCodeEmail
-from database.customer import get_customer, add_product_to_wishlist, remove_product_from_wishlist
+from database.customer import get_customer, add_product_to_wishlist, remove_product_from_wishlist, add_product_comment, update_product_comment, delete_product_comment
 from database.dB import get_product_details
 from commentAnalysis.model import getComments, getSentiment, getWordClouds
 from productPriceChart.priceChart import getPriceHistoryChart
@@ -134,6 +134,25 @@ def removeProductFromWishlist(request):
     cookie = request.GET['cookie']
     productName = request.GET['product_name']
     remove_product_from_wishlist(productName, cookie)
+
+def addProductComment(request):
+    product_name = request.GET['product_name']
+    description = request.GET['description']
+    rating = request.GET['rating']
+    cookie = request.GET['cookie']
+    add_product_comment(product_name, description, rating, cookie)
+
+def updateProductComment(request):
+    product_name = request.GET['product_name']
+    description = request.GET['description']
+    rating = request.GET['rating']
+    cookie = request.GET['cookie']
+    update_product_comment(product_name, description, rating, cookie)
+
+def deleteProductComment(request):
+    product_name = request.GET['product_name']
+    cookie = request.GET['cookie']
+    delete_product_comment(product_name, cookie)
 
 def addNotification(request):
     product_name = request.GET['product_name']
