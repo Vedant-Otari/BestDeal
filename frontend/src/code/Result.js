@@ -83,7 +83,7 @@ export default function Result() {
 
   useEffect(() => {
     callFlipkart();
-    // callAmazon();
+    callAmazon();
 
     const checkIfUserIsLoggedIn = () => {
       const cookies = document.cookie;
