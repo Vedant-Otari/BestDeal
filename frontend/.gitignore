@@ -11,7 +11,8 @@
 # production
 /build
 
-
+../db.sqlite3
+.gitignore
 # misc
 .DS_Store
 .env.local

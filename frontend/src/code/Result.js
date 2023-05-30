@@ -77,6 +77,12 @@ export default function Result() {
     window.location.href = `/productDetails?query=${productName}`;
   };
 
+  const [emailNotification, setEmailNotification] = useState(true);
+
+  const hideNotificationBox = () => {
+    setEmailNotification(false);
+  };
+
   const [resF, setResF] = useState(null);
   const [resA, setResA] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -128,6 +134,12 @@ export default function Result() {
     return (
       <>
         <Header showButton="showSearch" />
+        {emailNotification && (
+          <EmailNotification
+            productName="Samsung S11"
+            onClose={hideNotificationBox}
+          />
+        )}
         <div className="bg-gray-50 min-h-screen h-full pb-16">
           <h1 className="text-3xl text-center font-sans py-6 ">
             Searching for "{searchQuery}"
@@ -249,7 +261,7 @@ export default function Result() {
           <div className="w-4/6 m-auto py-3 border-gray-400 rounded-2xl overflow-hidden shadow-lg shadow-slate-500 border-2 bg-white">
             <div className="border-gray-400 items-center border-y-[1px] hover:scale-[101%] duration-300 my-2 flex justify-evenly">
               <img
-                src={resF.image}
+                src={resF.image ? resF.image : null}
                 alt=""
                 onClick={() => handleSearchSubmit(resF.name)}
                 target="_blank"
@@ -376,3 +388,69 @@ export default function Result() {
     );
   }
 }
+
+const EmailNotification = ({ productName, onClose }) => {
+  const [emailNotification1, setEmailNotification1] = useState(false);
+  const [emailNotification2, setEmailNotification2] = useState(true);
+
+  const hideNotificationBox = () => {
+    setEmailNotification1(true);
+    setEmailNotification2(false);
+  };
+
+  return (
+    <>
+      <div className="bg-sky-900 bg-opacity-70 flex items-center justify-center absolute top-0 right-0 left-0 z-50 bottom-0">
+        <div className="bg-zinc-50 justify-around overflow-hidden duration-300 py-10 w-1/2 h-1/2 relative flex flex-col rounded-3xl p-6 shadow-xl shadow-gray-900">
+          <div
+            onClick={onClose}
+            className="absolute cursor-pointer bg-red-600 px-5 py-2 top-0 text-white font-bold font-sans text-3xl right-0 rounded-bl-xl rounded-tr-3xl hover:scale-105"
+          >
+            X
+          </div>
+          {emailNotification2 && (
+            <>
+              <div className="text-center text-3xl">
+                Would you like to get mail for "{productName}"?
+              </div>
+              <div className="flex justify-evenly text-2xl mb-10 w-1/2 mx-auto">
+                <button
+                  onClick={hideNotificationBox}
+                  className="bg-zinc-300 shadow-sm hover:shadow-md hover:shadow-gray-600 duration-200 shadow-black py-3 px-5 rounded-lg"
+                >
+                  YES
+                </button>
+                <button
+                  onClick={onClose}
+                  className="bg-zinc-300 shadow-sm hover:shadow-md hover:shadow-gray-600 duration-200 shadow-black py-3 px-5 rounded-lg"
+                >
+                  NO
+                </button>
+              </div>
+            </>
+          )}
+          {emailNotification1 && (
+            <>
+              <div className="text-center text-3xl">
+                We will mail you when {productName}'s price goes below:
+              </div>
+              <input type="number" className="border-2 text-xl p-2 no-arrows rounded-md shadow-md bg-zinc-100 border-black text-center w-1/3 mx-auto" placeholder="Enter price here"/>
+              <button
+                onClick={onClose}
+                className="bg-green-500 font-bold hover:bg-green-600 mb-6 text-white text-xl w-1/3 mx-auto shadow-sm hover:shadow-md hover:shadow-gray-600 duration-200 shadow-black py-3 px-5 rounded-lg"
+              >
+                Submit
+              </button>
+              <button
+                onClick={onClose}
+                className="bg-zinc-300 text-xl w-1/2 mx-auto shadow-sm hover:shadow-md hover:shadow-gray-600 duration-200 shadow-black py-3 px-5 rounded-lg"
+              >
+                I don't want to any mail.
+              </button>
+            </>
+          )}
+        </div>
+      </div>
+    </>
+  );
+};

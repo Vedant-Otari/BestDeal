@@ -111,8 +111,8 @@ export default function ProductDetails() {
   }
 
   async function callWordCloud() {
-    setRes3(true);
     const result = await callLinkWordCloud();
+    setRes3(true);
     var imgPos = document.createElement("img");
     imgPos.src = result["positive"];
     document.getElementById("wordcloudPos").appendChild(imgPos);
@@ -433,47 +433,3 @@ export default function ProductDetails() {
     </>
   );
 }
-
-// import React from 'react';
-
-// class WordCloudComponent extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       wordCloudImage: '',
-//     };
-//   }
-
-//   componentDidMount() {
-//     // Fetch the base64 string and serialized word cloud object from the backend
-//     fetch('/api/wordcloud') // Replace '/api/wordcloud' with your API endpoint
-//       .then(response => response.json())
-//       .then(data => {
-//         // Update the state with the received base64 string
-//         this.setState({ wordCloudImage: data.base64String });
-
-//         // Deserialize the word cloud object (optional)
-//         const deserializedWordCloud = JSON.parse(data.serializedWordCloud);
-//         console.log(deserializedWordCloud);
-//       })
-//       .catch(error => {
-//         console.error('Error:', error);
-//       });
-//   }
-
-//   render() {
-//     const { wordCloudImage } = this.state;
-
-//     return (
-//       <div>
-//         {wordCloudImage ? (
-//           <img src={`data:image/png;base64,${wordCloudImage}`} alt="Word Cloud" />
-//         ) : (
-//           <p>Loading word cloud...</p>
-//         )}
-//       </div>
-//     );
-//   }
-// }
-
-// export default WordCloudComponent;
