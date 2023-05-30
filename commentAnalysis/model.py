@@ -13,6 +13,7 @@ import nltk
 from nltk.corpus import stopwords
 from django.http import JsonResponse
 import base64
+import io
 
 
 data = pd.read_csv("commentAnalysis/TrainingData.csv")
