@@ -80,7 +80,8 @@ def getComments(productName):
                             "$eq": ["$$this.product_name", str(productName)]
                         }
                     }
-                }
+                },
+                "username": 1 
             }
         },
         {
@@ -92,6 +93,8 @@ def getComments(productName):
         }
     ])
     return productComments
+
+print(json_util.dumps(getComments("Bose SoundLink Color Bluetooth Speaker II Portable Blue...")))
 
 def getSentiment(productName):
     # print(productName)
