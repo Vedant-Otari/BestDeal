@@ -9,6 +9,7 @@ export default function Signup() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
+  const [OTP, setOTP] = useState("");
   const [confirm, setConfirm] = useState("");
   const [errors, setErrors] = useState({});
   const [showOTPVerify, setShowOTPVerify] = useState(false);
@@ -27,7 +28,7 @@ export default function Signup() {
     c.style.display = "block";
     a.type = "text";
   };
-  
+
   const hidePass1 = () => {
     const a = document.getElementById("passwordVisibility1");
     const b = document.getElementById("passHide1");
@@ -45,7 +46,7 @@ export default function Signup() {
     c.style.display = "block";
     a.type = "text";
   };
-  
+
   const hidePass2 = () => {
     const a = document.getElementById("passwordVisibility2");
     const b = document.getElementById("passHide2");
@@ -85,7 +86,9 @@ export default function Signup() {
 
   const getOTP = (data) => {
     // Do something with the data received from ABCD component
-    alert("this is :" + data);
+    // alert("this is :" + data);
+    setOTP(data);
+    signUp();
   };
 
   const validatePassword = () => {
@@ -120,32 +123,54 @@ export default function Signup() {
     }
   };
 
-  const signUp = async () => {
+  const sendVerificationCode = async () => {
     validateEmail();
     validateUsername();
     validatePassword();
     validateConfirmPassword();
 
     if (Object.values(errors).every((error) => !error)) {
-      // All fields are valid, proceed with signup
-      console.log(username, email, password);
-
-      try {
-        const response = await axios.get("http://127.0.0.1:8000/api/sendVerificationCodeEmail", {
-          params: { username: username, email: email, password: password },
+      // console.log(username, password);
+      await axios
+        .get("http://127.0.0.1:8000/api/sendVerificationCode", {
+          params: { email: email },
+        })
+        .then((res) => {
+          // console.log(res);
+          // var data = res.data[0];
+          // return res.data;
+        })
+        .catch((err) => {
+          console.log(err);
         });
+    }
+  };
 
-        console.log(response.data);
-        const data = response.data[0];
+  const signUp = async () => {
+    // All fields are valid, proceed with signup
+    console.log(username, email, password);
 
-        if (data.msg === "Account created succesfully") {
-          alert(data.msg);
-          console.log("Redirect to login");
-          window.location.href = "/login";
-        }
-      } catch (error) {
-        console.log(error);
+    try {
+      const response = await axios.get("http://127.0.0.1:8000/api/signUp", {
+        params: {
+          username: username,
+          password: password,
+          email: email,
+          OTP: OTP,
+        },
+      });
+      console.log(response.data[0]);
+      const data = response.data[0];
+      if(data.msg==="OTP does Not match"){
+        alert(data.msg+". Please try again");
       }
+      else if (data.msg === "Account created succesfully") {
+        alert(data.msg);
+        console.log("Redirect to login");
+        window.location.href = "/login";
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -167,6 +192,7 @@ export default function Signup() {
               type="email"
               placeholder="Enter Your email"
               value={email}
+              autoComplete="bestdealSignUpMail"
               onChange={(event) => setEmail(event.target.value)}
               onBlur={validateEmail}
               required
@@ -183,6 +209,7 @@ export default function Signup() {
               type="text"
               placeholder="Enter Your User name"
               value={username}
+              autoComplete="bestdealLoginUserName"
               onChange={(event) => setUsername(event.target.value)}
               onBlur={validateUsername}
               required
@@ -202,6 +229,7 @@ export default function Signup() {
                 id="passwordVisibility1"
                 placeholder="Enter Your password"
                 value={password}
+                autoComplete="bestdealLoginPassword"
                 onChange={(event) => setPassword(event.target.value)}
                 onBlur={validatePassword}
                 required
@@ -228,42 +256,43 @@ export default function Signup() {
             )}
             <div className="text-lg mt-5 font-medium">Confirm Password</div>
             <div className="relative flex items-center">
-            <input
-              className={`w-full border-2 pr-10 border-gray-200 outline-gray-500 rounded-md p-2 mt-1 bg-transparent ${
-                errors.confirm ? "border-red-500" : ""
-              }`}
-              type="password"
-              id="passwordVisibility2"
-              placeholder="Re-Enter Your password"
-              value={confirm}
-              onChange={(event) => setConfirm(event.target.value)}
-              onBlur={validateConfirmPassword}
-              required
-              minLength={8}
-              maxLength={20}
-            />
-            <img
-              id="passShow2"
-              src="./passwordHide.png"
-              alt=""
-              onClick={hidePass2}
-              className="h-3 absolute right-2 cursor-pointer hidden hover:opacity-80"
-            />
-            <img
-              id="passHide2"
-              src="./passwordShow.png"
-              alt=""
-              onClick={showPass2}
-              className="h-5 absolute right-2 cursor-pointer hover:opacity-80"
-            />
+              <input
+                className={`w-full border-2 pr-10 border-gray-200 outline-gray-500 rounded-md p-2 mt-1 bg-transparent ${
+                  errors.confirm ? "border-red-500" : ""
+                }`}
+                type="password"
+                id="passwordVisibility2"
+                placeholder="Re-Enter Your password"
+                value={confirm}
+                autoComplete="bestdealLoginPassword"
+                onChange={(event) => setConfirm(event.target.value)}
+                onBlur={validateConfirmPassword}
+                required
+                minLength={8}
+                maxLength={20}
+              />
+              <img
+                id="passShow2"
+                src="./passwordHide.png"
+                alt=""
+                onClick={hidePass2}
+                className="h-3 absolute right-2 cursor-pointer hidden hover:opacity-80"
+              />
+              <img
+                id="passHide2"
+                src="./passwordShow.png"
+                alt=""
+                onClick={showPass2}
+                className="h-5 absolute right-2 cursor-pointer hover:opacity-80"
+              />
             </div>
             {errors.confirm && <p className="text-red-500">{errors.confirm}</p>}
-            
+
             <div className="mt-8 flex flex-col gap-y-4" id="OTPSendButton">
               <button
                 // onClick={signUp}
                 onClick={function () {
-                  // sendVerificationCode
+                  sendVerificationCode();
                   window.scrollTo(
                     0,
                     document.documentElement.scrollHeight ||

@@ -24,7 +24,7 @@ async function callLinkComment() {
         product_name: productName,
       },
     });
-    // console.log(res.data[0]);
+    console.log(res.data[0]);
     return res.data[0];
   } catch (err) {
     console.log(err);
@@ -90,7 +90,7 @@ export default function ProductDetails() {
     callProduct();
     callComments();
     callSentiment();
-    callWordCloud();
+    // callWordCloud();
     // callChart();
   }, []);
 
@@ -219,6 +219,7 @@ export default function ProductDetails() {
           key={i}
           className="bg-zinc-100 px-10 rounded-lg p-4 my-3 hover:scale-[1.02] duration-300 shadow-md shadow-black"
         >
+          <div className="text-xl capitalize text-cyan-800 font-bold">{res1[i].username}</div>
           <div className="text-lg">"{res1[i].comments[0].description}"</div>
           <div
             className={`text-lg font-bold ${
@@ -238,13 +239,32 @@ export default function ProductDetails() {
   }
 
   const renderWordCloud = (base64String) => {
-    if (!base64String) {
-      return null;
-    }
+    // const base64String2 = base64String; // Example base64 string
 
-    const imageUrl = `data:image/png;base64,${base64String}`;
+    // // Convert Base64 to bytes
+    // const byteCharacters = atob(base64String2);
 
-    return <img src={imageUrl} alt="Word Cloud" />;
+    // // Create a byte array
+    // const byteNumbers = new Array(byteCharacters.length);
+    // for (let i = 0; i < byteCharacters.length; i++) {
+    //   byteNumbers[i] = byteCharacters.charCodeAt(i);
+    // }
+
+    // const blob = new Blob([new Uint8Array(byteNumbers)], { type: "image/jpeg" });
+
+    // // Create a data URL from the Blob
+    // const imageUrl = URL.createObjectURL(blob);
+    // return <img src={imageUrl} alt="" />;
+
+
+
+    // if (!base64String) {
+    //   return null;
+    // }
+
+    // const imageUrl = `data:image/png;base64,${base64String}`;
+
+    // return <img src={imageUrl} alt="Word Cloud" />;
   };
 
   // const renderHTML = () => {
@@ -373,7 +393,7 @@ export default function ProductDetails() {
           </div>
         </div>
         <div>
-          {res2 && res2.positive != 0 && res2.negative != 0 && (
+          {res2 && res2.positive !== 0 && res2.negative !== 0 && (
             <div className=" bg-sky-400 py-6 my-16 shadow-md shadow-black rounded-xl w-11/12 mx-auto">
               <div className="text-4xl text-center">Opinion Analysis</div>
               <div className="flex rounded-xl text-5xl mt-4 text-white w-[90%] mx-auto font-bold">
@@ -411,7 +431,7 @@ export default function ProductDetails() {
             </div>
           )}
         </div>
-        <div>
+        {/* <div>
           {res3 && (
             <>
               <img
@@ -425,7 +445,7 @@ export default function ProductDetails() {
               />
             </>
           )}
-        </div>
+        </div> */}
         {/* {res4 && <div dangerouslySetInnerHTML={renderHTML()} />} */}
         {res4 && <div>{renderHTML()} </div>}
 
@@ -443,34 +463,6 @@ export default function ProductDetails() {
     </>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // import React from 'react';
 
