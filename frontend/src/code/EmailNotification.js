@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Popup = () => {
+const EmailNotification = () => {
   const [showPopup, setShowPopup] = useState(true);
   const [showInput, setShowInput] = useState(false);
   const [price, setPrice] = useState('');
@@ -59,4 +59,4 @@ const Popup = () => {
   );
 };
 
-export default Popup;
+export default EmailNotification;
