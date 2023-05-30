@@ -46,19 +46,26 @@ def getPriceHistoryChart(productName):
         # print(c,j.get_attribute("title"))
     driver.get(d)
 
-    string = """<canvas id="price_history_chart" style="width: 100%; display: block;" width="950" height="475" class="chartjs-render-monitor"></canvas><script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js" defer=""></script>"""
+    # string = """<canvas id="price_history_chart" style="width: 100%; display: block;" width="950" height="475" class="chartjs-render-monitor"></canvas><script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js" defer=""></script>"""
+    # f = open("chart.html",'bw')
+    # import re
+    ele1 = driver.find_element(By.XPATH, "/html/body/div[2]/div/div[2]/div[1]/div[2]")
 
-    import re
+    driver.execute_script("return arguments[0].scrollIntoView();", ele1) 
+    ele = driver.find_element(By.XPATH, "/html/body/div[2]/div/div[2]/div[1]/div[3]/div[2]/canvas")
 
-    for i in range(5,10):
-        t = driver.find_element(By.XPATH, "/html/body/script["+str(i)+"]")
-        if(re.findall("var data", t.get_attribute("innerHTML"))):
-            break
 
-    string += t.get_attribute("outerHTML")
+    image = ele.screenshot_as_base64
+    # for i in range(5,10):
+    #     t = driver.find_element(By.XPATH, "/html/body/script["+str(i)+"]")
+    #     if(re.findall("var data", t.get_attribute("innerHTML"))):
+    #         break
 
+    # string += t.get_attribute("outerHTML")
+    # f.write( bytes(string.encode('utf-8')))
+    # f.close()
     # print (string)
 
     driver.quit()
-    return string
+    return "data:image/jpeg;base64,"+image
 # print(getPriceHistoryChart('Samsung Galaxy S22 Ultra 5G (Burgundy, 12GB ram, 256GB Storage) with No Cost EMI/Additional Exchange Offers'))
