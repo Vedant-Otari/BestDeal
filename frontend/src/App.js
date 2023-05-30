@@ -16,8 +16,6 @@ function App() {
 
   return (
     <Router>
-      <>
-        <div className="h-full min-h-screen pb-12 scroll-smooth"> 
           <Routes>
             <Route
               path="/"
@@ -38,8 +36,6 @@ function App() {
             <Route path="/productDetails" element={<ProductDetails/>} />
           </Routes>
           <Footer />
-        </div>
-      </>
     </Router>
   );
 }

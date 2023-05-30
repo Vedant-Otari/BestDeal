@@ -111,10 +111,13 @@ def getProductWordClouds(request):
 
 def getProductChart(request):
     productName = request.GET['product_name']
-    productName = getPriceHistoryChart(productName)
+    temp = getPriceHistoryChart(productName)
     L=[productName]
-    # return HttpResponse(productName)
-    return HttpResponse(json_util.dumps(L))
+    # return render(request, "chart.html")
+    return HttpResponse(temp)
+    # serialized_html = json.dumps({'html': productName})
+    # return HttpResponse(serialized_html, content_type='application/json')
+    # return HttpResponse(json_util.dumps(L))
 
 def sendVerificationCode(request):
     email = request.GET['email']

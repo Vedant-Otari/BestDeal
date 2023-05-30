@@ -1,6 +1,6 @@
 import Header from "./Header";
 import axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, createContext, createElement } from "react";
 import { useLocation } from "react-router-dom";
 
 async function callLinkProduct() {
@@ -69,8 +69,8 @@ async function callLinkChart() {
       },
     });
     console.log("Here is chart:\n\n");
-    console.log(res.data[0]);
-    return res.data[0];
+    console.log(res.data);
+    return res.data;
   } catch (err) {
     console.log(err);
   }
@@ -85,13 +85,13 @@ export default function ProductDetails() {
   const [res2, setRes2] = useState(null);
   const [res3, setRes3] = useState(null);
   const [res4, setRes4] = useState(null);
-
+  
   useEffect(() => {
     callProduct();
     callComments();
     callSentiment();
-    // callWordCloud();
-    // callChart();
+    callWordCloud();
+    callChart();
   }, []);
 
   async function callProduct() {
@@ -117,6 +117,9 @@ export default function ProductDetails() {
   async function callChart() {
     console.log("Called:\n\n");
     const result = await callLinkChart();
+    var img = document.createElement('img');
+    img.src = result;
+    document.getElementById('tempid').appendChild(img)
     setRes4(result);
   }
 
@@ -274,13 +277,6 @@ export default function ProductDetails() {
   //   }
   // };
 
-  const renderHTML = () => {
-    const element = document.createElement("chartCode");
-    element.src = { res4 };
-    // element.async = true
-
-    return element;
-  };
   return (
     <>
       <Header showButton="showSearch" />
@@ -447,8 +443,12 @@ export default function ProductDetails() {
           )}
         </div> */}
         {/* {res4 && <div dangerouslySetInnerHTML={renderHTML()} />} */}
-        {res4 && <div>{renderHTML()} </div>}
+        <div id="tempid">
 
+        </div>
+
+        {/* <img src=">
+        </img> */}
         {res1 && res1.length > 0 && (
           <>
             <div className="bg-sky-700 p-5 pt-10">
