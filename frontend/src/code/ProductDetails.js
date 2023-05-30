@@ -1,6 +1,7 @@
 import Header from "./Header";
 import axios from "axios";
-import React, { useState, useEffect, createContext, createElement } from "react";
+import React, { useState, useEffect } from "react";
+// import React, { useState, useEffect, createContext, createElement } from "react";
 import { useLocation } from "react-router-dom";
 
 async function callLinkProduct() {
@@ -24,7 +25,7 @@ async function callLinkComment() {
         product_name: productName,
       },
     });
-    console.log(res.data[0]);
+    // console.log(res.data[0]);
     return res.data[0];
   } catch (err) {
     console.log(err);
@@ -53,8 +54,8 @@ async function callLinkWordCloud() {
         product_name: productName,
       },
     });
-    console.log("word cloud:");
-    console.log(res.data);
+    // console.log("word cloud:");
+    // console.log(res.data);
     return res.data;
   } catch (err) {
     console.log(err);
@@ -85,7 +86,7 @@ export default function ProductDetails() {
   const [res2, setRes2] = useState(null);
   const [res3, setRes3] = useState(null);
   const [res4, setRes4] = useState(null);
-  
+
   useEffect(() => {
     callProduct();
     callComments();
@@ -110,28 +111,23 @@ export default function ProductDetails() {
   }
 
   async function callWordCloud() {
+    setRes3(true);
     const result = await callLinkWordCloud();
-    var imgPos = document.createElement('img');
-    imgPos.src = result['positive'];
-    document.getElementById('wordcloudPos').appendChild(imgPos)
-    var img = document.createElement('img');
+    var imgPos = document.createElement("img");
+    imgPos.src = result["positive"];
+    document.getElementById("wordcloudPos").appendChild(imgPos);
+    var img = document.createElement("img");
     img.src = result["negative"];
-    document.getElementById('wordcloudNeg').appendChild(img)
-    setRes3(result);
+    document.getElementById("wordcloudNeg").appendChild(img);
   }
 
   async function callChart() {
-    console.log("Called:\n\n");
     const result = await callLinkChart();
-    var img = document.createElement('img');
+    var img = document.createElement("img");
     img.src = result;
-    document.getElementById('historyChart').appendChild(img)
-    setRes4(result);
+    setRes4(true);
+    document.getElementById("historyChart").appendChild(img);
   }
-
-  // const renderHTML = () => {
-  //   return { __html: res4.data[0] };
-  // };
 
   if (!res) {
     return (
@@ -228,7 +224,9 @@ export default function ProductDetails() {
           key={i}
           className="bg-zinc-100 px-10 rounded-lg p-4 my-3 hover:scale-[1.02] duration-300 shadow-md shadow-black"
         >
-          <div className="text-xl capitalize text-cyan-800 font-bold">{res1[i].username}</div>
+          <div className="text-xl capitalize text-cyan-800 font-bold">
+            {res1[i].username}
+          </div>
           <div className="text-lg">"{res1[i].comments[0].description}"</div>
           <div
             className={`text-lg font-bold ${
@@ -247,46 +245,10 @@ export default function ProductDetails() {
     }
   }
 
-  const renderWordCloud = (base64String) => {
-    // const base64String2 = base64String; // Example base64 string
-
-    // // Convert Base64 to bytes
-    // const byteCharacters = atob(base64String2);
-
-    // // Create a byte array
-    // const byteNumbers = new Array(byteCharacters.length);
-    // for (let i = 0; i < byteCharacters.length; i++) {
-    //   byteNumbers[i] = byteCharacters.charCodeAt(i);
-    // }
-
-    // const blob = new Blob([new Uint8Array(byteNumbers)], { type: "image/jpeg" });
-
-    // // Create a data URL from the Blob
-    // const imageUrl = URL.createObjectURL(blob);
-    // return <img src={imageUrl} alt="" />;
-
-
-
-    // if (!base64String) {
-    //   return null;
-    // }
-
-    // const imageUrl = `data:image/png;base64,${base64String}`;
-
-    // return <img src={imageUrl} alt="Word Cloud" />;
-  };
-
-  // const renderHTML = () => {
-  //   if (res4) {
-  //     const htmlContent = res4;
-  //     return { __html: htmlContent };
-  //   }
-  // };
-
   return (
     <>
       <Header showButton="showSearch" />
-      <div className="flex flex-col overflow-hidden border-2 border-cyan-700 bg-zinc-200 w-5/6 m-auto mt-9 mb-10 rounded-xl">
+      <div className="flex flex-col shadow-lg shadow-black overflow-hidden border-2 border-cyan-700 bg-zinc-200 w-5/6 m-auto mt-9 mb-20 rounded-xl">
         <div className="flex">
           <div className="p-2 w-1/2 rounded-br-xl bg-white flex origin justify-center aspect-[1.5] overflow-hidden">
             {res.image && (
@@ -324,7 +286,6 @@ export default function ProductDetails() {
                   />
                 )}
                 `
-                {/* <img src="./flipkart.png" alt="" className="h-6 mr-2 inline" /> */}
                 <a
                   href={res.link}
                   className="text-blue-800 text-left z-10 underline italic hover:text-voilet-900"
@@ -334,9 +295,6 @@ export default function ProductDetails() {
                   Click here for website
                 </a>
               </div>
-              {/* <div id="abcd" className="text-xl font-bold text-yellow-600">
-                Ratings - {res.ratings}
-              </div> */}
               {res && res.ratings && (
                 <div id="abcd" className="text-xl font-bold text-sky-800">
                   Ratings - {res.ratings}
@@ -396,7 +354,7 @@ export default function ProductDetails() {
         </div>
         <div>
           {res2 && res2.positive !== 0 && res2.negative !== 0 && (
-            <div className=" bg-sky-400 py-6 my-16 shadow-md shadow-black rounded-xl w-11/12 mx-auto">
+            <div className=" bg-sky-400 py-6 mt-16 mb-10 shadow-md shadow-black rounded-xl w-11/12 mx-auto">
               <div className="text-4xl text-center">Opinion Analysis</div>
               <div className="flex rounded-xl text-5xl mt-4 text-white w-[90%] mx-auto font-bold">
                 <div
@@ -433,35 +391,34 @@ export default function ProductDetails() {
             </div>
           )}
         </div>
-        {/* <div>
-          {res3 && (
-            <>
-              <img
-                src={`data:image/png;base64, ${res3.negative}`}
-                alt="Negative Word Cloud"
-              />
-              <h1>Positive Word Cloud</h1>
-              <img
-                src={`data:image/png;base64, ${res3.positive}`}
-                alt="Positive Word Cloud"
-              />
-            </>
-          )}
-        </div> */}
-        {/* {res4 && <div dangerouslySetInnerHTML={renderHTML()} />} */}
-        <div id="historyChart">
-
-        </div>
-        <div className="flex">
-          <div className="w-1/2" id="wordcloudPos">
-
+        {res4 && (
+          <div className="flex flex-col overflow-hidden justify-center bg-white w-[90%] mx-auto py-5 rounded-xl shadow-md shadow-black">
+            <div className="text-center text-3xl uppercase text-cyan-800 mb-4 font-serif">Price History</div>
+            <div id="historyChart" className="w-[90%] mx-auto p-7 flex justify-center"></div>
           </div>
-          <div className="w-1/2" id="wordcloudNeg">
-
+        )}
+        {res3 && (
+          <div className="flex p-5">
+            <div className="w-1/2 flex flex-col shadow-md shadow-black justify-center p-3 m-4 rounded-lg bg-cyan-800">
+              <dir className="text-4xl text-white text-center">
+                Positive cloud
+              </dir>
+              <div
+                id="wordcloudPos"
+                className="rounded-xl p-10 bg-black overflow-hidden"
+              ></div>
+            </div>
+            <div className="w-1/2 flex flex-col shadow-md shadow-black justify-center p-3 m-4 rounded-lg bg-cyan-800">
+              <dir className="text-4xl text-white text-center">
+                Negative cloud
+              </dir>
+              <div
+                id="wordcloudNeg"
+                className="rounded-xl p-10 bg-black overflow-hidden"
+              ></div>
+            </div>
           </div>
-        </div>
-        {/* <img src=">
-        </img> */}
+        )}
         {res1 && res1.length > 0 && (
           <>
             <div className="bg-sky-700 p-5 pt-10">

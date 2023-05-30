@@ -11,7 +11,7 @@ export default function About() {
     <>
       <Header showButton="show" />
 
-      <div className="mb-10 bg-gray-800 text-center text-white w-5/6 m-auto rounded-2xl overflow-hidden mt-10 shadow-2xl shadow-black">
+      <div className="mb-20 bg-gray-800 text-center text-white w-5/6 m-auto rounded-2xl overflow-hidden mt-10 shadow-2xl shadow-black">
         <div className="h-60 bg-transparent relative">
           <h1 className="text-7xl mb-4 absolute z-10 text-center w-full h-full flex justify-center items-center font-bold">
             About Us

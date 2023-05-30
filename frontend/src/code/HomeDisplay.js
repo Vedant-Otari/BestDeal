@@ -144,7 +144,7 @@ export default function HomeDisplay() {
   }
 
   return (
-    <div className="p-6 text-center mt-10 bg-zinc-100 pt-16">
+    <div className="p-6 text-center mt-10 mb-20 bg-zinc-100 pt-16">
       <label className="text-3xl font-bold font-serif uppercase text-sky-900 italic">
         People Also Searched
       </label>
