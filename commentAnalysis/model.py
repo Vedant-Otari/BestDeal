@@ -149,7 +149,7 @@ def getSentiment(productName):
 
 
 def getWordClouds(productName):
-    print(productName)
+    # print(productName)
     productComments = getComments(productName)
     #return json_util.dumps(productComments)
 
