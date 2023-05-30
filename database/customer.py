@@ -370,7 +370,7 @@ def get_customer_comments(uname, pword):
 		return customer_details
 
 def add_product_to_wishlist(product_name, cookie):
-	customer_details = collection_name.find({"cookies": cookie})
+	customer_details = dict(collection_name.find({"cookies": cookie})) 
 
 	new_wishlist_item = {
     "product_name": str(product_name),
@@ -381,7 +381,7 @@ def add_product_to_wishlist(product_name, cookie):
 	collection_name.update_one({"cookies": cookie}, {"$set": customer_details})
 
 def remove_product_from_wishlist(product_name, cookie):
-	customer_details = collection_name.find({"cookies": cookie})
+	customer_details = dict(collection_name.find({"cookies": cookie}))
 
 	# Remove the wishlist item based on its product_name
 	product_name_to_remove = str(product_name)
