@@ -152,9 +152,7 @@ def getSentiment(productName):
 
 
 def getWordClouds(productName):
-    # print(productName)
-    productComments = getComments(productName)
-    #return json_util.dumps(productComments)
+    productComments = getComments(productName)  # Assuming this function retrieves comments for the specified product
 
     descriptions = []
     ratings = []
@@ -169,50 +167,57 @@ def getWordClouds(productName):
     consolidated_negative = ''
     consolidated_positive = ''
 
-    if len(descriptions)>0:
-        # Create a dictionary from the arrays
+    if len(descriptions) > 0:
+        # Create a DataFrame from the arrays
         data = {"Description": descriptions, "Rating": ratings}
-        # Create a pandas DataFrame
         df = pd.DataFrame(data)
-        df['Description']=df['Description'].apply(clean_review)
-        X = cv.transform(df['Description'] ).toarray()
-        df["Rating"]=model.predict(X)
-        # print(df)
-    
-        consolidated_negative = ' '.join(word for word in df['Description'][df['Rating'] == 0].astype(str))
-        consolidated_positive = ' '.join(word for word in df['Description'][df['Rating'] == 1].astype(str))
-        # print(str(consolidated_positive))
+        df['Description'] = df['Description'].apply(clean_review)
 
-    wordCloud_negative = WordCloud(width=1600, height=800, random_state=21, max_font_size=110)
-    wordCloud_positive = WordCloud(width=1600, height=800, random_state=21, max_font_size=110)
+        # Generate word clouds
+        wordCloud_negative = WordCloud(width=800, height=400, random_state=21, max_font_size=110)
+        wordCloud_positive = WordCloud(width=800, height=400, random_state=21, max_font_size=110)
 
-    wordCloud_image_negative = None
-    wordCloud_image_positive = None
+        # Filter and join negative descriptions
+        consolidated_negative = ' '.join(df['Description'][df['Rating'] == 0].astype(str))
 
-    if consolidated_negative:
-        wordCloud_negative.generate(consolidated_negative)
-        wordCloud_image_negative = wordCloud_negative.to_image()
+        # Filter and join positive descriptions
+        consolidated_positive = ' '.join(df['Description'][df['Rating'] == 1].astype(str))
 
-    if consolidated_positive:
-        wordCloud_positive.generate(consolidated_positive)
-        wordCloud_image_positive = wordCloud_positive.to_image()
+        if consolidated_negative:
+            wordCloud_negative.generate(consolidated_negative)
 
-    wordCloud_data_negative = wordCloud_image_negative.tobytes() if wordCloud_image_negative else None
-    wordCloud_data_positive = wordCloud_image_positive.tobytes() if wordCloud_image_positive else None
+        if consolidated_positive:
+            wordCloud_positive.generate(consolidated_positive)
 
-    # Convert bytes to base64-encoded strings
-    wordCloud_data_negative = base64.b64encode(wordCloud_data_negative).decode('utf-8') if wordCloud_data_negative else None
-    wordCloud_data_positive = base64.b64encode(wordCloud_data_positive).decode('utf-8') if wordCloud_data_positive else None
+        # Convert word clouds to image data
+        wordCloud_image_negative = wordCloud_negative.to_image() if consolidated_negative else None
+        wordCloud_image_positive = wordCloud_positive.to_image() if consolidated_positive else None
 
+        # Create byte streams
+        image_stream_negative = io.BytesIO()
+        image_stream_positive = io.BytesIO()
 
-    # Create a dictionary to hold both Word Clouds
-    wordClouds_data = {
-        'negative': wordCloud_data_negative,
-        'positive': wordCloud_data_positive
-    }
+        if wordCloud_image_negative:
+            wordCloud_image_negative.save(image_stream_negative, format='PNG')
 
-    # Serialize the dictionary as a JSON string
-    return JsonResponse(wordClouds_data, safe=False)
+        if wordCloud_image_positive:
+            wordCloud_image_positive.save(image_stream_positive, format='PNG')
+
+        # Encode byte streams to base64 strings
+        wordCloud_data_negative = base64.b64encode(image_stream_negative.getvalue()).decode('utf-8') if wordCloud_image_negative else None
+        wordCloud_data_positive = base64.b64encode(image_stream_positive.getvalue()).decode('utf-8') if wordCloud_image_positive else None
+
+        # Create a dictionary to hold both Word Clouds
+        wordClouds_data = {
+            'negative': wordCloud_data_negative,
+            'positive': wordCloud_data_positive
+        }
+
+        # Serialize the dictionary as a JSON response
+        return JsonResponse(wordClouds_data)
+
+    # Return an empty JSON response if there are no descriptions
+    return JsonResponse({})
 
 
 #print(getWordClouds("Bose SoundLink Color Bluetooth Speaker II Portable Blue..."))
