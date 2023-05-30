@@ -16,7 +16,7 @@ import base64
 import io
 
 
-data = pd.read_csv("TrainingData.csv")
+data = pd.read_csv("commentAnalysis/TrainingData.csv")
 # print(data.head(),format("\n"))
 #print(data.info())
 data.dropna(inplace=True)
