@@ -111,6 +111,12 @@ export default function ProductDetails() {
 
   async function callWordCloud() {
     const result = await callLinkWordCloud();
+    var imgPos = document.createElement('img');
+    imgPos.src = result['positive'];
+    document.getElementById('wordcloudPos').appendChild(imgPos)
+    var img = document.createElement('img');
+    img.src = result["negative"];
+    document.getElementById('wordcloudNeg').appendChild(img)
     setRes3(result);
   }
 
@@ -119,7 +125,7 @@ export default function ProductDetails() {
     const result = await callLinkChart();
     var img = document.createElement('img');
     img.src = result;
-    document.getElementById('tempid').appendChild(img)
+    document.getElementById('historyChart').appendChild(img)
     setRes4(result);
   }
 
@@ -443,10 +449,17 @@ export default function ProductDetails() {
           )}
         </div> */}
         {/* {res4 && <div dangerouslySetInnerHTML={renderHTML()} />} */}
-        <div id="tempid">
+        <div id="historyChart">
 
         </div>
+        <div className="flex">
+          <div className="w-1/2" id="wordcloudPos">
 
+          </div>
+          <div className="w-1/2" id="wordcloudNeg">
+
+          </div>
+        </div>
         {/* <img src=">
         </img> */}
         {res1 && res1.length > 0 && (

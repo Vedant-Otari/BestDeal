@@ -212,8 +212,8 @@ def getWordClouds(productName):
 
     # Create a dictionary to hold both Word Clouds
     wordClouds_data = {
-        'negative': wordCloud_data_negative,
-        'positive': wordCloud_data_positive
+        'negative': "data:image/jpeg;base64,"+wordCloud_data_negative,
+        'positive': "data:image/jpeg;base64,"+wordCloud_data_positive
     }
 
     # Serialize the dictionary as a JSON string
