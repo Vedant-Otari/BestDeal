@@ -217,7 +217,7 @@ def getWordClouds(productName):
         return JsonResponse(wordClouds_data)
 
     # Return an empty JSON response if there are no descriptions
-    return JsonResponse({})
+    return JsonResponse({'negative': None, 'positive': None})
 
 
 #print(getWordClouds("Bose SoundLink Color Bluetooth Speaker II Portable Blue..."))
