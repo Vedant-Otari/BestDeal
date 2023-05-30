@@ -406,13 +406,15 @@ def get_customer_comments(uname, pword):
 def add_product_to_wishlist(product_name, cookie):
 	customer_details = collection_name.find_one({"cookies": cookie})
 
-	new_wishlist_item = {
-    "product_name": str(product_name),
-    "date": datetime.utcnow()
-	}
-
-	customer_details["wishlist"].append(new_wishlist_item)
-	collection_name.update_one({"cookies": cookie}, {"$set": customer_details})
+	existing_products = [item["product_name"] for item in customer_details["wishlist"]]
+	
+	if product_name not in existing_products:
+		new_wishlist_item = {
+            "product_name": str(product_name),
+            "date": datetime.utcnow()
+        }
+		customer_details["wishlist"].append(new_wishlist_item)
+		collection_name.update_one({"cookies": cookie}, {"$set": customer_details})
 
 def remove_product_from_wishlist(product_name, cookie):
 	customer_details = collection_name.find_one({"cookies": cookie})
