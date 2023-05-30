@@ -104,10 +104,10 @@ def sendVerificationCodeEmail(email):
         print("done")
     except Exception as e:
         print(e)
-    # finally:
-    #     collection_name = dbname["verification"]
-    #     collection_name.update_one({"email_id": email},{"$set": {"otp":str(code)}}, upsert=True)
-    #     server.quit()
+    finally:
+        collection_name = dbname["verification"]
+        collection_name.update_one({"email_id": email},{"$set": {"otp":str(code)}}, upsert=True)
+        server.quit()
 
 def verify(email, code):
     collection_name = dbname["verification"]
