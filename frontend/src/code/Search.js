@@ -54,6 +54,7 @@ export default function Search(props) {
               type="text"
               className="px-3 indent-3 w-full bg-transparent focus:outline-0 font-medium text-lg"
               value={searchQuery}
+              autoComplete="on"
               onChange={handleSearchInputChange}
             />
             <button type="submit">

@@ -70,7 +70,7 @@ export default function Header(props) {
                 title="LOGOUT"
               >
                 {/* <u className="no-underline">LOGOUT</u> */}
-                <img src="./exit.png" alt="" srcset="" className="h-6"/>
+                <img src="./exit.png" alt="" srcSet="" className="h-6"/>
               </button>
             ) : (
               // Render the login button if the user is not logged in
@@ -115,7 +115,7 @@ export default function Header(props) {
                 title="LOGOUT"
               >
                 {/* <u className="no-underline">LOGOUT</u> */}
-                <img src="./exit.png" alt="" srcset="" className="h-6"/>
+                <img src="./exit.png" alt="" srcSet="" className="h-6"/>
               </button>
             ) : (
               // Render the login button if the user is not logged in
@@ -143,7 +143,7 @@ export default function Header(props) {
               title="LOGOUT"
             >
               {/* <u className="no-underline">LOGOUT</u> */}
-                <img src="./exit.png" alt="" srcset="" className="h-6"/>
+                <img src="./exit.png" alt="" srcSet="" className="h-6"/>
             </button>
           ) : (
             // Render the login button if the user is not logged in

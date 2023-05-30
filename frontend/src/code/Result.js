@@ -94,6 +94,26 @@ export default function Result() {
     checkIfUserIsLoggedIn();
   }, []);
 
+  const showFav = (name, id1, id2) => {
+    callLinkFavAdd(name);
+    if (resF || resA) {
+      const b = document.getElementById(id1);
+      const c = document.getElementById(id2);
+      b.style.display = "none";
+      c.style.display = "block";
+    }
+  };
+
+  const hideFav = (name, id1, id2) => {
+    callLinkFavRemove(name);
+    if (resF || resA) {
+      const b = document.getElementById(id1);
+      const c = document.getElementById(id2);
+      b.style.display = "none";
+      c.style.display = "block";
+    }
+  };
+
   async function callFlipkart() {
     const result = await callLinkFlipkart();
     setResF(result);
@@ -103,34 +123,6 @@ export default function Result() {
     const result = await callLinkAmazon();
     setResA(result);
   }
-
-  const showFav = (name) => {
-    callLinkFavAdd(name);
-    if (resF) {
-      const b = document.getElementById("fav0");
-      const c = document.getElementById("fav1");
-      if(b){
-        b.style.display = "none";
-      }
-      if(c){
-        c.style.display = "block";
-      }
-    }
-  };
-
-  const hideFav = (name) => {
-    callLinkFavRemove(name);
-    if (resF) {
-      const b = document.getElementById("fav0");
-      const c = document.getElementById("fav1");
-      if(b){
-        b.style.display = "block";
-      }
-      if(c){
-        c.style.display = "none";
-      }
-    }
-  };
 
   if (!resF && !resA) {
     return (
@@ -179,7 +171,7 @@ export default function Result() {
             Search results for "{searchQuery}"
           </h1>
           <div className="w-4/6 m-auto py-3 border-gray-400 rounded-2xl overflow-hidden shadow-lg shadow-slate-500 border-2 bg-white">
-            <div className="border-gray-400 border-y-[1px] hover:scale-[101%] duration-300 my-2 flex justify-evenly">
+            <div className="border-gray-400 items-center border-y-[1px] hover:scale-[101%] duration-300 my-2 flex justify-evenly">
               <img
                 src={resF.image}
                 alt=""
@@ -194,15 +186,15 @@ export default function Result() {
                     <img
                       src="./fav0.png"
                       alt="Favourite"
-                      id="fav0"
-                      onClick={showFav(resF.name)}
+                      id="1fav0"
+                      onClick={() => showFav(resF.name, "1fav0", "1fav1")}
                       className="h-4 float-right pr-5 cursor-pointer active:scale-100 hover:scale-125"
                     />
                     <img
                       src="./fav1.png"
                       alt="Favourite"
-                      id="fav1"
-                      onClick={hideFav(resF.name)}
+                      id="1fav1"
+                      onClick={() => hideFav(resF.name, "1fav1", "1fav0")}
                       className="h-4 hidden float-right pr-5 cursor-pointer active:scale-100 hover:scale-125"
                     />
                   </div>
@@ -255,7 +247,7 @@ export default function Result() {
             Search results for "{searchQuery}"
           </h1>
           <div className="w-4/6 m-auto py-3 border-gray-400 rounded-2xl overflow-hidden shadow-lg shadow-slate-500 border-2 bg-white">
-            <div className="border-gray-400 border-y-[1px] hover:scale-[101%] duration-300 my-2 flex justify-evenly">
+            <div className="border-gray-400 items-center border-y-[1px] hover:scale-[101%] duration-300 my-2 flex justify-evenly">
               <img
                 src={resF.image}
                 alt=""
@@ -270,13 +262,15 @@ export default function Result() {
                     <img
                       src="./fav0.png"
                       alt="Favourite"
-                      id="fav0"
+                      id="2fav0"
+                      onClick={() => showFav(resF.name, "2fav0", "2fav1")}
                       className="h-4 float-right pr-5 cursor-pointer active:scale-100 hover:scale-125"
                     />
                     <img
                       src="./fav1.png"
                       alt="Favourite"
-                      id="fav1"
+                      id="2fav1"
+                      onClick={() => hideFav(resF.name, "2fav1", "2fav0")}
                       className="h-4 hidden float-right pr-5 cursor-pointer active:scale-100 hover:scale-125"
                     />
                   </div>
@@ -317,7 +311,7 @@ export default function Result() {
               </div>
             </div>
 
-            <div className="border-gray-400 border-y-[1px] hover:scale-[101%] duration-300 my-2 flex justify-evenly">
+            <div className="border-gray-400 items-center border-y-[1px] hover:scale-[101%] duration-300 my-2 flex justify-evenly">
               <img
                 src={resA.image}
                 alt=""
@@ -332,13 +326,15 @@ export default function Result() {
                     <img
                       src="./fav0.png"
                       alt="Favourite"
-                      id="fav0"
+                      id="3fav0"
+                      onClick={() => showFav(resA.name, "3fav0", "3fav1")}
                       className="h-4 float-right pr-5 cursor-pointer active:scale-100 hover:scale-125"
                     />
                     <img
                       src="./fav1.png"
                       alt="Favourite"
-                      id="fav1"
+                      id="3fav1"
+                      onClick={() => hideFav(resA.name, "3fav1", "3fav0")}
                       className="h-4 hidden float-right pr-5 cursor-pointer active:scale-100 hover:scale-125"
                     />
                   </div>
