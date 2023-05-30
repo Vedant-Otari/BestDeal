@@ -15,7 +15,7 @@ collection_name = dbname["customer_details"]
 #     "password": "password",
 # 	"comments": [
 # 		{
-# 			"product_name": "Bose SoundLink Color Bluetooth Speaker II Portable Blue...",
+# 			"product_name": "SAMSUNG Galaxy S22 Plus 5G (Phantom Black, 128 GB)",
 # 			"date": datetime.utcnow(),
 # 			"description": "Amazing product with great features. The volume and sound quality is perfect.",
 # 			"rating": 5
@@ -29,7 +29,7 @@ collection_name = dbname["customer_details"]
 # 	],
 # 	"wishlist": [
 # 		{
-# 			"product_name": "Bose SoundLink Color Bluetooth Speaker II Portable Blue...",
+# 			"product_name": "SAMSUNG Galaxy S22 Plus 5G (Phantom Black, 128 GB)",
 # 			"date": datetime.utcnow(),
 # 		},
 # 		{
@@ -41,112 +41,112 @@ collection_name = dbname["customer_details"]
 
 
 # customer1 = {
-#     "username": "user1",
-#     "email_id": "user1@gmail.com",
+#     "username": "user11",
+#     "email_id": "user11@gmail.com",
 #     "password": "password",
 #     "comments": [
 #         {
-#             "product_name": "Bose SoundLink Color Bluetooth Speaker II Portable Blue...",
+#             "product_name": "SAMSUNG Galaxy S22 Plus 5G (Phantom Black, 128 GB)",
 #             "date": datetime.utcnow(),
-#             "description": "The speaker has excellent sound quality and a sleek design. I highly recommend it!",
-#             "rating": 5
+#             "description": "This phone is amazing! The camera captures stunning photos, and the display is vibrant. It's a powerful device with great performance and ample storage. Highly recommended!",
+# 			"rating": 5
 #         }
 #     ],
 #     "wishlist": [
 #         {
-#             "product_name": "Bose SoundLink Color Bluetooth Speaker II Portable Blue...",
+#             "product_name": "SAMSUNG Galaxy S22 Plus 5G (Phantom Black, 128 GB)",
 #             "date": datetime.utcnow()
 #         }
 #     ]
 # }
 
 # customer2 = {
-#     "username": "user2",
-#     "email_id": "user2@gmail.com",
+#     "username": "user12",
+#     "email_id": "user12@gmail.com",
 #     "password": "password",
 #     "comments": [
 #         {
-#             "product_name": "Bose SoundLink Color Bluetooth Speaker II Portable Blue...",
+#             "product_name": "SAMSUNG Galaxy S22 Plus 5G (Phantom Black, 128 GB)",
 #             "date": datetime.utcnow(),
-#             "description": "I'm very satisfied with this speaker. It delivers rich bass and clear audio. Solid 4 out of 5!",
-#             "rating": 4
+#             "description": "Disappointed with this phone. The battery life is poor, and the software interface is confusing. Very unimpressive.",
+#             "rating": 2
 #         }
 #     ],
 #     "wishlist": [
 #         {
-#             "product_name": "Bose SoundLink Color Bluetooth Speaker II Portable Blue...",
+#             "product_name": "SAMSUNG Galaxy S22 Plus 5G (Phantom Black, 128 GB)",
 #             "date": datetime.utcnow()
 #         }
 #     ]
 # }
 
 # customer3 = {
-#     "username": "user3",
-#     "email_id": "user3@gmail.com",
+#     "username": "user13",
+#     "email_id": "user13@gmail.com",
 #     "password": "password",
 #     "comments": [
 #         {
-#             "product_name": "Bose SoundLink Color Bluetooth Speaker II Portable Blue...",
+#             "product_name": "SAMSUNG Galaxy S22 Plus 5G (Phantom Black, 128 GB)",
 #             "date": datetime.utcnow(),
-#             "description": "The cable was not compatible between my macbook and iphone.  Also the connector came apart and the cables started fraying.",
-#             "rating": 1
+#             "description": "I love this phone! The sleek design and stunning display are impressive. The camera performs exceptionally well, and the battery lasts all day. Worth every penny",
+#             "rating": 5
 #         }
 #     ],
 #     "wishlist": [
 #         {
-#             "product_name": "Bose SoundLink Color Bluetooth Speaker II Portable Blue...",
+#             "product_name": "SAMSUNG Galaxy S22 Plus 5G (Phantom Black, 128 GB)",
 #             "date": datetime.utcnow()
 #         }
 #     ]
 # }
 
 # customer4 = {
-#     "username": "user4",
-#     "email_id": "user4@gmail.com",
+#     "username": "user14",
+#     "email_id": "user14@gmail.com",
 #     "password": "password",
 #     "comments": [
 #         {
-#             "product_name": "Bose SoundLink Color Bluetooth Speaker II Portable Blue...",
+#             "product_name": "SAMSUNG Galaxy S22 Plus 5G (Phantom Black, 128 GB)",
 #             "date": datetime.utcnow(),
-#             "description": "I absolutely love this speaker! The sound is crystal clear, and it's easy to connect. A solid 5 out of 5!",
-#             "rating": 5
+#             "description": "Unhappy with this phone. Experienced lag and freezes soon after purchase. Fingerprint sensor and sound quality are disappointing.",
+#             "rating": 2
 #         }
 #     ],
 #     "wishlist": [
 #         {
-#             "product_name": "Bose SoundLink Color Bluetooth Speaker II Portable Blue...",
+#             "product_name": "SAMSUNG Galaxy S22 Plus 5G (Phantom Black, 128 GB)",
 #             "date": datetime.utcnow()
 #         }
 #     ]
 # }
 
 # customer5 = {
-#     "username": "user5",
-#     "email_id": "user5@gmail.com",
+#     "username": "user15",
+#     "email_id": "user15@gmail.com",
 #     "password": "password",
 #     "comments": [
 #         {
-#             "product_name": "Bose SoundLink Color Bluetooth Speaker II Portable Blue...",
+#             "product_name": "SAMSUNG Galaxy S22 Plus 5G (Phantom Black, 128 GB)",
 #             "date": datetime.utcnow(),
-#             "description": "The speaker is compact and portable, making it perfect for travel. Definitely a 4 out of 5.",
-#             "rating": 4
+#             "description": "Solid performer! The sharp and vibrant display provides an immersive viewing experience. Great features. Definitely a 5 out of 5.",
+#             "rating": 5
 #         }
 #     ],
 #     "wishlist": [
 #         {
-#             "product_name": "Bose SoundLink Color Bluetooth Speaker II Portable Blue...",
+#             "product_name": "SAMSUNG Galaxy S22 Plus 5G (Phantom Black, 128 GB)",
 #             "date": datetime.utcnow()
 #         }
 #     ]
 # }
 
 # customer6 = {
-#     "username": "user6",
-#     "email_id": "user6@gmail.com",
+#     "username": "user16",
+#     "email_id": "user16@gmail.com",
 #     "password": "password",
 #     "comments": [
 #         {
-#             "product_name": "Bose SoundLink Color Bluetooth Speaker II Portable Blue...",
+#             "product_name": "SAMSUNG Galaxy S22 Plus 5G (Phantom Black, 128 GB)",
 #             "date": datetime.utcnow(),
 #             "description": "This product is useless garbage. Don't buy it. Terrible sound quality.",
 #             "rating": 1
@@ -154,39 +154,39 @@ collection_name = dbname["customer_details"]
 #     ],
 #     "wishlist": [
 #         {
-#             "product_name": "Bose SoundLink Color Bluetooth Speaker II Portable Blue...",
+#             "product_name": "SAMSUNG Galaxy S22 Plus 5G (Phantom Black, 128 GB)",
 #             "date": datetime.utcnow()
 #         }
 #     ]
 # }
 
 # customer7 = {
-#     "username": "user7",
-#     "email_id": "user7@gmail.com",
+#     "username": "user17",
+#     "email_id": "user17@gmail.com",
 #     "password": "password",
 #     "comments": [
 #         {
-#             "product_name": "Bose SoundLink Color Bluetooth Speaker II Portable Blue...",
+#             "product_name": "SAMSUNG Galaxy S22 Plus 5G (Phantom Black, 128 GB)",
 #             "date": datetime.utcnow(),
-#             "description": "This speaker exceeded my expectations! The sound quality is fantastic, and the battery life is impressive. Solid 5 out of 5!",
+#             "description": "This mobile is fantastic! The camera quality is outstanding, capturing stunning photos even in low light. The display is crisp and vibrant, making videos and gaming a delight. Highly satisfied with its performance!",
 #             "rating": 5
 #         }
 #     ],
 #     "wishlist": [
 #         {
-#             "product_name": "Bose SoundLink Color Bluetooth Speaker II Portable Blue...",
+#             "product_name": "SAMSUNG Galaxy S22 Plus 5G (Phantom Black, 128 GB)",
 #             "date": datetime.utcnow()
 #         }
 #     ]
 # }
 
 # customer8 = {
-#     "username": "user8",
-#     "email_id": "user8@gmail.com",
+#     "username": "user18",
+#     "email_id": "user18@gmail.com",
 #     "password": "password",
 #     "comments": [
 #         {
-#             "product_name": "Bose SoundLink Color Bluetooth Speaker II Portable Blue...",
+#             "product_name": "SAMSUNG Galaxy S22 Plus 5G (Phantom Black, 128 GB)",
 #             "date": datetime.utcnow(),
 #             "description": "Bad build quality. Battery dosent work properly and the case was damaged when I received it.",
 #             "rating": 1
@@ -194,55 +194,157 @@ collection_name = dbname["customer_details"]
 #     ],
 #     "wishlist": [
 #         {
-#             "product_name": "Bose SoundLink Color Bluetooth Speaker II Portable Blue...",
+#             "product_name": "SAMSUNG Galaxy S22 Plus 5G (Phantom Black, 128 GB)",
 #             "date": datetime.utcnow()
 #         }
 #     ]
 # }
 
 # customer9 = {
-#     "username": "user9",
-#     "email_id": "user9@gmail.com",
+#     "username": "user19",
+#     "email_id": "user19@gmail.com",
 #     "password": "password",
 #     "comments": [
 #         {
-#             "product_name": "Bose SoundLink Color Bluetooth Speaker II Portable Blue...",
+#             "product_name": "SAMSUNG Galaxy S22 Plus 5G (Phantom Black, 128 GB)",
 #             "date": datetime.utcnow(),
-#             "description": "This speaker is excellent! The sound is crisp and clear, and it's easy to set up. Definitely deserves a 5 out of 5!",
+#             "description": "I'm loving this phone! The display is beautiful and immersive, with vibrant colors. The performance is snappy and multitasking is a breeze. The camera takes stunning photos, and the storage capacity is ample. Definitely worth the investment!",
 #             "rating": 5
 #         }
 #     ],
 #     "wishlist": [
 #         {
-#             "product_name": "Bose SoundLink Color Bluetooth Speaker II Portable Blue...",
+#             "product_name": "SAMSUNG Galaxy S22 Plus 5G (Phantom Black, 128 GB)",
 #             "date": datetime.utcnow()
 #         }
 #     ]
 # }
 
 # customer10 = {
-#     "username": "user10",
-#     "email_id": "user10@gmail.com",
+#     "username": "user20",
+#     "email_id": "user20@gmail.com",
 #     "password": "password",
 #     "comments": [
 #         {
-#             "product_name": "Bose SoundLink Color Bluetooth Speaker II Portable Blue...",
+#             "product_name": "SAMSUNG Galaxy S22 Plus 5G (Phantom Black, 128 GB)",
 #             "date": datetime.utcnow(),
-#             "description": "I'm very impressed with the speaker's durability. It feels solid and well-built. A solid 4 out of 5!",
-#             "rating": 4
+#             "description": "This phone exceeds expectations! The battery life is impressive. The UI is clean and user-friendly. The audio quality is excellent, providing an immersive audio experience. I'm extremely satisfied!",
+#             "rating": 5
 #         }
 #     ],
 #     "wishlist": [
 #         {
-#             "product_name": "Bose SoundLink Color Bluetooth Speaker II Portable Blue...",
+#             "product_name": "SAMSUNG Galaxy S22 Plus 5G (Phantom Black, 128 GB)",
 #             "date": datetime.utcnow()
 #         }
 #     ]
 # }
 
 
+# customer11 = {
+#     "username": "user21",
+#     "email_id": "user21@gmail.com",
+#     "password": "password",
+#     "comments": [
+#         {
+#             "product_name": "SAMSUNG Galaxy S22 Plus 5G (Phantom Black, 128 GB)",
+#             "date": datetime.utcnow(),
+#             "description": "The device heats up a lot and gives a lot of lag. Very terrible experience.",
+#             "rating": 1
+#         }
+#     ],
+#     "wishlist": [
+#         {
+#             "product_name": "SAMSUNG Galaxy S22 Plus 5G (Phantom Black, 128 GB)",
+#             "date": datetime.utcnow()
+#         }
+#     ]
+# }
+
+# customer12 = {
+#     "username": "user22",
+#     "email_id": "user22@gmail.com",
+#     "password": "password",
+#     "comments": [
+#         {
+#             "product_name": "SAMSUNG Galaxy S22 Plus 5G (Phantom Black, 128 GB)",
+#             "date": datetime.utcnow(),
+#             "description": "This product is useless garbage. Don't buy it. Terrible sound quality.",
+#             "rating": 1
+#         }
+#     ],
+#     "wishlist": [
+#         {
+#             "product_name": "SAMSUNG Galaxy S22 Plus 5G (Phantom Black, 128 GB)",
+#             "date": datetime.utcnow()
+#         }
+#     ]
+# }
+
+# customer13 = {
+#     "username": "user23",
+#     "email_id": "user23@gmail.com",
+#     "password": "password",
+#     "comments": [
+#         {
+#             "product_name": "SAMSUNG Galaxy S22 Plus 5G (Phantom Black, 128 GB)",
+#             "date": datetime.utcnow(),
+#             "description": "This phone is incredible! Stunning camera, vibrant display, and smooth performance . Highly recommended .",
+#             "rating": 5
+#         }
+#     ],
+#     "wishlist": [
+#         {
+#             "product_name": "SAMSUNG Galaxy S22 Plus 5G (Phantom Black, 128 GB)",
+#             "date": datetime.utcnow()
+#         }
+#     ]
+# }
+
+# customer14 = {
+#     "username": "user24",
+#     "email_id": "user24@gmail.com",
+#     "password": "password",
+#     "comments": [
+#         {
+#             "product_name": "SAMSUNG Galaxy S22 Plus 5G (Phantom Black, 128 GB)",
+#             "date": datetime.utcnow(),
+#             "description": "Impressed with this mobile! Sleek design, long-lasting battery, and excellent user experience. Worth every penny",
+#             "rating": 5
+#         }
+#     ],
+#     "wishlist": [
+#         {
+#             "product_name": "SAMSUNG Galaxy S22 Plus 5G (Phantom Black, 128 GB)",
+#             "date": datetime.utcnow()
+#         }
+#     ]
+# }
+
+# customer15 = {
+#     "username": "user25",
+#     "email_id": "user25@gmail.com",
+#     "password": "password",
+#     "comments": [
+#         {
+#             "product_name": "SAMSUNG Galaxy S22 Plus 5G (Phantom Black, 128 GB)",
+#             "date": datetime.utcnow(),
+#             "description": "Loving this phone! Beautiful display, powerful performance, and great camera quality. Best phone I've had!",
+#             "rating": 5
+#         }
+#     ],
+#     "wishlist": [
+#         {
+#             "product_name": "SAMSUNG Galaxy S22 Plus 5G (Phantom Black, 128 GB)",
+#             "date": datetime.utcnow()
+#         }
+#     ]
+# }
+
+
+
 # #Insert the documents
-# collection_name.insert_many([customer, customer1, customer2, customer3, customer4, customer5, customer6, customer7, customer8, customer9, customer10])
+# collection_name.insert_many([customer1, customer2, customer3, customer4, customer5, customer6, customer7, customer8, customer9, customer10, customer11, customer12, customer13, customer14, customer15])
 # #Check the count
 # count = collection_name.count_documents({})
 # print(count)
