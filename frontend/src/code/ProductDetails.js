@@ -86,6 +86,7 @@ export default function ProductDetails() {
   const [res2, setRes2] = useState(null);
   const [res3, setRes3] = useState(null);
   const [res4, setRes4] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     callProduct();
@@ -93,6 +94,13 @@ export default function ProductDetails() {
     callSentiment();
     callWordCloud();
     callChart();
+    const checkIfUserIsLoggedIn = () => {
+      const cookies = document.cookie;
+      const isLoggedIn = cookies.includes("bestdeal");
+      setIsLoggedIn(isLoggedIn);
+    };
+
+    checkIfUserIsLoggedIn();
   }, []);
 
   async function callProduct() {
@@ -265,7 +273,12 @@ export default function ProductDetails() {
             <label className="text-center shadow-md shadow-gray-500 rounded-t-xl text-3xl bg-cyan-700 text-white py-4 px-2 font-serif">
               {productName}
             </label>
-            <div className="border-cyan-900 shadow-xl border-l-[55px] rounded-b-3xl pl-6 text-left flex flex-col justify-evenly h-full mt-0">
+            <div className="border-cyan-900 shadow-xl relative border-l-[55px] overflow-hidden rounded-b-3xl pl-6 text-left flex flex-col justify-evenly h-full mt-0">
+              {isLoggedIn &&(
+                <div className="bg-green-600 absolute right-0 rounded-tl-xl hover:scale-105 cursor-pointer bottom-0 p-3">
+                  <img src="./comment.png" alt="" className="h-10" />
+                </div>
+              )}
               <div className="text-3xl font-bold text-left w-full">
                 Rs. {res.price}&nbsp;
                 <span className="text-xl text-green-600 font-bold text-left">
@@ -392,9 +405,14 @@ export default function ProductDetails() {
           )}
         </div>
         {res4 && (
-          <div className="flex flex-col overflow-hidden justify-center bg-white w-[90%] mx-auto py-5 rounded-xl shadow-md shadow-black">
-            <div className="text-center text-3xl uppercase text-cyan-800 mb-4 font-serif">Price History</div>
-            <div id="historyChart" className="w-[90%] mx-auto p-7 flex justify-center"></div>
+          <div className="flex flex-col overflow-hidden mt-6 justify-center bg-white w-[90%] mx-auto py-5 rounded-xl shadow-md shadow-black">
+            <div className="text-center text-3xl uppercase text-cyan-800 mb-4 font-serif">
+              Price History
+            </div>
+            <div
+              id="historyChart"
+              className="w-[90%] mx-auto p-7 flex justify-center"
+            ></div>
           </div>
         )}
         {res3 && (
