@@ -3,6 +3,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 // import React, { useState, useEffect, createContext, createElement } from "react";
 import { useLocation } from "react-router-dom";
+import CommentBox from "./CommentBox";
 
 async function callLinkProduct() {
   try {
@@ -87,6 +88,7 @@ export default function ProductDetails() {
   const [res3, setRes3] = useState(null);
   const [res4, setRes4] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [showCommentBox, setshowCommentBox] = useState(false);
 
   useEffect(() => {
     callProduct();
@@ -106,6 +108,14 @@ export default function ProductDetails() {
   async function callProduct() {
     const result = await callLinkProduct();
     setRes(result);
+  }
+
+  function showCommentBoxFunction() {
+    setshowCommentBox(true);
+  }
+
+  function hideCommentBoxFunction() {
+    setshowCommentBox(false);
   }
 
   async function callComments() {
@@ -256,6 +266,7 @@ export default function ProductDetails() {
   return (
     <>
       <Header showButton="showSearch" />
+      {showCommentBox && <CommentBox productName="iPhone 14 pro" onClose={hideCommentBoxFunction}/>}
       <div className="flex flex-col shadow-lg shadow-black overflow-hidden border-2 border-cyan-700 bg-zinc-200 w-5/6 m-auto mt-9 mb-20 rounded-xl">
         <div className="flex">
           <div className="p-2 w-1/2 rounded-br-xl bg-white flex origin justify-center aspect-[1.5] overflow-hidden">
@@ -274,8 +285,11 @@ export default function ProductDetails() {
               {productName}
             </label>
             <div className="border-cyan-900 shadow-xl relative border-l-[55px] overflow-hidden rounded-b-3xl pl-6 text-left flex flex-col justify-evenly h-full mt-0">
-              {isLoggedIn &&(
-                <div className="bg-green-600 absolute right-0 rounded-tl-xl hover:scale-105 cursor-pointer bottom-0 p-3">
+              {isLoggedIn && (
+                <div
+                  onClick={showCommentBoxFunction}
+                  className="bg-green-600 absolute right-0 rounded-tl-xl hover:scale-105 cursor-pointer bottom-0 p-3"
+                >
                   <img src="./comment.png" alt="" className="h-10" />
                 </div>
               )}
