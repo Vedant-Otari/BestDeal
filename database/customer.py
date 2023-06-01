@@ -395,6 +395,16 @@ def delete_product_comment(product_name, cookie):
 	
 	collection_name.update_one({"cookies": cookie}, {"$set": customer_details})
 
+def get_specific_user_product_comment(product_name, cookie):
+    customer_details = collection_name.find_one({"cookies": cookie})
+
+    for comment in customer_details["comments"]:
+        if comment["product_name"] == product_name:
+            return comment
+
+    return None
+
+
 def get_customer_comments(uname, pword):
 	customer_details = collection_name.find({"username": uname, "password": pword}, {"comments": 1})
 	if(customer_details == None):

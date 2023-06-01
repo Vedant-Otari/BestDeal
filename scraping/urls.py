@@ -19,5 +19,6 @@ urlpatterns = [
     path('api/wishlistAdd', addProductToWishlist),
     path('api/wishlistRemove', removeProductFromWishlist),
     path('api/addProductComment', addProductComment),
+    path('api/getSpecificUserProductComment', getSpecificUserProductComment),
     path('api/deleteProductComment', deleteProductComment)
 ]
