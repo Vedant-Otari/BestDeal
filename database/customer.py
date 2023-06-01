@@ -363,28 +363,27 @@ def get_customer(cookie):
 		return customer_details
 
 def add_product_comment(product_name, description, rating, cookie):
-	customer_details = collection_name.find_one({"cookies": cookie})
+    customer_details = collection_name.find_one({"cookies": cookie})
 
-	new_comment_item = {
-    "product_name": str(product_name),
-    "date": datetime.utcnow(),
-	"description": str(description),
-	"rating": rating
-	}
+    updated = False
+    for comment in customer_details["comments"]:
+        if comment["product_name"] == product_name:
+            comment["description"] = description
+            comment["rating"] = rating
+            updated = True
+            break
 
-	customer_details["comments"].append(new_comment_item)
-	collection_name.update_one({"cookies": cookie}, {"$set": customer_details})
+    if not updated:
+        new_comment_item = {
+            "product_name": str(product_name),
+            "date": datetime.utcnow(),
+            "description": str(description),
+            "rating": rating
+        }
+        customer_details["comments"].append(new_comment_item)
 
-def update_product_comment(product_name, description, rating, cookie):
-	customer_details = collection_name.find_one({"cookies": cookie})
+    collection_name.update_one({"cookies": cookie}, {"$set": customer_details}, upsert=True)
 
-	for comment in customer_details["comments"]:
-		if comment["product_name"] == product_name:
-			comment["description"] = description
-			comment["rating"] = rating
-			break  # Exit the loop after finding the matching comment
-	
-	collection_name.update_one({"cookies": cookie}, {"$set": customer_details})
 
 def delete_product_comment(product_name, cookie):
 	customer_details = collection_name.find_one({"cookies": cookie})
