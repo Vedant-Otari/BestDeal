@@ -7,7 +7,7 @@ from flipkartScraping.getProductDetailFlipkart import getFlipkartProductDetail
 from homeScreenData.homeScreen import getHomeScreenItems
 from homeScreenData.homeScreen import getMostViewedItems
 from signinSignup.loginInterface import signIn,signUp,sendVerificationCodeEmail
-from database.customer import get_customer, add_product_to_wishlist, remove_product_from_wishlist, add_product_comment, update_product_comment, delete_product_comment, get_specific_user_product_comment
+from database.customer import get_customer, add_product_to_wishlist, remove_product_from_wishlist, add_product_comment, delete_product_comment, get_specific_user_product_comment
 from database.dB import get_product_details
 from commentAnalysis.model import getComments, getSentiment, getWordClouds
 from productPriceChart.priceChart import getPriceHistoryChart
