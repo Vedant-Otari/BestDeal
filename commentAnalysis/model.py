@@ -207,8 +207,8 @@ def getWordClouds(productName):
         wordCloud_image_positive.save(image_stream_positive, format='PNG')
 
     # Encode byte streams to base64 strings
-    wordCloud_data_negative = base64.b64encode(image_stream_negative.getvalue()).decode('utf-8') if wordCloud_image_negative else None
-    wordCloud_data_positive = base64.b64encode(image_stream_positive.getvalue()).decode('utf-8') if wordCloud_image_positive else None
+    wordCloud_data_negative = base64.b64encode(image_stream_negative.getvalue()).decode('utf-8') if wordCloud_image_negative else ""
+    wordCloud_data_positive = base64.b64encode(image_stream_positive.getvalue()).decode('utf-8') if wordCloud_image_positive else ""
 
     # Create a dictionary to hold both Word Clouds
     wordClouds_data = {
