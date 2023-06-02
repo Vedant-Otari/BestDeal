@@ -56,7 +56,7 @@ async function callLinkWordCloud() {
       },
     });
     // console.log("word cloud:");
-    // console.log(res.data);
+    console.log(res.data);
     return res.data;
   } catch (err) {
     console.log(err);
@@ -133,10 +133,16 @@ export default function ProductDetails() {
     setRes3(true);
     var imgPos = document.createElement("img");
     imgPos.src = result["positive"];
-    document.getElementById("wordcloudPos").appendChild(imgPos);
+    var posCloud = document.getElementById("wordcloudPos");
+    if(posCloud){
+      posCloud.appendChild(imgPos);
+    }
     var img = document.createElement("img");
     img.src = result["negative"];
-    document.getElementById("wordcloudNeg").appendChild(img);
+    var negCloud = document.getElementById("wordcloudNeg");
+    if(negCloud){
+      negCloud.appendChild(img);
+    }
   }
 
   async function callChart() {
@@ -144,7 +150,10 @@ export default function ProductDetails() {
     var img = document.createElement("img");
     img.src = result;
     setRes4(true);
-    document.getElementById("historyChart").appendChild(img);
+    var chartElement = document.getElementById("historyChart");
+    if (chartElement) {
+      chartElement.appendChild(img);
+    }
   }
 
   if (!res) {
