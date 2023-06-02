@@ -56,7 +56,7 @@ async function callLinkWordCloud() {
       },
     });
     // console.log("word cloud:");
-    console.log(res.data);
+    // console.log(res.data);
     return res.data;
   } catch (err) {
     console.log(err);
@@ -78,6 +78,22 @@ async function callLinkChart() {
   }
 }
 
+async function getProductUserDetails(cookies) {
+  try {
+    const res = await axios.get("http://127.0.0.1:8000/api/getSpecificUserProductComment", {
+      params: {
+        product_name: productName,
+        cookie: cookies,
+      },
+    });
+    console.log("Here is comments:\n\n");
+    console.log(res.data);
+    return res.data;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 var productName = "";
 export default function ProductDetails() {
   const searchQuery = new URLSearchParams(useLocation().search).get("query");
@@ -87,6 +103,7 @@ export default function ProductDetails() {
   const [res2, setRes2] = useState(null);
   const [res3, setRes3] = useState(null);
   const [res4, setRes4] = useState(null);
+  const [comments, setComments] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showCommentBox, setshowCommentBox] = useState(false);
 
@@ -94,8 +111,6 @@ export default function ProductDetails() {
     callProduct();
     callComments();
     callSentiment();
-    callWordCloud();
-    callChart();
     const checkIfUserIsLoggedIn = () => {
       const cookies = document.cookie;
       const isLoggedIn = cookies.includes("bestdeal");
@@ -103,11 +118,19 @@ export default function ProductDetails() {
     };
 
     checkIfUserIsLoggedIn();
+    callWordCloud();
+    callChart();
+    callGetProductUserDetails();
   }, []);
 
   async function callProduct() {
     const result = await callLinkProduct();
     setRes(result);
+  }
+  
+  async function callGetProductUserDetails() {
+    const result = await getProductUserDetails();
+    setComments(result);
   }
 
   function showCommentBoxFunction() {
@@ -134,13 +157,13 @@ export default function ProductDetails() {
     var imgPos = document.createElement("img");
     imgPos.src = result["positive"];
     var posCloud = document.getElementById("wordcloudPos");
-    if(posCloud){
+    if (posCloud) {
       posCloud.appendChild(imgPos);
     }
     var img = document.createElement("img");
     img.src = result["negative"];
     var negCloud = document.getElementById("wordcloudNeg");
-    if(negCloud){
+    if (negCloud) {
       negCloud.appendChild(img);
     }
   }
@@ -275,7 +298,13 @@ export default function ProductDetails() {
   return (
     <>
       <Header showButton="showSearch" />
-      {showCommentBox && <CommentBox productName="iPhone 14 pro" onClose={hideCommentBoxFunction}/>}
+      {showCommentBox && (
+        <CommentBox
+          productName={productName}
+          productDetails={comments}
+          onClose={hideCommentBoxFunction}
+        />
+      )}
       <div className="flex flex-col shadow-lg shadow-black overflow-hidden border-2 border-cyan-700 bg-zinc-200 w-5/6 m-auto mt-9 mb-20 rounded-xl">
         <div className="flex">
           <div className="p-2 w-1/2 rounded-br-xl bg-white flex origin justify-center aspect-[1.5] overflow-hidden">

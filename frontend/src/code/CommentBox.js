@@ -1,10 +1,12 @@
 import React from "react";
 import axios from "axios";
 import { useState } from "react";
-export default function CommentBox({ productName, onClose }) {
-  const [username, setUsername] = useState("");
+export default function CommentBox({ productName,productDetails, onClose }) {
+  const [username1, setUsername1] = useState("");
+  const [username2, setUsername2] = useState("");
   function commentSubmit() {
-    alert(username);
+    alert(username1);
+    callLinkFavAdd();
     onClose();
   }
 
@@ -22,12 +24,14 @@ export default function CommentBox({ productName, onClose }) {
     return null;
   }
 
-  async function callLinkFavAdd(prodName) {
+  async function callLinkFavAdd() {
     const cookieValue = getCookieValue("bestdeal");
     try {
-      await axios.get("http://127.0.0.1:8000/api/updateProductComment", {
+      await axios.get("http://127.0.0.1:8000/api/addProductComment", {
         params: {
-          product_name: prodName,
+          product_name: productName,
+          description: username1,
+          rating: username2,
           cookie: cookieValue,
         },
       });
@@ -46,13 +50,19 @@ export default function CommentBox({ productName, onClose }) {
           X
         </div>
         <div className="text-3xl text-center">
-          Add a comment for {productName}
+          Add a comment for "{productName}"
         </div>
         <input
-          onInput={(data) => setUsername(data.target.value)}
+          onInput={(data) => setUsername1(data.target.value)}
           className="border-2 border-black rounded-md w-2/3 mx-auto text-xl p-2"
           placeholder="Enter your comment here"
           type="text"
+        />
+        <input
+          onInput={(data) => setUsername2(data.target.value)}
+          className="border-2 border-black no-arrows rounded-md w-1/3 mx-auto text-center text-xl p-2"
+          placeholder="Enter rating here"
+          type="number"
         />
         <button
           onClick={commentSubmit}

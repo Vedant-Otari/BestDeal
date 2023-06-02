@@ -89,7 +89,7 @@ export default function Result() {
 
   useEffect(() => {
     callFlipkart();
-    callAmazon();
+    // callAmazon();
 
     const checkIfUserIsLoggedIn = () => {
       const cookies = document.cookie;
@@ -134,12 +134,6 @@ export default function Result() {
     return (
       <>
         <Header showButton="showSearch" />
-        {emailNotification && (
-          <EmailNotification
-            productName="Samsung S11"
-            onClose={hideNotificationBox}
-          />
-        )}
         <div className="bg-gray-50 min-h-screen h-full pb-16">
           <h1 className="text-3xl text-center font-sans py-6 ">
             Searching for "{searchQuery}"
@@ -178,6 +172,12 @@ export default function Result() {
     return (
       <>
         <Header showButton="showSearch" />
+        {emailNotification && (
+          <EmailNotification
+            productName="Samsung S22"
+            onClose={hideNotificationBox}
+          />
+        )}
         <div className="bg-gray-50 min-h-screen h-full pb-16">
           <h1 className="text-3xl text-center font-sans py-6">
             Search results for "{searchQuery}"
