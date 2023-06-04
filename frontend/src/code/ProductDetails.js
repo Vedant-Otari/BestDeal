@@ -155,8 +155,8 @@ export default function ProductDetails() {
   }
 
   async function callWordCloud() {
-    const result = await callLinkWordCloud();
     setRes3(true);
+    const result = await callLinkWordCloud();
     var imgPos = document.createElement("img");
     imgPos.src = result["positive"];
     var posCloud = document.getElementById("wordcloudPos");
