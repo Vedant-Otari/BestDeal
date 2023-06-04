@@ -15,6 +15,8 @@ my_client = pymongo.MongoClient(connect_string)
 # First define the database name
 dbname = my_client['sample_products']
 # Now get/create collection name (remember that you will see the database in your mongodb cluster only after you create a collection
+collection_name = dbname["customer_details"]
+# Now get/create collection name (remember that you will see the database in your mongodb cluster only after you create a collection
 notification_collection = dbname["notification"]
 
 def add_notification(cookie, product_name, productLink, target_price, website):
@@ -27,7 +29,8 @@ def add_notification(cookie, product_name, productLink, target_price, website):
         "productLink" : productLink,
         "target_price": target_price,
         "website" : website,
-        "status" : "notify"
+        "status" : "notify",
+        "cookies": cookie
     }
     notification_collection.insert_one(notification)
 

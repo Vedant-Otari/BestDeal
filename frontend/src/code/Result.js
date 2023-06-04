@@ -441,12 +441,12 @@ const EmailNotification = ({ productName, onClose }) => {
               >
                 Submit
               </button>
-              <button
+              {/* <button
                 onClick={onClose}
                 className="bg-zinc-300 text-xl w-1/2 mx-auto shadow-sm hover:shadow-md hover:shadow-gray-600 duration-200 shadow-black py-3 px-5 rounded-lg"
               >
                 I don't want to any mail.
-              </button>
+              </button> */}
             </>
           )}
         </div>
