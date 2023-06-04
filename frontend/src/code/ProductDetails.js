@@ -80,12 +80,15 @@ async function callLinkChart() {
 
 async function getProductUserDetails(cookies) {
   try {
-    const res = await axios.get("http://127.0.0.1:8000/api/getSpecificUserProductComment", {
-      params: {
-        product_name: productName,
-        cookie: cookies,
-      },
-    });
+    const res = await axios.get(
+      "http://127.0.0.1:8000/api/getSpecificUserProductComment",
+      {
+        params: {
+          product_name: productName,
+          cookie: cookies,
+        },
+      }
+    );
     console.log("Here is comments:\n\n");
     console.log(res.data);
     return res.data;
@@ -127,7 +130,7 @@ export default function ProductDetails() {
     const result = await callLinkProduct();
     setRes(result);
   }
-  
+
   async function callGetProductUserDetails() {
     const result = await getProductUserDetails();
     setComments(result);
@@ -157,15 +160,11 @@ export default function ProductDetails() {
     var imgPos = document.createElement("img");
     imgPos.src = result["positive"];
     var posCloud = document.getElementById("wordcloudPos");
-    if (posCloud) {
-      posCloud.appendChild(imgPos);
-    }
+    posCloud.appendChild(imgPos);
     var img = document.createElement("img");
     img.src = result["negative"];
     var negCloud = document.getElementById("wordcloudNeg");
-    if (negCloud) {
-      negCloud.appendChild(img);
-    }
+    negCloud.appendChild(img);
   }
 
   async function callChart() {
@@ -467,28 +466,32 @@ export default function ProductDetails() {
             ></div>
           </div>
         )}
-        {res3 && (
-          <div className="flex p-5">
-            <div className="w-1/2 flex flex-col shadow-md shadow-black justify-center p-3 m-4 rounded-lg bg-cyan-800">
+
+        <div className="flex p-5">
+          <div className="w-1/2 flex flex-col shadow-md shadow-black justify-center p-3 m-4 rounded-lg bg-cyan-800">
+            {res3 && (
               <dir className="text-4xl text-white text-center">
                 Positive cloud
               </dir>
-              <div
-                id="wordcloudPos"
-                className="rounded-xl p-10 bg-black overflow-hidden"
-              ></div>
-            </div>
-            <div className="w-1/2 flex flex-col shadow-md shadow-black justify-center p-3 m-4 rounded-lg bg-cyan-800">
+            )}
+            <div
+              id="wordcloudPos"
+              className="rounded-xl p-10 bg-black overflow-hidden"
+            ></div>
+          </div>
+          <div className="w-1/2 flex flex-col shadow-md shadow-black justify-center p-3 m-4 rounded-lg bg-cyan-800">
+            {res3 && (
               <dir className="text-4xl text-white text-center">
                 Negative cloud
               </dir>
-              <div
-                id="wordcloudNeg"
-                className="rounded-xl p-10 bg-black overflow-hidden"
-              ></div>
-            </div>
+            )}
+            <div
+              id="wordcloudNeg"
+              className="rounded-xl p-10 bg-black overflow-hidden"
+            ></div>
           </div>
-        )}
+        </div>
+
         {res1 && res1.length > 0 && (
           <>
             <div className="bg-sky-700 p-5 pt-10">
