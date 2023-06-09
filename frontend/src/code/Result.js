@@ -174,7 +174,7 @@ export default function Result() {
         <Header showButton="showSearch" />
         {emailNotification && (
           <EmailNotification
-            productName="Samsung S22"
+            productName={productName}
             onClose={hideNotificationBox}
           />
         )}
