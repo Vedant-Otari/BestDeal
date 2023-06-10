@@ -77,10 +77,20 @@ export default function Result() {
     window.location.href = `/productDetails?query=${productName}`;
   };
 
-  const [emailNotification, setEmailNotification] = useState(true);
+  const [emailNotification, setEmailNotification] = useState(false);
 
-  const hideNotificationBox = () => {
+  const hideNotificationBox1 = () => {
     setEmailNotification(false);
+  };
+
+  const hideNotificationBox2 = () => {
+    callLinkFavAdd(productName);
+    setEmailNotification(false);
+  
+  };
+
+  const showNotificationBox = () => {
+    setEmailNotification(true);
   };
 
   const [resF, setResF] = useState(null);
@@ -89,7 +99,7 @@ export default function Result() {
 
   useEffect(() => {
     callFlipkart();
-    // callAmazon();
+    callAmazon();
 
     const checkIfUserIsLoggedIn = () => {
       const cookies = document.cookie;
@@ -101,7 +111,7 @@ export default function Result() {
   }, []);
 
   const showFav = (name, id1, id2) => {
-    callLinkFavAdd(name);
+    showNotificationBox();
     if (resF || resA) {
       const b = document.getElementById(id1);
       const c = document.getElementById(id2);
@@ -175,7 +185,8 @@ export default function Result() {
         {emailNotification && (
           <EmailNotification
             productName={productName}
-            onClose={hideNotificationBox}
+            onClose1={hideNotificationBox1}
+            onClose2={hideNotificationBox2}
           />
         )}
         <div className="bg-gray-50 min-h-screen h-full pb-16">
@@ -389,7 +400,7 @@ export default function Result() {
   }
 }
 
-const EmailNotification = ({ productName, onClose }) => {
+const EmailNotification = ({ productName, onClose1,onClose2 }) => {
   const [emailNotification1, setEmailNotification1] = useState(false);
   const [emailNotification2, setEmailNotification2] = useState(true);
 
@@ -403,7 +414,7 @@ const EmailNotification = ({ productName, onClose }) => {
       <div className="bg-sky-900 bg-opacity-70 flex items-center justify-center absolute top-0 right-0 left-0 z-50 bottom-0">
         <div className="bg-zinc-50 justify-around overflow-hidden duration-300 py-10 w-1/2 h-1/2 relative flex flex-col rounded-3xl p-6 shadow-xl shadow-gray-900">
           <div
-            onClick={onClose}
+            onClick={onClose1}
             className="absolute cursor-pointer bg-red-600 px-5 py-2 top-0 text-white font-bold font-sans text-3xl right-0 rounded-bl-xl rounded-tr-3xl hover:scale-105"
           >
             X
@@ -421,7 +432,7 @@ const EmailNotification = ({ productName, onClose }) => {
                   YES
                 </button>
                 <button
-                  onClick={onClose}
+                  onClick={onClose1}
                   className="bg-zinc-300 shadow-sm hover:shadow-md hover:shadow-gray-600 duration-200 shadow-black py-3 px-5 rounded-lg"
                 >
                   NO
@@ -436,7 +447,7 @@ const EmailNotification = ({ productName, onClose }) => {
               </div>
               <input type="number" className="border-2 text-xl p-2 no-arrows rounded-md shadow-md bg-zinc-100 border-black text-center w-1/3 mx-auto" placeholder="Enter price here"/>
               <button
-                onClick={onClose}
+                onClick={onClose2}
                 className="bg-green-500 font-bold hover:bg-green-600 mb-6 text-white text-xl w-1/3 mx-auto shadow-sm hover:shadow-md hover:shadow-gray-600 duration-200 shadow-black py-3 px-5 rounded-lg"
               >
                 Submit

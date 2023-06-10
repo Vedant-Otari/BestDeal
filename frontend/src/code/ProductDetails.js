@@ -89,8 +89,6 @@ async function getProductUserDetails(cookies) {
         },
       }
     );
-    console.log("Here is comments:\n\n");
-    console.log(res.data);
     return res.data;
   } catch (err) {
     console.log(err);
@@ -126,13 +124,28 @@ export default function ProductDetails() {
     callGetProductUserDetails();
   }, []);
 
+  function getCookieValue(name) {
+    const cookies = document.cookie.split(";");
+  
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i].trim();
+      const [cookieName, cookieValue] = cookie.split("=");
+      if (cookieName === name) {
+        return decodeURIComponent(cookieValue);
+      }
+    }
+  
+    return null;
+  }
+
   async function callProduct() {
     const result = await callLinkProduct();
     setRes(result);
   }
 
   async function callGetProductUserDetails() {
-    const result = await getProductUserDetails();
+    const cookies = getCookieValue("bestdeal");
+    const result = await getProductUserDetails(cookies);
     setComments(result);
   }
 
@@ -168,10 +181,10 @@ export default function ProductDetails() {
   }
 
   async function callChart() {
+    setRes4(true);
     const result = await callLinkChart();
     var img = document.createElement("img");
     img.src = result;
-    setRes4(true);
     var chartElement = document.getElementById("historyChart");
     if (chartElement) {
       chartElement.appendChild(img);

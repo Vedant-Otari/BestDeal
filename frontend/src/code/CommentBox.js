@@ -5,7 +5,7 @@ export default function CommentBox({ productName,productDetails, onClose }) {
   const [username1, setUsername1] = useState("");
   const [username2, setUsername2] = useState("");
   function commentSubmit() {
-    alert(username1);
+    // alert(username1);
     callLinkFavAdd();
     onClose();
   }
@@ -39,7 +39,7 @@ export default function CommentBox({ productName,productDetails, onClose }) {
       console.log(err);
     }
   }
-
+  console.log(productDetails)
   return (
     <div className="absolute top-0 flex items-center justify-center bg-opacity-50 bottom-0 right-0 left-0 bg-sky-700 z-50">
       <div className="bg-zinc-50 p-10 shadow-md shadow-black flex flex-col w-1/2 h-1/2 overflow-hidden justify-evenly rounded-xl relative">
@@ -50,18 +50,22 @@ export default function CommentBox({ productName,productDetails, onClose }) {
           X
         </div>
         <div className="text-3xl text-center">
+          
           Add a comment for "{productName}"
         </div>
+
         <input
           onInput={(data) => setUsername1(data.target.value)}
           className="border-2 border-black rounded-md w-2/3 mx-auto text-xl p-2"
           placeholder="Enter your comment here"
+          // value={productDetails? productDetails['description']:""}
           type="text"
         />
         <input
           onInput={(data) => setUsername2(data.target.value)}
-          className="border-2 border-black no-arrows rounded-md w-1/3 mx-auto text-center text-xl p-2"
+          className="border-2 border-black no-arrows rounded-md w-1/4 mx-auto text-center text-xl p-2"
           placeholder="Enter rating here"
+          // value={productDetails? productDetails['rating']:""}
           type="number"
         />
         <button

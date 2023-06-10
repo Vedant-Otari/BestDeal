@@ -126,9 +126,11 @@ def sendVerificationCode(request):
     return HttpResponse(json_util.dumps(result))
 
 def addProductToWishlist(request):
-    cookie = request.GET['cookie']
     productName = request.GET['product_name']
+    cookie = request.GET['cookie']
+    # add_notification(cookie, product_name, productLink, target_price, website)
     add_product_to_wishlist(productName, cookie)
+    return HttpResponse("")
     
 def removeProductFromWishlist(request):
     cookie = request.GET['cookie']
@@ -140,12 +142,15 @@ def addProductComment(request):
     description = request.GET['description']
     rating = request.GET['rating']
     cookie = request.GET['cookie']
-    add_product_comment(product_name, description, rating, cookie)
+    result = add_product_comment(product_name, description, rating, cookie)
+    return HttpResponse(json_util.dumps(result))
 
 def getSpecificUserProductComment(request):
+    print(request)
     product_name = request.GET['product_name']
     cookie = request.GET['cookie']
-    get_specific_user_product_comment(product_name, cookie)
+    result = get_specific_user_product_comment(product_name, cookie)
+    return HttpResponse(json_util.dumps(result))
 
 # def updateProductComment(request):
 #     product_name = request.GET['product_name']

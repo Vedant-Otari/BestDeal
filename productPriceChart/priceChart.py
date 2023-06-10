@@ -5,6 +5,7 @@ from selenium.webdriver.common.by import By
 from difflib import SequenceMatcher
 import numpy as np
 import itertools
+import time
 
 def getPriceHistoryChart(productName):
 
@@ -43,16 +44,24 @@ def getPriceHistoryChart(productName):
             maxSimilarity = currentStrSimilarity
             d = j.get_attribute("href")
         count += 1
-        # print(c,j.get_attribute("title"))
+    print(d)
     driver.get(d)
 
     # string = """<canvas id="price_history_chart" style="width: 100%; display: block;" width="950" height="475" class="chartjs-render-monitor"></canvas><script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js" defer=""></script>"""
     # f = open("chart.html",'bw')
     # import re
-    ele1 = driver.find_element(By.XPATH, "/html/body/div[2]/div/div[2]/div[1]/div[2]")
-
-    driver.execute_script("return arguments[0].scrollIntoView();", ele1) 
-    ele = driver.find_element(By.XPATH, "/html/body/div[2]/div/div[2]/div[1]/div[3]/div[2]/canvas")
+    
+    try:
+        ele1 = driver.find_element(By.XPATH, "/html/body/div[2]/div/div[2]/div[1]/div[2]")
+        print(ele1)
+        driver.execute_script("return arguments[0].scrollIntoView();", ele1) 
+        ele = driver.find_element(By.XPATH, "/html/body/div[2]/div/div[2]/div[1]/div[4]/div[2]/canvas")
+    except:
+        ele1 = driver.find_element(By.XPATH, "/html/body/div[2]/div/div[2]/div[1]/div[2]")
+        driver.execute_script("return arguments[0].scrollIntoView();", ele1) 
+        ele = driver.find_element(By.XPATH, "/html/body/div[2]/div/div[2]/div[1]/div[3]/div[2]/canvas")
+    
+    
 
 
     image = ele.screenshot_as_base64
